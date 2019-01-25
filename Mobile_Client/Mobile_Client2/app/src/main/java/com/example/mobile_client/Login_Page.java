@@ -17,6 +17,7 @@ public class Login_Page extends AppCompatActivity {
     private TextView Incorrect;
     private Button Login;
     private TextView Signup;
+    private TextView Forgot;
 
     private int counter = 5;
 
@@ -34,12 +35,26 @@ public class Login_Page extends AppCompatActivity {
         Incorrect = (TextView)findViewById(R.id.tvincorrect);
         Login = (Button)findViewById(R.id.btnLogin);
         Signup =(TextView)findViewById(R.id.tvSignup);
+        Forgot = (TextView)findViewById(R.id.tv_forgot);
 
         Incorrect.setText("No of attempts remaining: 5");
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 validate(Username.getText().toString(),Password.getText().toString());
+            }
+        });
+        Signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               sign_up();
+            }
+        });
+
+        Forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                forgot_password();
             }
         });
     }
@@ -67,5 +82,16 @@ public class Login_Page extends AppCompatActivity {
 //                Login.setEnabled(false);
 //            }
 //        }
+    }
+    private void sign_up()
+    {
+        Intent intent = new Intent(Login_Page.this, SignUp_Page.class);
+        startActivity(intent);
+
+    }
+    private void forgot_password()
+    {
+        Intent intent = new Intent(Login_Page.this, Reset_password_Page.class);
+        startActivity(intent);
     }
 }
