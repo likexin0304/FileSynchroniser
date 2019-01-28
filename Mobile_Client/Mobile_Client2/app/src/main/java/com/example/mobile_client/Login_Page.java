@@ -63,32 +63,36 @@ public class Login_Page extends AppCompatActivity {
     //check username and password
     private void validate(String userName, String userPassword)
     {
-//        if((userName == "admin") && (userPassword == "1234"))
-//        {
+        if(Username.getText().toString().equals("admin") &&
+                Password.getText().toString().equals("admin"))
+        {
+
             // jump to Main Page
             Intent intent = new Intent(Login_Page.this, Main_Page.class);
             startActivity(intent);
 
-//        }
-//        else
-//        {
-//            counter--;
-//
-//            // show how many time left
-//            Incorrect.setText("No of attempts remaining: " + String.valueOf(counter));
-//            // disable to login
-//            if(counter == 0)
-//            {
-//                Login.setEnabled(false);
-//            }
-//        }
+        }
+        else
+        {
+            counter--;
+
+            // show how many time left
+            Incorrect.setText("No of attempts remaining: " + String.valueOf(counter));
+            // disable to login
+            if(counter == 0)
+            {
+                Login.setEnabled(false);
+            }
+        }
     }
+    // jump to sign up page
     private void sign_up()
     {
         Intent intent = new Intent(Login_Page.this, SignUp_Page.class);
         startActivity(intent);
 
     }
+    // jump to forgot password page
     private void forgot_password()
     {
         Intent intent = new Intent(Login_Page.this, Reset_password_Page.class);
