@@ -45,12 +45,16 @@
 
     <TextView
         android:id="@+id/Sign_up"
-        android:layout_width="104dp"
-        android:layout_height="36dp"
+        android:layout_width="85dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="160dp"
+        android:layout_marginLeft="160dp"
+        android:layout_marginEnd="150dp"
+        android:layout_marginRight="150dp"
         android:autoText="false"
         android:text="Sign Up"
-        tools:layout_editor_absoluteX="154dp"
-        tools:layout_editor_absoluteY="24dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/Sign_password"
@@ -81,7 +85,7 @@
         android:layout_marginRight="98dp"
         android:layout_marginBottom="20dp"
         android:ems="10"
-        android:hint="Enter Password Again"
+        android:hint="Confirm Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/Sign_question1"
         app:layout_constraintEnd_toEndOf="parent"

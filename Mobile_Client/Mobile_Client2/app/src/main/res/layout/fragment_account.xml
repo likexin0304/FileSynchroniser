@@ -1,13 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AccountFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/SignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="160dp"
+        android:layout_marginTop="500dp"
+        android:text="Sign Out" />
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:id="@+id/Username"
+        android:layout_width="156dp"
+        android:layout_height="29dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="100dp"
+        android:text="Username" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/Password"
+        android:layout_width="156dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="150dp"
+        android:text="Password" />
+</RelativeLayout>

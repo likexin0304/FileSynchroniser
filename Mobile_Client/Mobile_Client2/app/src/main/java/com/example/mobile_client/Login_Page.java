@@ -44,6 +44,7 @@ public class Login_Page extends AppCompatActivity {
                 validate(Username.getText().toString(),Password.getText().toString());
             }
         });
+        
         Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,7 +96,7 @@ public class Login_Page extends AppCompatActivity {
     // jump to forgot password page
     private void forgot_password()
     {
-        Intent intent = new Intent(Login_Page.this, Reset_password_Page.class);
+        Intent intent = new Intent(Login_Page.this, Rest_Password_Page.class);
         startActivity(intent);
     }
 }
