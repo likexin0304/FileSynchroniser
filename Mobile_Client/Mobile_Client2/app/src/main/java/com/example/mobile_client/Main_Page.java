@@ -41,6 +41,7 @@ public class Main_Page extends AppCompatActivity {
                 else if (id == R.id.account)
                 {
                     setFragment(accountFragment);
+                    return true;
                 }
                 return false;
             }

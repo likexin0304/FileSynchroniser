@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/edit_profile_page"
     tools:context=".EditProfilePage">
+    <!--<include layout="@layout/title" />-->
 
     <EditText
         android:id="@+id/oldPassword"
@@ -76,4 +77,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
+
+    <Button
+        android:id="@+id/e_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginEnd="321dp"
+        android:layout_marginRight="321dp"
+        android:layout_marginBottom="72dp"
+        android:text="Back"
+        app:layout_constraintBottom_toTopOf="@+id/oldPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

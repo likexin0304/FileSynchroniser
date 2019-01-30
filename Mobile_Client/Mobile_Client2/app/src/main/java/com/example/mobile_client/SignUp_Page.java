@@ -19,6 +19,9 @@ public class SignUp_Page extends AppCompatActivity {
     private EditText question2;
     private Button Submit;
     private TextView Signup;
+    private TextView HaveAccount;
+
+
 
 
 
@@ -34,6 +37,7 @@ public class SignUp_Page extends AppCompatActivity {
         question1 = (EditText)findViewById(R.id.Sign_question1);
         question2 = (EditText)findViewById(R.id.Sign_question2);
         Submit = (Button)findViewById(R.id.Sign_button);
+        HaveAccount = (TextView)findViewById(R.id.tv_haveAccount);
 
 
 
@@ -44,9 +48,20 @@ public class SignUp_Page extends AppCompatActivity {
             }
         });
 
+        HaveAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alreadySignUp();
+            }
+        });
 
     }
     private void sign_up()
+    {
+        Intent intent = new Intent(this, Login_Page.class);
+        startActivity(intent);
+    }
+    private  void alreadySignUp()
     {
         Intent intent = new Intent(this, Login_Page.class);
         startActivity(intent);

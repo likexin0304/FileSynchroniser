@@ -47,10 +47,12 @@ public class AccountFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 goToEditPage();
+
             }
         });
         return view;
     }
+
 
 
     private void goToLogin()

@@ -19,6 +19,7 @@ public class Login_Page extends AppCompatActivity {
     private TextView Signup;
     private TextView Forgot;
 
+
     private int counter = 5;
 
 
@@ -36,6 +37,7 @@ public class Login_Page extends AppCompatActivity {
         Login = (Button)findViewById(R.id.btnLogin);
         Signup =(TextView)findViewById(R.id.tvSignup);
         Forgot = (TextView)findViewById(R.id.tv_forgot);
+
 
         Incorrect.setText("No of attempts remaining: 5");
         Login.setOnClickListener(new View.OnClickListener() {
@@ -99,4 +101,5 @@ public class Login_Page extends AppCompatActivity {
         Intent intent = new Intent(Login_Page.this, Rest_Password_Page.class);
         startActivity(intent);
     }
+
 }

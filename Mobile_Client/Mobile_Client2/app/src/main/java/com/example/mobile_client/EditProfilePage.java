@@ -15,15 +15,21 @@ public class EditProfilePage extends AppCompatActivity {
     private EditText new_password;
     private EditText confirm_password;
     private Button edit_sumbit;
-
+    private Button go_Back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_page);
+
+
+
+
+
         old_password = (EditText)findViewById(R.id.oldPassword);
         new_password = (EditText)findViewById(R.id.newPassword);
         confirm_password = (EditText)findViewById(R.id.confirmPassword);
         edit_sumbit = (Button)findViewById(R.id.e_sumbit);
+        go_Back = (Button)findViewById(R.id.e_back);
 
         edit_sumbit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +38,14 @@ public class EditProfilePage extends AppCompatActivity {
 
             }
         });
+        go_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               goBack();
+
+            }
+        });
+
     }
     private void goToAccount()
     {
@@ -40,5 +54,10 @@ public class EditProfilePage extends AppCompatActivity {
 
         startActivity(intent);
 
+    }
+    private void goBack()
+    {
+//        Intent intent = new Intent(getActivity(),EditProfilePage.class);
+//        getActivity().startActivity(intent);
     }
 }

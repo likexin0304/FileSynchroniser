@@ -1,6 +1,7 @@
 package com.example.mobile_client;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ public class Rest_Password_Page extends AppCompatActivity {
     private EditText r_Password;
     private EditText r_Repassword;
     private Button r_Sumbit;
+    private Button r_Back;
 
 
 
@@ -34,6 +36,11 @@ public class Rest_Password_Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rest__password__page);
 
+//        ActionBar actionBar =getSupportActionBar();
+//        if( actionBar != null)
+//        {
+//            actionBar.hide();
+//        }
 
         r_Username = (EditText)findViewById(R.id.r_username);
         r_Answer1 = (EditText)findViewById(R.id.Answer1);
@@ -43,6 +50,7 @@ public class Rest_Password_Page extends AppCompatActivity {
         r_Password = (EditText)findViewById(R.id.r_password);
         r_Repassword =(EditText)findViewById(R.id.r_repassword);
         r_Sumbit = (Button)findViewById(R.id.r_sumbit);
+        r_Back = (Button)findViewById(R.id.bt_back);
 
 
         r_Sumbit.setOnClickListener(new View.OnClickListener() {
@@ -51,9 +59,22 @@ public class Rest_Password_Page extends AppCompatActivity {
                 goTohome();
             }
         });
+        r_Back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBack();
+
+            }
+        });
+
     }
 
     private void goTohome()
+    {
+        Intent intent = new Intent(Rest_Password_Page.this, Login_Page.class);
+        startActivity(intent);
+    }
+    private void goBack()
     {
         Intent intent = new Intent(Rest_Password_Page.this, Login_Page.class);
         startActivity(intent);
