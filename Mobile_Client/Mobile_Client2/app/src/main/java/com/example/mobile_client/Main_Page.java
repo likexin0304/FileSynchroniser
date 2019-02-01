@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 public class Main_Page extends AppCompatActivity {
@@ -13,6 +15,7 @@ public class Main_Page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main__page);
 
 
@@ -50,6 +53,9 @@ public class Main_Page extends AppCompatActivity {
         navigationView.setSelectedItemId(R.id.home);
 
     }
+
+
+
     private void setFragment(Fragment fragment)
     {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
