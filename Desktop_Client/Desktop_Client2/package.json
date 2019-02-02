@@ -1,0 +1,14 @@
+{
+  "name": "desktop_client2",
+  "version": "1.0.0",
+  "description": "Desktop Client",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Paramount",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^4.0.4"
+  }
+}
