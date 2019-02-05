@@ -1,10 +1,11 @@
 <resources>
-    <string name="app_name">Mobile_Client</string>
+    <string name="app_name">Paramount</string>
     <string name="title_activity_main__page">Main_Page</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_reset_password__page">Reset_password_Page</string>
+    <string name="title_detail">Detail</string>
 
 
 

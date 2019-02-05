@@ -13,7 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class EditProfilePage extends AppCompatActivity {
+public class  EditProfilePage extends AppCompatActivity {
 
     private EditText old_password;
     private EditText new_password;

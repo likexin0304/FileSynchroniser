@@ -12,7 +12,6 @@
         <activity android:name=".Item_detail_Page"></activity>
         <activity android:name=".EditProfilePage" />
         <activity android:name=".Rest_Password_Page" />
-        <activity android:name=".Reset_Password_Page" />
         <activity android:name=".Main_Page" />
         <activity android:name=".SignUp_Page" />
         <activity android:name=".Login_Page">
