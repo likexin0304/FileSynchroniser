@@ -1,7 +1,10 @@
 package kcl.paramount.group.business;
 
+import com.alibaba.fastjson.JSONObject;
 import kcl.paramount.group.dao.UserDao;
 import kcl.paramount.group.dao.UserDaoJDBCImpl;
+import kcl.paramount.group.util.JSONUtils;
+import kcl.paramount.group.util.MD5Utils;
 import sun.security.provider.MD5;
 
 import java.io.UnsupportedEncodingException;
@@ -10,25 +13,41 @@ import java.security.NoSuchAlgorithmException;
 
 public class UserBusiness {
 
-    public Boolean userLogin(String username, String password) {
+    public String userLogin(String username, String password) {
         Boolean flag = false;
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] array = md.digest(password.getBytes("UTF-8"));
-            StringBuilder sb = new StringBuilder();
-            for (byte item : array) {
-                sb.append(Integer.toHexString((item & 0xFF) | 0x100).substring(1, 3));
-            }
-            String hashed = sb.toString();
-
-            UserDao userDao = new UserDaoJDBCImpl();
-            flag = userDao.login(username, hashed);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+        String result = null;
+        String hashed = MD5Utils.getMD5(password);
+        UserDao userDao = new UserDaoJDBCImpl();
+        flag = userDao.login(username, hashed);
+        if (flag) {
+            result = JSONUtils.getJSONString("success", "");
         }
-        return flag;
+        else {
+            result = JSONUtils.getJSONString("fail", "username or password incorrect");
+        }
+        return result;
+    }
+
+    public String addUser(String username, String password, String answer1, String answer2) {
+        String result = null;
+        UserDao userDao = new UserDaoJDBCImpl();
+        password = MD5Utils.getMD5(password);
+        answer1 = MD5Utils.getMD5(answer1);
+        answer2 = MD5Utils.getMD5(answer2);
+        // false means user do not exist
+        if (userDao.chechUser(username) == false) {
+            boolean flag = userDao.addUser(username, password, answer1, answer2);
+            if (flag) {
+                result = JSONUtils.getJSONString("success", "");
+            }
+            else {
+                result = JSONUtils.getJSONString("fail", "unknown reasons");
+            }
+        }
+        else {
+            result = JSONUtils.getJSONString("fail", "user already existed");
+        }
+        return result;
     }
 
 
