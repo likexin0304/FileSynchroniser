@@ -14,6 +14,8 @@ import java.util.List;
 public class UserDaoJDBCImpl implements UserDao {
 
     private static final String LOGIN = "select * from user where username=? and password=?";
+    private static final String CHECK_USER = "select * from user where username=?";
+    private static final String ADD_USER = "insert into user(username,password,answer1,answer2) values (?,?,?,?)";
 
     private DBUtils utils = null;
     private  Connection conn = null;
@@ -39,6 +41,51 @@ public class UserDaoJDBCImpl implements UserDao {
                 flag = true;
             }
         } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return flag;
+    }
+
+    /*
+    true : user exist
+    false : user do not exist
+     */
+    @Override
+    public Boolean chechUser(String username) {
+        Boolean flag = false;
+
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(CHECK_USER);
+            pstmt.setString(1, username);
+            rset = pstmt.executeQuery();
+            if(rset.next()) {
+                flag = true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean addUser(String username, String password, String answer1, String answer2) {
+        Boolean flag = true;
+
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(ADD_USER);
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            pstmt.setString(3, answer1);
+            pstmt.setString(4, answer2);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            flag = false;
             e.printStackTrace();
         } finally {
             utils.releaseRes(conn, pstmt, rset);
