@@ -20,6 +20,9 @@ public class XMLUtils {
             DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = dFactory.newDocumentBuilder();
             doc = builder.parse("src/main/java/kcl/paramount/group/config/DBConfig.xml");
+
+
+
         } catch (ParserConfigurationException e) {
             //auto generated catch block
             e.printStackTrace();
@@ -46,6 +49,11 @@ public class XMLUtils {
         }
 
         return attribute;
+    }
+
+    public static void main(String[] args) {
+        XMLUtils xmlUtils = new XMLUtils();
+        System.out.println(xmlUtils.getAttribute("user"));
     }
 
 }

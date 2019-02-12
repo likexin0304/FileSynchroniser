@@ -18,5 +18,9 @@ public class LoginController {
         return result;
     }
 
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String index() {
+        return "We are group Paramount!";
+    }
 
 }
