@@ -23,7 +23,12 @@ public class UserBusiness {
             result = JSONUtils.getJSONString("success", "");
         }
         else {
-            result = JSONUtils.getJSONString("fail", "username or password incorrect");
+            if (userDao.chechUser(username) == false) {
+                result = JSONUtils.getJSONString("fail", "user do not exist");
+            }
+            else {
+                result = JSONUtils.getJSONString("fail", "username or password incorrect");
+            }
         }
         return result;
     }
@@ -47,6 +52,28 @@ public class UserBusiness {
         else {
             result = JSONUtils.getJSONString("fail", "user already existed");
         }
+        return result;
+    }
+
+    public String changePassword(String username, String password, String newPassword) {
+        String result = null;
+        String hashed = MD5Utils.getMD5(password);
+        UserDao userDao = new UserDaoJDBCImpl();
+        Boolean flag = userDao.login(username, hashed);
+        if(flag) {
+            hashed = MD5Utils.getMD5(newPassword);
+            flag = userDao.changePassword(username, hashed);
+            if(flag) {
+                result = JSONUtils.getJSONString("success", "");
+            }
+            else {
+                result = JSONUtils.getJSONString("fail", "unknown reasons");
+            }
+        }
+        else {
+            result = JSONUtils.getJSONString("fail", "the password unmatched the original password");
+        }
+
         return result;
     }
 
