@@ -55,5 +55,27 @@ public class UserBusiness {
         return result;
     }
 
+    public String changePassword(String username, String password, String newPassword) {
+        String result = null;
+        String hashed = MD5Utils.getMD5(password);
+        UserDao userDao = new UserDaoJDBCImpl();
+        Boolean flag = userDao.login(username, hashed);
+        if(flag) {
+            hashed = MD5Utils.getMD5(newPassword);
+            flag = userDao.changePassword(username, hashed);
+            if(flag) {
+                result = JSONUtils.getJSONString("success", "");
+            }
+            else {
+                result = JSONUtils.getJSONString("fail", "unknown reasons");
+            }
+        }
+        else {
+            result = JSONUtils.getJSONString("fail", "the password unmatched the original password");
+        }
+
+        return result;
+    }
+
 
 }

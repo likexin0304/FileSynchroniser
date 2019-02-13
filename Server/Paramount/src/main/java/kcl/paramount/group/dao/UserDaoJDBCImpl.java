@@ -16,6 +16,7 @@ public class UserDaoJDBCImpl implements UserDao {
     private static final String LOGIN = "select * from user where username=? and password=?";
     private static final String CHECK_USER = "select * from user where username=?";
     private static final String ADD_USER = "insert into user(username,password,answer1,answer2) values (?,?,?,?)";
+    private static final String CHANGE_PASSWORD = "update user set password=? where username=?";
 
     private DBUtils utils = null;
     private  Connection conn = null;
@@ -83,6 +84,25 @@ public class UserDaoJDBCImpl implements UserDao {
             pstmt.setString(2, password);
             pstmt.setString(3, answer1);
             pstmt.setString(4, answer2);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            flag = false;
+            e.printStackTrace();
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean changePassword(String username, String newPassword) {
+        Boolean flag = true;
+
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(CHANGE_PASSWORD);
+            pstmt.setString(1, newPassword);
+            pstmt.setString(2, username);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             flag = false;
