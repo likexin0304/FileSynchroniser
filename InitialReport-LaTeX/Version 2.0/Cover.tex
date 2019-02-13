@@ -1,0 +1,146 @@
+\documentclass{article}
+\usepackage{enumerate, graphicx}          % page and image
+
+
+\begin{document}
+	
+	\begin{titlepage}
+			\includegraphics*[scale=0.5]{cover.png}
+			\begin{center}
+				\vspace{5cm}
+				\resizebox{12cm}{!}{\huge\textbf{Initial Report}} \\[8mm]
+				\huge\textbf{Group: Paramount} \\[5mm]
+				\large\emph{Kexin Li, Yu Zhu, Zhipeng Qi} \\[5mm]
+				\large\emph{Yiran Xu, Bo He, Kunxiang Jin} \\[5mm]
+			\end{center}
+	\end{titlepage}
+
+
+
+	
+	% report words siza
+	\fontsize{11 pt}{0}
+	
+	% section one
+	\section{Section One}
+	
+	% part 1
+	\subsection{Part 1}
+	
+	% report content
+	The team’s aim is to develop a multi-platform file synchronizer. For the platform aspect of the software, the file synchronizer has two clients, one of which is a desktop application on the OS X platform, and the other is a mobile application based on the Android platform, the two client applications all have a complete user interface. And the file synchronizer has a server side that implements the main logic functions of the software and stores the uploaded files. After analyzing the requirements of the software in the early stage of development, the group analyzed that the software has one core function and other main functions. The core function is to upload and synchronize the file function. Specifically, the user can select any type of file in the local file system to upload to the server, and then the server can synchronize the added file to other platforms in real time, and the user can view, modify, and add and delete files on any platform at anytime. The client will listen to the synchronized files and communicate any changes in the file to the server. The server will synchronize the changes of the file in real time and communicate the change to other clients, thus implementing the file synchronization function of the whole platform. For the main functions, the synchronizer can implement file encryption, view file modification records, restore files to historical versions, pause synchronization, search files, and modify file paths.
+	\\ \hspace*{\fill} \\
+	For the strategy to achieve these goals, the following will analyze the software development method and software design framework that utilized in the development process. Considering that it is not practical to get a complete and detailed requirement document from the software requirements analysis stage, that is to say, the user's requirements are constantly changing, the development team must constantly correct and iterate through the software to find the final product that users real need. Agile development is a software development capability that responds to rapidly changing requirements. This development approach fits team’s development needs. The group chose Scrum in the agile development method for software development. Based on the preliminary analysis of the software requirements, the team utilizes UML to draw the use case, utilizes the flow chart to describe the working logic of the software, and finally form a task list. Then, based on the tasks assigned by the team members, the team utilizes Trello to visualize the development tasks and update the task status in a timely manner. During the development process, the group members will meet regularly to analyze the problems encountered and future tasks required to do. For the software design framework, considering that MVC layering helps manage complex applications, one can focus on one aspect at a time , and the design pattern can simplify group development, so the team chose to design the application using MVC mode. At this stage, the team uses Electron to design the development of desktop applications, Java for Android client development, Java for server-side development, and MySQL for database development. As for database development, before creating the database, the team utilizes ER diagrams to build the types and relationships of data that required to be stored in the database.
+	
+	% part 2
+	\subsection{Part 2}
+	
+	For this Group project, Group Paramount decide to use Agile Development to develop our project. Each Level is related to our aims in this project. Group Paramount divide to three Levels to develop our project to check our progress.
+	\\ \hspace*{\fill} \\
+	Rough Timetable:
+	
+	\begin{enumerate}[Level 1:]
+		%level list 1
+		\item milestone Week 4
+		
+		\begin{enumerate}[1]
+			% 1
+			\item Idea of Project
+			\begin{enumerate}[a]
+				\item Select IDE and Language
+				\item Use Case, Flow Chart, Mockup Diagrams
+				\item Agile, MVC
+			\end{enumerate}
+			% 2
+			\item IDE and Language
+			\begin{enumerate}[a]
+				\item Learning Required Language and How to Use Required IDE
+			\end{enumerate}
+			% 3
+			\item Implement Desktop Client UI and Mobile Client UI
+			\begin{enumerate}[a]
+				\item Sub team For Desktop Client UI
+				\item Sub team For Mobile Client UI
+			\end{enumerate}
+			% 4,5
+			\item Initial Report and Presentation
+			\item Initial Database
+			\begin{enumerate}[a]
+				\item ERD 
+				\item Initial Database v1
+			\end{enumerate}
+			%6
+			\item Server
+			\begin{enumerate}[a]
+				\item Find a Server
+				\item Set up Environments
+			\end{enumerate}
+		\end{enumerate}
+		
+		% level 2
+		\item milestone Week 9
+		
+		\begin{enumerate}[1]
+			% 1
+			\item Back-end For Desktop Client
+			\begin{enumerate}[a]
+				\item Connect to Database, Server, UI and modify UI.
+			\end{enumerate}
+			
+			% 2
+			\item Back-end For Mobile Client
+			\begin{enumerate}[a]
+				\item Connect to Database, Server, UI and modify UI.
+			\end{enumerate}
+			
+			% 3
+			\item Current Problems v1(Bugs, Problems)
+			\begin{enumerate}[a]
+				\item Problems in Desktop Client
+				\item Problems in Mobile Client
+			\end{enumerate}
+			
+			% 4
+			\item Current Problems v2(Bugs, Problems)
+			\begin{enumerate}[a]
+				\item Problems in Desktop Client
+				\item Problem in Mobile Client
+			\end{enumerate}
+			
+			% 5
+			\item Current Problems v3(Bugs, Problems)
+			\begin{enumerate}[a]
+				\item Problems in Desktop Client
+				\item Problem in Mobile Client
+			\end{enumerate}
+		\end{enumerate}
+		
+		% level 3
+		\item milestone Week 10
+		
+		\begin{enumerate}[1]
+			\item Discuss Problems
+			\begin{enumerate}[a]
+				\item Final Report, Presentation, Application
+			\end{enumerate}
+			
+		\end{enumerate}
+		
+	\end{enumerate}
+	
+	% section 2
+	\section{Section Two}
+	
+	% content
+	During the process of achieving the group project, every member plays an important role and communication is of crucial importance. Due to limited time, It is impossible that all group members participant both desktop and mobile clients. Group Paramount allocate tasks to two sub teams, each team is formed by three members. Team1 is in charge of the desktop client and Team2 is doing the mobile client. For each team, there is a team leader, who controls the process of the development and allocates tasks to team members as well. Tasks are divided by different functions. In this case, everyone can make their efforts to finish their job. At the same time, all of group members should be involved in the front-end and back-end development, so that we can make it sure the whole program works well.
+	\\ \hspace*{\fill} \\
+	Group Paramount use Scrum in the agile development method for software development. At the first step of the development, members need to view their tasks. Group Paramount use Trello to manage group tasks. It makes tasks more explicit and reminds members to do their job. Group Paramount organize several online voice meetings via QQ, sharing the difficulties and understandings about how to improve the development. During the development of the program, meetings will be held twice a week. Meeting records are written by members with Google Doc. At the end of the meeting, Group Paramount will sum up the record and schedule the next meeting. Records will be uploaded to Google Drive after the meeting so that members can view them at any time. Github is a necessary tool for the group to save everyone’s source code and merge it into the group. It’s an easy approach to manage group work.
+	\\ \hspace*{\fill} \\
+	The team members have different background and programming abilities, the most important goal of the group project module is to make every participant reach a higher level of skills which could use in the developing process. Due to the expected achievement, the best way for “Paramount” group to handle conflicts is communication and discussion. Through physical or internet meeting, these are providing a useful mechanism which everyone has chances to deliver their own opinions.
+	\\ \hspace*{\fill} \\
+	The majority of disputes appear at the beginning of the project, such as which language should use, which IDE should choose, how the platform performs (like simple cloud storage or synchronises a local folder), etc., the problems solved during the meeting effectively. There is an efficient way to make the process more useful is that arise the puzzles first and discuss it later. Most of the first views always not mature enough, bypass the deep consider the group members may change their points of view. Not determine the final at the first meeting is a better way to cooperate in a team. Members have sufficient time to consider the problems and eliminate the prejudges so that the solutions are wealthy commonly.
+	\\ \hspace*{\fill} \\
+	Every single progress should upload to the group GitHub repository which is a conventional approach to control and retrieve the whole versions in the progressional process. However, the coordinator can exam the pull request or codes firstly. The remaining crews have the chance to check the others work and provide the feedbacks which can give more valuable standpoint to the original contributor. While this method offers each member of the team maximum the effort, in this cooperate method, everyone not only can deliver the incremental programme but also can let the team members have a more profound experience of the software development process. Therefore, throughout the whole process, everybody will attain the hopeful standard.
+	\\ \hspace*{\fill} \\
+	All members of the "Paramount" group join every step of developing process, is hard to determine which crew has more or fewer contributions. Finally, the chosen method for peer assessment is everyone gets the same points.
+\end{document}
