@@ -23,7 +23,12 @@ public class UserBusiness {
             result = JSONUtils.getJSONString("success", "");
         }
         else {
-            result = JSONUtils.getJSONString("fail", "username or password incorrect");
+            if (userDao.chechUser(username) == false) {
+                result = JSONUtils.getJSONString("fail", "user do not exist");
+            }
+            else {
+                result = JSONUtils.getJSONString("fail", "username or password incorrect");
+            }
         }
         return result;
     }
