@@ -17,6 +17,7 @@ public class UserDaoJDBCImpl implements UserDao {
     private static final String CHECK_USER = "select * from user where username=?";
     private static final String ADD_USER = "insert into user(username,password,answer1,answer2) values (?,?,?,?)";
     private static final String CHANGE_PASSWORD = "update user set password=? where username=?";
+    private static final String CHECK_ANSWER = "select * from user where username=? and answer1=? and answer2=?";
 
     private DBUtils utils = null;
     private  Connection conn = null;
@@ -106,6 +107,28 @@ public class UserDaoJDBCImpl implements UserDao {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             flag = false;
+            e.printStackTrace();
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return flag;
+    }
+
+    @Override
+    public Boolean checkAnswer(String username, String answer1, String answer2) {
+        Boolean flag = false;
+
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(CHECK_ANSWER);
+            pstmt.setString(1, username);
+            pstmt.setString(2, answer1);
+            pstmt.setString(3, answer2);
+            rset = pstmt.executeQuery();
+            if(rset.next()) {
+                flag = true;
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             utils.releaseRes(conn, pstmt, rset);

@@ -77,5 +77,39 @@ public class UserBusiness {
         return result;
     }
 
+    public String forgetPassword(String username,
+                                 String answer1,
+                                 String answer2,
+                                 String password) {
+        String result = null;
+
+        UserDao userDao = new UserDaoJDBCImpl();
+        Boolean flag = userDao.chechUser(username);
+
+        if (flag) {
+            String hashed1 = MD5Utils.getMD5(answer1);
+            String hashed2 = MD5Utils.getMD5(answer2);
+            flag = userDao.checkAnswer(username, hashed1, hashed2);
+            if (flag) {
+                String hashed = MD5Utils.getMD5(password);
+                flag = userDao.changePassword(username, hashed);
+                if (flag) {
+                    result = JSONUtils.getJSONString("success", "");
+                }
+                else {
+                    result = JSONUtils.getJSONString("fail", "unknown reasons");
+                }
+            }
+            else {
+                result = JSONUtils.getJSONString("fail", "the answer(s) unmatch");
+            }
+        }
+        else {
+            result = JSONUtils.getJSONString("fail", "user do not exist");
+        }
+
+        return result;
+    }
+
 
 }
