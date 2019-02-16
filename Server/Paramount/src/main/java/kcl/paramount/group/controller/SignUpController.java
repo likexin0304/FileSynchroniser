@@ -20,4 +20,10 @@ public class SignUpController {
         result = ub.addUser(username, password, answer1, answer2);
         return result;
     }
+
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public String signUpP(@RequestParam("username") String username, @RequestParam("password") String password,
+                         @RequestParam("answer1") String answer1, @RequestParam("answer2") String answer2) {
+        return signUp(username, password, answer1, answer2);
+    }
 }
