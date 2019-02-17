@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -11,6 +13,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class Rest_Password_Page extends AppCompatActivity {
     //r_username
@@ -32,7 +47,7 @@ public class Rest_Password_Page extends AppCompatActivity {
     private Button r_Sumbit;
     private Button r_Back;
 
-
+    private String TAG = "Rest_Password_Page";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +56,7 @@ public class Rest_Password_Page extends AppCompatActivity {
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         r_Username = (EditText)findViewById(R.id.r_username);
         r_Answer1 = (EditText)findViewById(R.id.Answer1);
@@ -56,9 +72,83 @@ public class Rest_Password_Page extends AppCompatActivity {
         r_Sumbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goTohome();
+                //goTohome();
+
+
+                if (TextUtils.isEmpty(r_Username.getText().toString()) || TextUtils.isEmpty(r_Answer1.getText().toString()) ||
+                        TextUtils.isEmpty(r_Answer2.getText().toString()) ||TextUtils.isEmpty(r_Password.getText().toString()))
+                {
+                    Toast.makeText(Rest_Password_Page.this, "Please fill all blanks", Toast.LENGTH_LONG).show();
+                }
+                else {
+
+                    OkHttpClient okHttpClient = new OkHttpClient();
+                    //requestbody
+                    FormBody formBody = new FormBody.Builder()
+                            .add("username", r_Username.getText().toString())
+                            .add("answer1", r_Answer1.getText().toString())
+                            .add("answer2", r_Answer2.getText().toString())
+                            .add("password", r_Password.getText().toString())
+                            .build();
+
+
+                    Request request = new Request.Builder()
+                            .url("http://35.178.35.227:8080/Paramount/forget")
+                            .post(formBody)
+                            .build();
+                    Call call = okHttpClient.newCall(request);
+
+                    call.enqueue(new Callback() {
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            Log.d(TAG, e.getMessage());
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            if (response.isSuccessful()) {
+                                System.out.println(String.valueOf(response.code()));
+                                // String reusult1 = response.body().string();
+                                try {
+                                    JSONObject my = new JSONObject(response.body().string());
+                                    System.out.println(my.getString("status"));
+                                    System.out.println(my.getString("info"));
+                                    String status1 = "success";
+                                    String status2 = "";
+                                    String rStatus1 = my.getString("status");
+                                    String rStatus2 = my.getString("info");
+
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            if (rStatus1.equals(status1) && rStatus2.equals(status2)) {
+                                                Intent intent = new Intent(Rest_Password_Page.this, Login_Page.class);
+                                                startActivity(intent);
+                                            } else {
+                                                Toast.makeText(Rest_Password_Page.this, "Please enter the correct information!", Toast.LENGTH_LONG).show();
+                                            }
+
+                                        }
+                                    });
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+
+                        }
+
+
+                    });
+                }
             }
         });
+
+    }
+
 //        r_Back.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -67,7 +157,7 @@ public class Rest_Password_Page extends AppCompatActivity {
 //            }
 //        });
 
-    }
+
 
     private void goTohome()
     {

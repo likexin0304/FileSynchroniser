@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="98dp"
         android:layout_marginRight="98dp"
         android:layout_marginBottom="20dp"
@@ -23,8 +23,7 @@
         app:layout_constraintBottom_toTopOf="@+id/Sign_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Sign_up"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/Sign_question1"
@@ -32,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="98dp"
         android:layout_marginRight="98dp"
         android:layout_marginBottom="20dp"
@@ -44,19 +43,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Sign_repassword" />
 
-    <TextView
-        android:id="@+id/Sign_up"
-        android:layout_width="85dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginLeft="160dp"
-        android:layout_marginEnd="150dp"
-        android:layout_marginRight="150dp"
-        android:autoText="false"
-        android:text="Sign Up"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <EditText
         android:id="@+id/Sign_password"
         android:layout_width="wrap_content"
@@ -66,7 +52,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="98dp"
         android:layout_marginRight="98dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -81,15 +67,16 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="31dp"
         android:layout_marginEnd="98dp"
         android:layout_marginRight="98dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="8dp"
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/Sign_question1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Sign_password" />
 
@@ -99,10 +86,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="98dp"
         android:layout_marginRight="98dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="142dp"
         android:ems="10"
         android:hint="Security Question 2"
         android:inputType="textPersonName"
@@ -117,30 +104,15 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="161dp"
         android:layout_marginLeft="161dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="162dp"
         android:layout_marginRight="162dp"
         android:layout_marginBottom="116dp"
+        android:background="#E8DFC0"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Sign_question2" />
 
-    <TextView
-        android:id="@+id/tv_haveAccount"
-        android:layout_width="173dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginLeft="29dp"
-        android:layout_marginTop="63dp"
-        android:layout_marginEnd="209dp"
-        android:layout_marginRight="209dp"
-        android:layout_marginBottom="131dp"
-        android:text="Already have ? Click here!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Sign_question2"
-        app:layout_constraintVertical_bias="0.0" />
 </android.support.constraint.ConstraintLayout>

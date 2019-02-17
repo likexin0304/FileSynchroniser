@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="160dp"
         android:layout_marginTop="500dp"
+        android:background="#E8DFC0"
         android:text="Sign Out" />
 
     <TextView
@@ -34,8 +35,9 @@
     <ImageButton
         android:id="@+id/editButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="300dp"
+        android:layout_height="53dp"
+        android:layout_marginLeft="280dp"
         android:layout_marginTop="130dp"
-        app:srcCompat="@android:drawable/ic_menu_edit" />
+
+        app:srcCompat="@drawable/ic_edit_black_24dp" />
 </RelativeLayout>
