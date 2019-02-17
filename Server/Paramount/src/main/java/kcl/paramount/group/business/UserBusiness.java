@@ -11,8 +11,15 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/*
+    the business layer to manage request
+ */
 public class UserBusiness {
 
+    /*
+        use hashed password and username to login
+        if fail => check user whether exist or not
+     */
     public String userLogin(String username, String password) {
         Boolean flag = false;
         String result = null;
@@ -33,6 +40,11 @@ public class UserBusiness {
         return result;
     }
 
+    /*
+        check user exist or not
+        hash the password and security answers
+        then add the user
+     */
     public String addUser(String username, String password, String answer1, String answer2) {
         String result = null;
         UserDao userDao = new UserDaoJDBCImpl();
@@ -55,6 +67,11 @@ public class UserBusiness {
         return result;
     }
 
+    /*
+        change password only can used after login, so use must be existed
+        check the old password whether match
+        if match => change to the new password
+     */
     public String changePassword(String username, String password, String newPassword) {
         String result = null;
         String hashed = MD5Utils.getMD5(password);
@@ -77,6 +94,11 @@ public class UserBusiness {
         return result;
     }
 
+    /*
+      1. check user exist or not
+      2. check the security answers match or not
+      3. change the password
+     */
     public String forgetPassword(String username,
                                  String answer1,
                                  String answer2,

@@ -11,8 +11,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ the JDBC implementation of UserDao interface
+  */
 public class UserDaoJDBCImpl implements UserDao {
 
+    /*
+    the sql commands
+     */
     private static final String LOGIN = "select * from user where username=? and password=?";
     private static final String CHECK_USER = "select * from user where username=?";
     private static final String ADD_USER = "insert into user(username,password,answer1,answer2) values (?,?,?,?)";
@@ -28,6 +34,7 @@ public class UserDaoJDBCImpl implements UserDao {
         utils = DBUtils.getInstance();
     }
 
+    //return true if login successful, fail => unscuccessful
     @Override
     public Boolean login(String username, String password) {
         Boolean flag = false;
@@ -74,6 +81,7 @@ public class UserDaoJDBCImpl implements UserDao {
         return flag;
     }
 
+    // use this function to create a new user
     @Override
     public Boolean addUser(String username, String password, String answer1, String answer2) {
         Boolean flag = true;
@@ -95,6 +103,7 @@ public class UserDaoJDBCImpl implements UserDao {
         return flag;
     }
 
+    //use this function to change the password
     @Override
     public Boolean changePassword(String username, String newPassword) {
         Boolean flag = true;
@@ -114,6 +123,8 @@ public class UserDaoJDBCImpl implements UserDao {
         return flag;
     }
 
+    //check user exist or not
+    // true => exist, false => not exist
     @Override
     public Boolean checkAnswer(String username, String answer1, String answer2) {
         Boolean flag = false;

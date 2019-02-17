@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+    basic handle forget password request
+    need: username, the first security answer, the second security answer and new password
+ */
 @RestController
 public class ForgetPasswordController {
     @RequestMapping(value = "/forget", method = RequestMethod.GET)
@@ -17,5 +21,14 @@ public class ForgetPasswordController {
         UserBusiness ub = new UserBusiness();
         result = ub.forgetPassword(username, answer1, answer2, password);
         return result;
+    }
+
+    //invoke get request method
+    @RequestMapping(value = "/forget", method = RequestMethod.POST)
+    public String forgetPasswordP(@RequestParam("username") String username,
+                                 @RequestParam("answer1") String answer1,
+                                 @RequestParam("answer2") String answer2,
+                                 @RequestParam("password") String password) {
+        return forgetPassword(username, answer1, answer2, password);
     }
 }
