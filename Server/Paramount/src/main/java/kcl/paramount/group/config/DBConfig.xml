@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <DBConfig>
     <!-- database connection url jdbc:mysql://ADDRESS:PORT/DATABASE -->
-    <url>jdbc:mysql://35.178.35.227:3306/Paramount</url>
+    <url>jdbc:mysql://localhost:3306/Paramount</url>
     <!-- database username -->
     <user>root</user>
     <!-- database password -->

@@ -12,17 +12,11 @@ public class DBUtils {
     /*
     Singleton Pattern
      */
-//    private DBUtils() {
-//        XMLUtils xmlUtils = new XMLUtils();
-//        url = xmlUtils.getAttribute("url");
-//        user = xmlUtils.getAttribute("user");
-//        password = xmlUtils.getAttribute("password");
-//    }
-
     private DBUtils() {
-        url = "jdbc:mysql://35.178.35.227:3306/Paramount";
-        user = "root";
-        password = "";
+        XMLUtils xmlUtils = new XMLUtils();
+        url = xmlUtils.getAttribute("url");
+        user = xmlUtils.getAttribute("user");
+        password = xmlUtils.getAttribute("password");
     }
 
     public static DBUtils getInstance() {

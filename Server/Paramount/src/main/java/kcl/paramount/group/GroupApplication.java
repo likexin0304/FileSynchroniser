@@ -6,6 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.web.WebApplicationInitializer;
 
+// the main entrance of the application
 @SpringBootApplication
 public class GroupApplication extends SpringBootServletInitializer {
 

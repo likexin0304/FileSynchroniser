@@ -4,8 +4,12 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/*
+    use MD5 to encrypt some information like password etc.
+ */
 public class MD5Utils {
 
+    // return encrypted message
     public static String getMD5(String message) {
         String value = null;
         try {
