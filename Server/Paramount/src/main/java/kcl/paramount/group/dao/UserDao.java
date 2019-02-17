@@ -1,5 +1,6 @@
 package kcl.paramount.group.dao;
 
+// the interface of the functions manipulate the user information
 public interface UserDao {
     Boolean login(String username, String password);
     Boolean chechUser(String username);

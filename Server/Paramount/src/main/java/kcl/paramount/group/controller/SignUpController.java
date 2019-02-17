@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+/*
+   basic handle sign up request
+   need: username, password, the first security answer and the second security answer
+*/
 @RestController
 public class SignUpController {
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
@@ -21,6 +25,7 @@ public class SignUpController {
         return result;
     }
 
+    //invoke get request method
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public String signUpP(@RequestParam("username") String username, @RequestParam("password") String password,
                          @RequestParam("answer1") String answer1, @RequestParam("answer2") String answer2) {
