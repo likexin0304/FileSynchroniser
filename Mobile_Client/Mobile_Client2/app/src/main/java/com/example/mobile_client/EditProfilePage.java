@@ -42,25 +42,27 @@ public class  EditProfilePage extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
+        // initial all variables from UI
         old_password = (EditText)findViewById(R.id.oldPassword);
         new_password = (EditText)findViewById(R.id.newPassword);
         Username = (EditText)findViewById(R.id.Username);
         edit_sumbit = (Button)findViewById(R.id.e_sumbit);
         //go_Back = (Button)findViewById(R.id.e_back);
 
+
+        // change password button function
         edit_sumbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // goToAccount();
 
 
+                // check input
                 if (TextUtils.isEmpty(Username.getText().toString()) || TextUtils.isEmpty(old_password.getText().toString()) ||
                         TextUtils.isEmpty(new_password.getText().toString())) {
                     Toast.makeText(EditProfilePage.this, "Please fill all blanks", Toast.LENGTH_LONG).show();
                 } else {
 
-
+                    // connect to server and change password
                     OkHttpClient okHttpClient = new OkHttpClient();
                     //requestbody
                     FormBody formBody = new FormBody.Builder()
@@ -126,14 +128,7 @@ public class  EditProfilePage extends AppCompatActivity {
 
 
     }
-    private void goToAccount()
-    {
-        //cannot jump to account page. only go to the main page (home page)
-        Intent intent = new Intent(EditProfilePage.this, Main_Page.class);
 
-        startActivity(intent);
-
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {

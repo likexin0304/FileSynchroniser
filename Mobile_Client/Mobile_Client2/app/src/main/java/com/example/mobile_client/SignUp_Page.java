@@ -56,6 +56,7 @@ public class SignUp_Page extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        // initial all variables from UI
         Username = (EditText)findViewById(R.id.Sign_Username);
         Password = (EditText)findViewById(R.id.Sign_password);
         Repassword = (EditText)findViewById(R.id.Sign_repassword);
@@ -65,16 +66,12 @@ public class SignUp_Page extends AppCompatActivity {
         //HaveAccount = (TextView)findViewById(R.id.tv_haveAccount);
 
 
-
+        // sign up function
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //sign_up();
-//                Username.getText().toString();
-//                Password.getText().toString();
-//                question1.getText().toString();
-//                question2.getText().toString();
 
+            // check the input
               if(TextUtils.isEmpty(Username.getText().toString()) || TextUtils.isEmpty(Password.getText().toString()) ||
               TextUtils.isEmpty(question1.getText().toString()) ||TextUtils.isEmpty(question2.getText().toString()))
               {
@@ -82,7 +79,7 @@ public class SignUp_Page extends AppCompatActivity {
               }
               else {
 
-
+                    // connect to server and sign up
                   OkHttpClient okHttpClient = new OkHttpClient();
                   //requestbody
                   FormBody formBody = new FormBody.Builder()
@@ -153,11 +150,7 @@ public class SignUp_Page extends AppCompatActivity {
 
 
     }
-    private void sign_up()
-    {
-        Intent intent = new Intent(this, Login_Page.class);
-        startActivity(intent);
-    }
+
 
 
     @Override

@@ -13,6 +13,9 @@ import android.view.MenuItem;
 import okhttp3.Call;
 import okhttp3.Callback;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
 public class Main_Page extends AppCompatActivity {
 
     @Override

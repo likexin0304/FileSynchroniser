@@ -27,6 +27,9 @@ import okhttp3.Response;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+
 
 
 
@@ -45,8 +48,7 @@ public class Login_Page extends AppCompatActivity {
     private int counter = 5;
 
 
-
-
+// sharedPreferences for save user information.
 
 
     @Override
@@ -56,51 +58,39 @@ public class Login_Page extends AppCompatActivity {
         //assigned our variables with the respective XML layout ID
         //XML: Username, Password, tvincorrect, btnLogin, tvSignup
 
-
-        Username = (EditText)findViewById(R.id.Username);
-        Password = (EditText)findViewById(R.id.Password);
-        Incorrect = (TextView)findViewById(R.id.tvincorrect);
-        Login = (Button)findViewById(R.id.btnLogin);
-        Signup =(TextView)findViewById(R.id.tvSignup);
-        Forgot = (TextView)findViewById(R.id.tv_forgot);
-
+        //initial all variables from UI
+        Username = (EditText) findViewById(R.id.Username);
+        Password = (EditText) findViewById(R.id.Password);
+        Login = (Button) findViewById(R.id.btnLogin);
+        Signup = (TextView) findViewById(R.id.tvSignup);
+        Forgot = (TextView) findViewById(R.id.tv_forgot);
 
 
-
-        Incorrect.setText("No of attempts remaining: 5");
-
+        // login button function
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(Username.getText().toString()) || TextUtils.isEmpty(Password.getText().toString()))
-                {
+                if (TextUtils.isEmpty(Username.getText().toString()) || TextUtils.isEmpty(Password.getText().toString())) {
                     Toast.makeText(Login_Page.this, "Please enter the username and password", Toast.LENGTH_LONG).show();
 
-                }
-                else {
+                } else {
                     postForm(Username.getText().toString(), Password.getText().toString());
                     //Toast.makeText(Login_Page.this, "Login to main Page", Toast.LENGTH_LONG).show();
                 }
 
 
-
             }
         });
 
-
-
-
-
-
-
-        
+        // signup button function
         Signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               sign_up();
+                sign_up();
             }
         });
 
+        // forgot password function
         Forgot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,9 +100,7 @@ public class Login_Page extends AppCompatActivity {
     }
 
 
-
-
-
+    // okhttp send request to server for login function
     private void postForm(String username, String password) {
         OkHttpClient okHttpClient = new OkHttpClient();
 
@@ -138,7 +126,7 @@ public class Login_Page extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     //Log.e("Check:", "onResponse: " + response.body().string());
                     System.out.println(String.valueOf(response.code()));
-                   // String reusult1 = response.body().string();
+                    // String reusult1 = response.body().string();
 
                     try {
                         JSONObject my = new JSONObject(response.body().string());
@@ -154,13 +142,11 @@ public class Login_Page extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if(rStatus1.equals(status1) && rStatus2.equals(status2))
-                                {
+                                if (rStatus1.equals(status1) && rStatus2.equals(status2)) {
+
                                     Intent intent = new Intent(Login_Page.this, Main_Page.class);
                                     startActivity(intent);
-                                }
-                                else
-                                {
+                                } else {
                                     Toast.makeText(Login_Page.this, "The username or password is incorrect!", Toast.LENGTH_LONG).show();
                                 }
 
@@ -174,10 +160,6 @@ public class Login_Page extends AppCompatActivity {
 //                        }
 
 
-
-
-
-
                     } catch (JSONException e) {
                         // Toast.makeText(Login_Page.this, "Login fail", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -185,9 +167,7 @@ public class Login_Page extends AppCompatActivity {
                     }
 
 
-
                 }
-
 
 
             }
@@ -195,74 +175,18 @@ public class Login_Page extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    //check username and password
-    private void validate(String userName, String userPassword)
-    {
-        if(Username.getText().toString().equals("admin") &&
-                Password.getText().toString().equals("admin"))
-        {
-
-            // jump to Main Page
-            Intent intent = new Intent(Login_Page.this, Main_Page.class);
-            startActivity(intent);
-
-        }
-        else
-        {
-            counter--;
-
-            // show how many time left
-            Incorrect.setText("No of attempts remaining: " + String.valueOf(counter));
-            // disable to login
-            if(counter == 0)
-            {
-                Login.setEnabled(false);
-            }
-        }
-    }
     // jump to sign up page
-    private void sign_up()
-    {
+    private void sign_up() {
         Intent intent = new Intent(Login_Page.this, SignUp_Page.class);
         startActivity(intent);
 
     }
+
     // jump to forgot password page
-    private void forgot_password()
-    {
+    private void forgot_password() {
         Intent intent = new Intent(Login_Page.this, Rest_Password_Page.class);
         startActivity(intent);
     }
-
-    private void shortToast(String msg){
-        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
-    }
-
 
 }
 
