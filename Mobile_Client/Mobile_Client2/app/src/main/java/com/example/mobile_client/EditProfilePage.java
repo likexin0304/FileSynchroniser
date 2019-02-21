@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -29,7 +30,7 @@ public class  EditProfilePage extends AppCompatActivity {
 
     private EditText old_password;
     private EditText new_password;
-    private EditText Username;
+    private TextView Username;
     private Button edit_sumbit;
     private String TAG = "EditProfilePage";
     //private Button go_Back;
@@ -45,11 +46,14 @@ public class  EditProfilePage extends AppCompatActivity {
         // initial all variables from UI
         old_password = (EditText)findViewById(R.id.oldPassword);
         new_password = (EditText)findViewById(R.id.newPassword);
-        Username = (EditText)findViewById(R.id.Username);
+        Username = (TextView)findViewById(R.id.Username);
         edit_sumbit = (Button)findViewById(R.id.e_sumbit);
         //go_Back = (Button)findViewById(R.id.e_back);
 
 
+        //get username from SharedPreferences
+        String username = (String) MySharedPreferences.getuserName(EditProfilePage.this);
+        Username.setText("Username：" + username);
         // change password button function
         edit_sumbit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +61,7 @@ public class  EditProfilePage extends AppCompatActivity {
 
 
                 // check input
-                if (TextUtils.isEmpty(Username.getText().toString()) || TextUtils.isEmpty(old_password.getText().toString()) ||
-                        TextUtils.isEmpty(new_password.getText().toString())) {
+                if (TextUtils.isEmpty(old_password.getText().toString()) || TextUtils.isEmpty(new_password.getText().toString())) {
                     Toast.makeText(EditProfilePage.this, "Please fill all blanks", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -66,7 +69,7 @@ public class  EditProfilePage extends AppCompatActivity {
                     OkHttpClient okHttpClient = new OkHttpClient();
                     //requestbody
                     FormBody formBody = new FormBody.Builder()
-                            .add("username", Username.getText().toString())
+                            .add("username", username)
                             .add("password", old_password.getText().toString())
                             .add("newpassword", new_password.getText().toString())
 

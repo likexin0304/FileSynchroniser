@@ -45,7 +45,7 @@ public class AccountFragment extends Fragment{
         Username = (TextView)view.findViewById(R.id.Username);
 
         String username = (String) MySharedPreferences.getuserName(getActivity());
-        String password = (String) MySharedPreferences.getPswd(getActivity());
+        //String password = (String) MySharedPreferences.getPswd(getActivity());
         Username.setText("Username：" + username);
 
 
