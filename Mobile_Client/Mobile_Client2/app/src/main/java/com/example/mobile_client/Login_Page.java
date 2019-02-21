@@ -144,6 +144,20 @@ public class Login_Page extends AppCompatActivity {
                             public void run() {
                                 if (rStatus1.equals(status1) && rStatus2.equals(status2)) {
 
+                                    String username = Username.getText().toString();
+                                    String password = Password.getText().toString();
+                                    //在 MySharedPreferences类里定义好存取方法后，就可以调用了
+                                    //这里将数据保存进去  注意：(name 我是定义了有返回值的，试试看)
+                                    Boolean bool = MySharedPreferences.setuserName(username, Login_Page.this);
+                                    MySharedPreferences.setPswd(password, Login_Page.this);
+
+
+                                    //看看保存成功没
+                                    if(bool)
+                                        Toast.makeText(Login_Page.this, "保存成功！", Toast.LENGTH_SHORT).show();
+                                    else
+                                        Toast.makeText(Login_Page.this, "保存失败！", Toast.LENGTH_SHORT).show();
+
                                     Intent intent = new Intent(Login_Page.this, Main_Page.class);
                                     startActivity(intent);
                                 } else {

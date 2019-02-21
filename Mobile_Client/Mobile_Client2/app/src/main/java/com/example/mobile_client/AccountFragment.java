@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.view.View.OnClickListener;
+import android.content.Context;
 
 
 /**
@@ -38,6 +40,15 @@ public class AccountFragment extends Fragment{
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         SignOut =(Button)view.findViewById(R.id.signout);
         EditButton =(ImageButton)view.findViewById(R.id.editButton);
+
+
+        Username = (TextView)view.findViewById(R.id.Username);
+
+        String username = (String) MySharedPreferences.getuserName(getActivity());
+        String password = (String) MySharedPreferences.getPswd(getActivity());
+        Username.setText("Username：" + username);
+
+
         SignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

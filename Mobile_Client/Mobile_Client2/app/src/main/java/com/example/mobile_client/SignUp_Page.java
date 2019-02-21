@@ -121,6 +121,20 @@ public class SignUp_Page extends AppCompatActivity {
                                       public void run() {
                                           if(rStatus1.equals(status1) && rStatus2.equals(status2))
                                           {
+                                              String username = Username.getText().toString();
+                                              String password = Password.getText().toString();
+                                              //在 MySharedPreferences类里定义好存取方法后，就可以调用了
+                                              //这里将数据保存进去  注意：(name 我是定义了有返回值的，试试看)
+                                              Boolean bool = MySharedPreferences.setuserName(username, SignUp_Page.this);
+                                              MySharedPreferences.setPswd(password, SignUp_Page.this);
+
+
+                                              //看看保存成功没
+                                              if(bool)
+                                                  Toast.makeText(SignUp_Page.this, "保存成功！", Toast.LENGTH_SHORT).show();
+                                              else
+                                                  Toast.makeText(SignUp_Page.this, "保存失败！", Toast.LENGTH_SHORT).show();
+
                                               Intent intent = new Intent(SignUp_Page.this, Login_Page.class);
                                               startActivity(intent);
                                           }
