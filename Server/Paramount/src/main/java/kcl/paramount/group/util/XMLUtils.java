@@ -24,8 +24,8 @@ public class XMLUtils {
         try {
             DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = dFactory.newDocumentBuilder();
-            //doc = builder.parse("src/main/java/kcl/paramount/group/config/DBConfig.xml");
-
+//            doc = builder.parse("src/main/java/kcl/paramount/group/config/DBConfig.xml");
+//
             doc = builder.parse("/var/lib/tomcat8/webapps/Paramount/WEB-INF/classes/kcl/paramount/group/config/DBConfig.xml");
 
 
