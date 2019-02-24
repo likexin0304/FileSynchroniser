@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -110,7 +111,7 @@ public class Login_Page extends AppCompatActivity {
                 .build();
 
         Request request = new Request.Builder()
-                .url("http://35.178.35.227:8080/Paramount/login")
+                .url("http://teamparamount.cn:8080/Paramount/login")
                 .post(formBody)
                 .build();
         Call call = okHttpClient.newCall(request);
@@ -201,7 +202,18 @@ public class Login_Page extends AppCompatActivity {
         Intent intent = new Intent(Login_Page.this, Rest_Password_Page.class);
         startActivity(intent);
     }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
 
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent home = new Intent(Intent.ACTION_MAIN);
+            home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            home.addCategory(Intent.CATEGORY_HOME);
+            startActivity(home);
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
 
 

@@ -93,7 +93,7 @@ public class Rest_Password_Page extends AppCompatActivity {
 
 
                     Request request = new Request.Builder()
-                            .url("http://35.178.35.227:8080/Paramount/forget")
+                            .url("http://teamparamount.cn:8080/Paramount/forget")
                             .post(formBody)
                             .build();
                     Call call = okHttpClient.newCall(request);

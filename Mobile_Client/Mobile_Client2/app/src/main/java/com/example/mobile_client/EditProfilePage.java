@@ -77,7 +77,7 @@ public class  EditProfilePage extends AppCompatActivity {
 
 
                     Request request = new Request.Builder()
-                            .url("http://35.178.35.227:8080/Paramount/changepassword")
+                            .url("http://teamparamount.cn:8080/Paramount/changepassword")
                             .post(formBody)
                             .build();
                     Call call = okHttpClient.newCall(request);

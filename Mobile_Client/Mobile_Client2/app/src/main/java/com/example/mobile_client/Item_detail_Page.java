@@ -1,5 +1,8 @@
 package com.example.mobile_client;
 
+import android.app.DownloadManager;
+import android.content.Context;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -38,6 +41,7 @@ public class Item_detail_Page extends AppCompatActivity {
                 finish();
                 break;
             case R.id.action_download:
+                downloadFile2();
                 Toast.makeText(getApplicationContext(), "Download", Toast.LENGTH_SHORT).show();
                 //download
                 break;
@@ -59,7 +63,13 @@ public class Item_detail_Page extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
+    private void downloadFile2(){
+        String url = "http://teamparamount.cn:8080/Paramount/download";
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+        request.setDestinationInExternalPublicDir("", "1.pdf");
+        DownloadManager downloadManager= (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
+        downloadManager.enqueue(request);
+    }
 
 
 }

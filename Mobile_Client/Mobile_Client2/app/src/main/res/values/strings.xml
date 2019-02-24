@@ -8,8 +8,6 @@
     <string name="title_detail">Detail</string>
 
 
-
-
     <!-- toolbar name-->
     <string name="toolbar_download_name">Download</string>
     <string name="toolbar_delete_name">Delete</string>

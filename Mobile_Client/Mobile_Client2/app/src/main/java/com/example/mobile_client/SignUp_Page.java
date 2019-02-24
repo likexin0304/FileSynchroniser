@@ -91,7 +91,7 @@ public class SignUp_Page extends AppCompatActivity {
 
 
                   Request request = new Request.Builder()
-                          .url("http://35.178.35.227:8080/Paramount/signup")
+                          .url("http://teamparamount.cn:8080/Paramount/signup")
                           .post(formBody)
                           .build();
                   Call call = okHttpClient.newCall(request);
