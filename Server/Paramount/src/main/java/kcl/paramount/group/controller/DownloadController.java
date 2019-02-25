@@ -9,7 +9,7 @@ import java.io.*;
 @RestController
 public class DownloadController {
 
-    private static final String ROOT_PATH = "home/upload/";
+    private static final String ROOT_PATH = "/home/upload/";
 
     @RequestMapping(value = "/download", method = RequestMethod.GET)
     public String download(HttpServletResponse response,
@@ -22,9 +22,8 @@ public class DownloadController {
         else {
             filePath = ROOT_PATH + username + "/" + url;
         }
-        if (filePath.endsWith("/") == false) {
-            filePath = filePath + "/";
-        }
+
+        System.out.println(filePath);
 
         File file = new File(filePath);
         // 如果文件名存在，则进行下载
