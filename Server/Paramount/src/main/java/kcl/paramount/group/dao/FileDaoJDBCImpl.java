@@ -13,6 +13,12 @@ public class FileDaoJDBCImpl implements FileDao {
     private static final String C_FILE = "select * from files where username=? and pre=?";
     private static final String D_DIR = "delete from dirs where username=? and url=?";
     private static final String D_FILE = "delete from files where username=? and url=?";
+    private static final String CHECK_FILE = "select * from files where username=? and url=?";
+    private static final String INSERT_DIRS = "insert into dirs values(?,?,?)";
+    private static final String INSERT_FILE = "insert into files values(?,?,?,?,?,?,?)";
+    private static final String LOCK = "update files set lockflag='1' where username=? and url =?";
+    private static final String UNLOCK = "update files set lockflag='0' where username=? and url =?";
+    private static final String CHECK_LOCK = "select lockflag from files where username=? and password=?";
 
     private DBUtils utils = null;
     private Connection conn = null;
@@ -92,6 +98,127 @@ public class FileDaoJDBCImpl implements FileDao {
             System.out.println(pstmt.toString());
         } catch (SQLException e) {
             result = false;
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return result;
+    }
+
+    @Override
+    public Boolean checkFile(String username, String url) {
+        Boolean result = true;
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(CHECK_FILE);
+            pstmt.setString(1, username);
+            pstmt.setString(2, url);
+            rset = pstmt.executeQuery();
+            if (rset.next()) {
+                result = false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return result;
+    }
+
+    @Override
+    public Boolean addFile(String username, String url, String time, String pre, long size) {
+        Boolean result = true;
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(INSERT_FILE);
+            pstmt.setString(1, username);
+            pstmt.setString(2, url);
+            pstmt.setString(3, "0");
+            pstmt.setInt(4, 0);
+            pstmt.setString(5, time);
+            pstmt.setString(6, pre);
+            pstmt.setLong(7, size);
+            pstmt.executeUpdate();
+            System.out.println(pstmt.toString());
+        } catch (SQLException e) {
+            result = false;
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return result;
+    }
+
+    @Override
+    public Boolean addDir(String username, String url, String pre) {
+        Boolean result = true;
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(INSERT_DIRS);
+            pstmt.setString(1, username);
+            pstmt.setString(2, url);
+            pstmt.setString(3, pre);
+            pstmt.executeUpdate();
+            System.out.println(pstmt.toString());
+        } catch (SQLException e) {
+            result = false;
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return result;
+    }
+
+    @Override
+    public Boolean lock(String username, String url) {
+        Boolean result = true;
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(LOCK);
+            pstmt.setString(1, username);
+            pstmt.setString(2, url);
+            pstmt.executeUpdate();
+            System.out.println(pstmt.toString());
+        } catch (SQLException e) {
+            result = false;
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return result;
+    }
+
+    @Override
+    public Boolean unlock(String username, String url) {
+        Boolean result = true;
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(UNLOCK);
+            pstmt.setString(1, username);
+            pstmt.setString(2, url);
+            pstmt.executeUpdate();
+            System.out.println(pstmt.toString());
+        } catch (SQLException e) {
+            result = false;
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return result;
+    }
+
+    @Override
+    public Boolean isLock(String username, String url) {
+        Boolean result = true;
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(CHECK_LOCK);
+            pstmt.setString(1, username);
+            pstmt.setString(2, url);
+            rset = pstmt.executeQuery();
+            if (rset.next()) {
+                if (rset.getString(1).equals("1")) {
+                    result = false;
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         } finally {
             utils.releaseRes(conn, pstmt, rset);
         }
