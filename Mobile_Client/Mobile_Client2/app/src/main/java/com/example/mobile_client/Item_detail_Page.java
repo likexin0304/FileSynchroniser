@@ -2,6 +2,7 @@ package com.example.mobile_client;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,8 @@ public class Item_detail_Page extends AppCompatActivity {
         setContentView(R.layout.activity_item_detail__page);
 
 
+
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -52,17 +55,22 @@ public class Item_detail_Page extends AppCompatActivity {
 //        }
 //
 //        return super.onOptionsItemSelected(item);
+
+        Intent intent = getIntent();
+        String SelectedItem = intent.getStringExtra(("fileName"));
+        System.out.println(SelectedItem);
         switch (item.getItemId())
         {
             case android.R.id.home:
                 finish();
                 break;
             case R.id.action_download:
-                download();
+                download(SelectedItem);
                 Toast.makeText(getApplicationContext(), "Downloaded", Toast.LENGTH_SHORT).show();
                 //download
                 break;
             case R.id.action_delete:
+                delete(SelectedItem);
                 Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                 //delete
                 break;
@@ -80,7 +88,7 @@ public class Item_detail_Page extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    public void download() {
+    public void download(String filename) {
         File dir = Environment.getExternalStoragePublicDirectory(Environment
                 .DIRECTORY_DOWNLOADS);
         String dirPath = dir.getAbsolutePath();
@@ -93,9 +101,9 @@ public class Item_detail_Page extends AppCompatActivity {
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 //.addFormDataPart("file", f.getName(),
-                       // RequestBody.create(MediaType.parse("multipart/form-data"), f))
+                // RequestBody.create(MediaType.parse("multipart/form-data"), f))
                 .addFormDataPart("username", username)
-                .addFormDataPart("url","SIA_Tutorial___01.pdf")
+                .addFormDataPart("url",filename)
                 //.addFormDataPart("filename","04.pdf")
                 .build();
 
@@ -115,6 +123,7 @@ public class Item_detail_Page extends AppCompatActivity {
             }
 
             public void onResponse(Call call, Response response)  {
+                System.out.println("11111111---"+filename);
                 InputStream is = null;
                 byte[] buf = new byte[2048];
                 int len = 0;
@@ -123,7 +132,8 @@ public class Item_detail_Page extends AppCompatActivity {
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
-                    File file = new File(dirPath, "05.pdf");
+                    File file = new File(dirPath, filename);
+                    System.out.println("222222222222---"+filename);
                     fos = new FileOutputStream(file);
                     long sum = 0;
                     while ((len = is.read(buf)) != -1) {
@@ -152,80 +162,80 @@ public class Item_detail_Page extends AppCompatActivity {
         });
     }
 
-//    public void delete()
-//    {
-//        System.out.println("111111111111111111111111111111111");
-//
-//    OkHttpClient okHttpClient = new OkHttpClient();
-//
-//    Request request = new Request.Builder()
-//            .get()
-//            .url("http://teamparamount.cn8080/Paramount/delete?username=" + username +"ulr=")
-//            .build();
-//
-//    Call call = okHttpClient.newCall(request);
-//
-//            System.out.println("22222222222");
-//
-//            call.enqueue(new Callback() {
-//        @Override
-//        public void onFailure(Call call, IOException e) {
-//            System.out.println("fail to connect");
-//        }
-//
-//        @Override
-//        public void onResponse(Call call, Response response) throws IOException {
-//            if (response.isSuccessful()) {
-//
-//                System.out.println(String.valueOf(response.code()));
-//
-//
-//                try {
-//                    JSONObject my = new JSONObject(response.body().string());
-//                    System.out.println(my.getString("status"));
-//                    System.out.println(my.getString("info"));
-//
-//                    //Toast.makeText(Login_Page.this,my.getString("status"),Toast.LENGTH_SHORT).show();
-//                    String status1 = "success";
-//                    String status2 = "";
-//                    String rStatus1 = my.getString("status");
-//                    String rStatus2 = my.getString("info");
-//
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            if (rStatus1.equals(status1)) {
-//
-//
-//
-//                                System.out.println("success");
-//
-//
-//
-//
-//
-//                            } else {
-//                                System.out.println("did not delete");
-//                            }
-//
-//                        }
-//                    });
-//
-//                } catch (JSONException e) {
-//                    // Toast.makeText(Login_Page.this, "Login fail", Toast.LENGTH_SHORT).show();
-//                    e.printStackTrace();
-//
-//                }
-//
-//
-//            }
-//
-//
-//        }
-//    });
-//
-//    //}
-//}
+    public void delete(String fileName)
+    {
+        System.out.println("111111111111111111111111111111111");
+        String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
+    OkHttpClient okHttpClient = new OkHttpClient();
+
+    Request request = new Request.Builder()
+            .get()
+            .url("http://teamparamount.cn:8080/Paramount/delete?username=" + username+"&"+"url="+fileName)
+            .build();
+
+    Call call = okHttpClient.newCall(request);
+
+            System.out.println("22222222222");
+
+            call.enqueue(new Callback() {
+        @Override
+        public void onFailure(Call call, IOException e) {
+            System.out.println("fail to connect");
+        }
+
+        @Override
+        public void onResponse(Call call, Response response) throws IOException {
+            if (response.isSuccessful()) {
+
+                System.out.println(String.valueOf(response.code()));
+
+
+                try {
+                    JSONObject my = new JSONObject(response.body().string());
+                    System.out.println(my.getString("status"));
+                    System.out.println(my.getString("info"));
+
+                    //Toast.makeText(Login_Page.this,my.getString("status"),Toast.LENGTH_SHORT).show();
+                    String status1 = "success";
+                    String status2 = "";
+                    String rStatus1 = my.getString("status");
+                    String rStatus2 = my.getString("info");
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (rStatus1.equals(status1)) {
+
+
+                                System.out.println("33333333333333333");
+                                System.out.println(rStatus2);
+
+
+
+
+
+                            } else {
+                                System.out.println("did not delete");
+                            }
+
+                        }
+                    });
+
+                } catch (JSONException e) {
+                    // Toast.makeText(Login_Page.this, "Login fail", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+
+                }
+
+
+            }
+
+
+        }
+    });
+
+    //}
+}
 
 
 

@@ -115,9 +115,15 @@ public class HomeFragment extends Fragment {
 //                        Intent intent = new Intent(getActivity(),Item_detail_Page.class);
 //                        startActivity(intent);
 //                }
-                for(position = 0; position < listView.getAdapter().getCount(); position++ )
+                for(int i= 0; position < listView.getAdapter().getCount(); i++ )
                 {
+                    int number =listView.getAdapter().getCount();
+                    System.out.println(number);
+                    String nameFile = fileList.get(position).getName();
+                    final String selected =  nameFile;
+                    System.out.println(selected);
                     Intent intent = new Intent(getActivity(),Item_detail_Page.class);
+                    intent.putExtra("fileName", selected);
                     startActivity(intent);
                     break;
                 }
