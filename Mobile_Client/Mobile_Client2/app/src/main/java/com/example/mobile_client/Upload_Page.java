@@ -91,36 +91,36 @@ public class Upload_Page extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grandResults)
     {
-        //Log.v(TAG, "index=7");
+
         if(requestCode == 100 && (grandResults[0] == PackageManager.PERMISSION_GRANTED))
         {
             enable_button();
-            //Log.v(TAG, "index=3");
+
         }
         else
         {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
             {
-               // Log.v(TAG, "index=0000000000");
+
                 requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
-               // Log.v(TAG, "index=4");
+
             }
         }
     }
 
 
-    ProgressDialog process;
+    //ProgressDialog process;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        String username = (String) MySharedPreferences.getuserName(Upload_Page.this);
         //super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 10 && resultCode == RESULT_OK)
         {
-            process = new ProgressDialog(Upload_Page.this);
-            process.setTitle("Uploading");
-            process.setMessage("Please waiting");
-            process.show();
+//            process = new ProgressDialog(Upload_Page.this);
+//            process.setTitle("Uploading");
+//            process.setMessage("Please waiting");
+//            process.show();
 
             Thread t = new Thread(new Runnable() {
                 @Override
@@ -135,7 +135,7 @@ public class Upload_Page extends AppCompatActivity {
 
                     OkHttpClient client = new OkHttpClient();
 
-                    String username = (String) MySharedPreferences.getuserName(Upload_Page.this);
+
 
                     RequestBody file_body = RequestBody.create(MediaType.parse(content_type),f);
 
@@ -164,7 +164,8 @@ public class Upload_Page extends AppCompatActivity {
                         {
                             throw new IOException("Error" + response);
                         }
-                        process.dismiss();
+                       // Toast.makeText(Upload_Page.this, "Uploaded", Toast.LENGTH_SHORT).show();
+//                        process.dismiss();
                     }catch (IOException e) {
                         e.printStackTrace();
                     }

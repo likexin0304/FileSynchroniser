@@ -16,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -49,6 +51,9 @@ public class Login_Page extends AppCompatActivity {
     private int counter = 5;
 
 
+   // public List<File_icon> fileList = new ArrayList<File_icon>();
+
+
 // sharedPreferences for save user information.
 
 
@@ -67,6 +72,10 @@ public class Login_Page extends AppCompatActivity {
         Forgot = (TextView) findViewById(R.id.tv_forgot);
 
 
+
+
+
+
         // login button function
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +85,7 @@ public class Login_Page extends AppCompatActivity {
 
                 } else {
                     postForm(Username.getText().toString(), Password.getText().toString());
+                    //getFileList(Username.getText().toString());
                     //Toast.makeText(Login_Page.this, "Login to main Page", Toast.LENGTH_LONG).show();
                 }
 
@@ -154,7 +164,7 @@ public class Login_Page extends AppCompatActivity {
 
 
                                     //看看保存成功没
-                                    if(bool)
+                                    if (bool)
                                         Toast.makeText(Login_Page.this, "保存成功！", Toast.LENGTH_SHORT).show();
                                     else
                                         Toast.makeText(Login_Page.this, "保存失败！", Toast.LENGTH_SHORT).show();
@@ -202,6 +212,7 @@ public class Login_Page extends AppCompatActivity {
         Intent intent = new Intent(Login_Page.this, Rest_Password_Page.class);
         startActivity(intent);
     }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
@@ -214,8 +225,10 @@ public class Login_Page extends AppCompatActivity {
         }
         return super.onKeyDown(keyCode, event);
     }
-}
 
+
+
+}
 
 //    AlertDialog alertDialog = new AlertDialog.Builder(Login_Page.this)
 //            .setTitle("Incorrect")

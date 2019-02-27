@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,6 +31,7 @@ import okhttp3.Response;
 
 public class Item_detail_Page extends AppCompatActivity {
 
+    //String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
     //android.support.v7.widget.Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,17 +58,12 @@ public class Item_detail_Page extends AppCompatActivity {
                 finish();
                 break;
             case R.id.action_download:
-
-//                File dir = Environment.getExternalStoragePublicDirectory(Environment
-//                        .DIRECTORY_DOWNLOADS);
-//                String dirPath = dir.getAbsolutePath();
-//                System.out.println(dirPath);
                 download();
-               // Toast.makeText(getApplicationContext(), "Download", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Downloaded", Toast.LENGTH_SHORT).show();
                 //download
                 break;
             case R.id.action_delete:
-                Toast.makeText(getApplicationContext(), "Delete", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                 //delete
                 break;
             default:
@@ -82,14 +81,6 @@ public class Item_detail_Page extends AppCompatActivity {
     }
 
     public void download() {
-
-//        Request request = new Request.Builder()
-//                .url(url)
-//                .build();
-        //"http://teamparamount.cn:8080/Paramount/download?username=admin&url=SIA_Tutorial___01.pdf",dirPath, "03.pdf"
-
-
-
         File dir = Environment.getExternalStoragePublicDirectory(Environment
                 .DIRECTORY_DOWNLOADS);
         String dirPath = dir.getAbsolutePath();
@@ -132,7 +123,7 @@ public class Item_detail_Page extends AppCompatActivity {
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
-                    File file = new File(dirPath, "04.pdf");
+                    File file = new File(dirPath, "05.pdf");
                     fos = new FileOutputStream(file);
                     long sum = 0;
                     while ((len = is.read(buf)) != -1) {
@@ -160,6 +151,82 @@ public class Item_detail_Page extends AppCompatActivity {
             }
         });
     }
+
+//    public void delete()
+//    {
+//        System.out.println("111111111111111111111111111111111");
+//
+//    OkHttpClient okHttpClient = new OkHttpClient();
+//
+//    Request request = new Request.Builder()
+//            .get()
+//            .url("http://teamparamount.cn8080/Paramount/delete?username=" + username +"ulr=")
+//            .build();
+//
+//    Call call = okHttpClient.newCall(request);
+//
+//            System.out.println("22222222222");
+//
+//            call.enqueue(new Callback() {
+//        @Override
+//        public void onFailure(Call call, IOException e) {
+//            System.out.println("fail to connect");
+//        }
+//
+//        @Override
+//        public void onResponse(Call call, Response response) throws IOException {
+//            if (response.isSuccessful()) {
+//
+//                System.out.println(String.valueOf(response.code()));
+//
+//
+//                try {
+//                    JSONObject my = new JSONObject(response.body().string());
+//                    System.out.println(my.getString("status"));
+//                    System.out.println(my.getString("info"));
+//
+//                    //Toast.makeText(Login_Page.this,my.getString("status"),Toast.LENGTH_SHORT).show();
+//                    String status1 = "success";
+//                    String status2 = "";
+//                    String rStatus1 = my.getString("status");
+//                    String rStatus2 = my.getString("info");
+//
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            if (rStatus1.equals(status1)) {
+//
+//
+//
+//                                System.out.println("success");
+//
+//
+//
+//
+//
+//                            } else {
+//                                System.out.println("did not delete");
+//                            }
+//
+//                        }
+//                    });
+//
+//                } catch (JSONException e) {
+//                    // Toast.makeText(Login_Page.this, "Login fail", Toast.LENGTH_SHORT).show();
+//                    e.printStackTrace();
+//
+//                }
+//
+//
+//            }
+//
+//
+//        }
+//    });
+//
+//    //}
+//}
+
 
 
 }
