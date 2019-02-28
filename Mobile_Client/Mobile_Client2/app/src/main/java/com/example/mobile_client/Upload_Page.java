@@ -109,7 +109,7 @@ public class Upload_Page extends AppCompatActivity {
     }
 
 
-    //ProgressDialog process;
+    ProgressDialog process;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,10 +117,10 @@ public class Upload_Page extends AppCompatActivity {
         //super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 10 && resultCode == RESULT_OK)
         {
-//            process = new ProgressDialog(Upload_Page.this);
-//            process.setTitle("Uploading");
-//            process.setMessage("Please waiting");
-//            process.show();
+            process = new ProgressDialog(Upload_Page.this);
+            process.setTitle("Uploading");
+            process.setMessage("Please waiting");
+            process.show();
 
             Thread t = new Thread(new Runnable() {
                 @Override
@@ -165,12 +165,14 @@ public class Upload_Page extends AppCompatActivity {
                             throw new IOException("Error" + response);
                         }
                        // Toast.makeText(Upload_Page.this, "Uploaded", Toast.LENGTH_SHORT).show();
-//                        process.dismiss();
+                        System.out.println(response);
+                        process.dismiss();
                     }catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             });
+            //process.dismiss();
             t.start();
         }
 

@@ -68,11 +68,6 @@ public class HomeFragment extends Fragment {
 
 
 
-//        FileAdapter adapter = new FileAdapter(getActivity(),R.layout.file_item,fileList);
-//
-//        listView = (ListView)view.findViewById(R.id.home_list);
-//        listView.setAdapter(adapter);
-
 
 
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -80,9 +75,9 @@ public class HomeFragment extends Fragment {
             public void onRefresh() {
                 adapter.notifyDataSetChanged();
                 fileList.clear();
-                onItemsLoadComplete();
+                //onItemsLoadComplete();
                 //shuffle();
-                //onUpdate();
+                onUpdate();
                 initFile(username);
             }
 
@@ -109,14 +104,9 @@ public class HomeFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                switch (position)
+
+//                for(int i= 0; position < listView.getAdapter().getCount(); i++ )
 //                {
-//                    case 0:
-//                        Intent intent = new Intent(getActivity(),Item_detail_Page.class);
-//                        startActivity(intent);
-//                }
-                for(int i= 0; position < listView.getAdapter().getCount(); i++ )
-                {
                     int number =listView.getAdapter().getCount();
                     System.out.println(number);
                     String nameFile = fileList.get(position).getName();
@@ -125,8 +115,8 @@ public class HomeFragment extends Fragment {
                     Intent intent = new Intent(getActivity(),Item_detail_Page.class);
                     intent.putExtra("fileName", selected);
                     startActivity(intent);
-                    break;
-                }
+                   // break;
+                //}
             }
         });
         return view;
