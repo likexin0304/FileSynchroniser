@@ -14,8 +14,8 @@ public class DeleteController {
     public String delete(@RequestParam("username") String username,
                              @RequestParam("url") String url) {
         String result = null;
-        FileBusiness cb = new FileBusiness();
-        result = cb.delete(username, url);
+        FileBusiness fb = new FileBusiness();
+        result = fb.delete(username, url);
         return result;
     }
 }
