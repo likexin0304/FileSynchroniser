@@ -6,9 +6,11 @@ public interface FileDao {
     Boolean delectInDir(String username, String url);
     Boolean delectInFile(String username, String url);
     Boolean checkFile(String username, String url);
-    Boolean addFile(String username, String url, String time, String pre, long size);
+    Boolean addFile(String username, String url, String time, String pre, Long size);
     Boolean addDir(String username, String url, String prel);
     Boolean lock(String username, String url);
     Boolean unlock(String username, String url);
     Boolean isLock(String username, String url);
+    Boolean updateFile(String username, String url);
+    Boolean updateSize(String username, String url, long size);
 }
