@@ -1,12 +1,15 @@
 package kcl.paramount.group.business;
 
+import com.alibaba.fastjson.JSONObject;
 import kcl.paramount.group.dao.FileDao;
 import kcl.paramount.group.dao.FileDaoJDBCImpl;
 import kcl.paramount.group.util.JSONUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -20,40 +23,34 @@ public class FileBusiness {
         upload file
      */
     public String upload(String username, MultipartFile file, String url) {
+        FileDao fd = new FileDaoJDBCImpl();
         String result = null;
-        if(file.isEmpty()) {
-            result = JSONUtils.getJSONString("fail", "file is empty");
-        }
-        else {
-            String filePath;
-            if (url.startsWith("/")) {
-                filePath = ROOT_PATH + username + url;
+        String checkurl;
+        if (url.equals("/") == false) {
+            if (url.endsWith("/")) {
+                checkurl = url + file.getOriginalFilename();
             }
             else {
-                filePath = ROOT_PATH + username + "/" + url;
+                checkurl = url + "/" + file.getOriginalFilename();
             }
-            if (filePath.endsWith("/") == false) {
-                filePath = filePath + "/";
+        }
+        else {
+            checkurl = file.getOriginalFilename();
+        }
+        Boolean flag = fd.checkFile(username, checkurl);
+        if (flag == true) {
+            if (fd.isLock(username, checkurl) == true) {
+                result = JSONUtils.getJSONString("fail", "uploading conflict");
             }
-            if (judegeDirExisted(filePath) == false) {
-                createDirectory(filePath);
+            else {
+                fd.lock(username, checkurl);
+                result = addUpdatedFile(username, file, url);
+                fd.updateFile(username, checkurl);
+                fd.unlock(username, checkurl);
             }
-
-            String fileName = file.getOriginalFilename();
-            File dest = new File(filePath + fileName);
-            try {
-                FileDao fd = new FileDaoJDBCImpl();
-                String pre;
-                if (url.endsWith("/") == false) {
-                    url = url + "/";
-                }
-                pre = url.substring(0, url.length() - 1);
-                fd.addFile(username, url + fileName, getTime(), pre, dest.length());
-                file.transferTo(dest);
-                result = JSONUtils.getJSONString("success", "");
-            } catch (IOException e) {
-                result = JSONUtils.getJSONString("fail", "unknown reasons");
-            }
+        }
+        else{
+            result = addNewFile(username, file, url);
         }
         return result;
     }
@@ -105,9 +102,103 @@ public class FileBusiness {
 
     private String getTime() {
         Date dNow = new Date( );
-        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         return ft.format(dNow);
+    }
+
+    private String addNewFile(String username, MultipartFile file, String url) {
+        String result = null;
+        if(file.isEmpty()) {
+            result = JSONUtils.getJSONString("fail", "file is empty");
+        }
+        else {
+            String filePath;
+            if (url.startsWith("/")) {
+                filePath = ROOT_PATH + username + url;
+            }
+            else {
+                filePath = ROOT_PATH + username + "/" + url;
+            }
+            if (filePath.endsWith("/") == false) {
+                filePath = filePath + "/";
+            }
+            if (judegeDirExisted(filePath) == false) {
+                createDirectory(filePath);
+            }
+
+            String fileName = file.getOriginalFilename();
+            File dest = new File(filePath + fileName);
+            try {
+                String pre;
+                if (url.endsWith("/") == false) {
+                    url = url + "/";
+                }
+                String storedName = null;
+                if (url.equals("/")) {
+                    storedName = fileName;
+                }
+                else {
+                    storedName = url + fileName;
+                }
+                FileDao fd = new FileDaoJDBCImpl();
+                pre = url.substring(0, url.length() - 1);
+                FileInputStream fis = new FileInputStream(dest);
+                FileChannel fc = fis.getChannel();
+                fd.addFile(username, storedName, getTime(), pre, fc.size());
+                file.transferTo(dest);
+                result = JSONUtils.getJSONString("success", "");
+            } catch (IOException e) {
+                result = JSONUtils.getJSONString("fail", "unknown reasons");
+            }
+        }
+        return result;
+    }
+
+    private String addUpdatedFile(String username, MultipartFile file, String url) {
+        String result = null;
+        if(file.isEmpty()) {
+            result = JSONUtils.getJSONString("fail", "file is empty");
+        }
+        else {
+            String filePath;
+            if (url.startsWith("/")) {
+                filePath = ROOT_PATH + username + url;
+            }
+            else {
+                filePath = ROOT_PATH + username + "/" + url;
+            }
+            if (filePath.endsWith("/") == false) {
+                filePath = filePath + "/";
+            }
+            if (judegeDirExisted(filePath) == false) {
+                createDirectory(filePath);
+            }
+
+            String fileName = file.getOriginalFilename();
+            File dest = new File(filePath + fileName);
+            try {
+                if (url.endsWith("/") == false) {
+                    url = url + "/";
+                }
+                String storedName = null;
+                if (url.equals("/")) {
+                    storedName = fileName;
+                }
+                else {
+                    storedName = url + fileName;
+                }
+                FileDao fd = new FileDaoJDBCImpl();
+                file.transferTo(dest);
+                result = JSONUtils.getJSONString("success", "");
+                FileInputStream fis = new FileInputStream(dest);
+                FileChannel fc = fis.getChannel();
+                fd.updateSize(username, storedName, fc.size());
+            } catch (IOException e) {
+                result = JSONUtils.getJSONString("fail", "unknown reasons");
+            }
+        }
+        return result;
     }
 
 }
