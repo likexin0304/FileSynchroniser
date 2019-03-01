@@ -11,16 +11,20 @@ dialog.showMessageBox({
   },(res,checked) =>{
   if (res === 0){
     //Yes button pressed
+    var fileName = window.parent.str;
+    console.log(fileName);
     const http = require('http');
     const fs = require('fs');
-    const file = fs.createWriteStream("tutorial2.pdf");
-    const request = http.get("http://teamparamount.cn:8080/Paramount/download?username=admin&url=tutorial2.pdf", function(response) {
+    const file = fs.createWriteStream(fileName);
+    const request = http.get("http://teamparamount.cn:8080/Paramount/download?username=test1&url="+fileName, function(response) {
       response.pipe(file);
     });
     console.log("works");
    }
   })
 });
+
+
 // var FormData = require('form-data');
 // var http = require('http');
 //
