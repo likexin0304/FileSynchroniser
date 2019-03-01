@@ -9,6 +9,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function test(o) {
+            if (!o.checked) {
+                return;
+            }
+            var tr = o.parentNode.parentNode;
+            var tds = tr.cells;
+            for(var i = 1;i < tds.length;i++){
+                if (i < 2) {
+                    str = tds[i].innerHTML;
+                    var fileName = str;
+                }
+            }
+            //alert(str);
+        }
+    </script>
   </head>
   <body style="-webkit-app-region: drag">
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 navbar-expand-md">
@@ -132,8 +149,8 @@
                                     </thead>
                                     <tbody id="document_table">
                                         <tr id="1">
-                                            <td id="chebox0"><input name="1001" class="checkbox" type="checkbox"></td>
-                                            <td>Chinese</td>
+                                            <td id="chebox0" ><input type="checkbox" onclick="test(this);"></td>
+                                            <td>LLEthicsDraft.docx</td>
                                             <td>1024</td>
                                             <td>2019.01.01</td>
                                         </tr>
