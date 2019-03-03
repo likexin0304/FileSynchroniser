@@ -165,9 +165,9 @@ public class Login_Page extends AppCompatActivity {
 
                                     //看看保存成功没
                                     if (bool)
-                                        Toast.makeText(Login_Page.this, "保存成功！", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login_Page.this, "Welcome "+username, Toast.LENGTH_SHORT).show();
                                     else
-                                        Toast.makeText(Login_Page.this, "保存失败！", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Login_Page.this, "Error！", Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(Login_Page.this, Main_Page.class);
                                     startActivity(intent);
