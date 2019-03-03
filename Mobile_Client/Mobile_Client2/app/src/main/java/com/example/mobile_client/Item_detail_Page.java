@@ -9,11 +9,15 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -42,18 +46,49 @@ public class Item_detail_Page extends AppCompatActivity {
     private Uri Download_Uri;
     private long refid;
 
+    private EditText new_fileName;
+    private EditText new_fileName2;
+    private TextView old_fileName;
+    private Button file_sumbit;
+    private String TAG = "EditProfilePage";
     //String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
     //android.support.v7.widget.Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_detail__page);
-
+        new_fileName = (EditText)findViewById(R.id.newFileName);
+        new_fileName2 = (EditText)findViewById(R.id.newFileName2);
+        old_fileName = (TextView)findViewById(R.id.oldFileName);
+        file_sumbit = (Button)findViewById(R.id.f_button);
 
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Intent intent = getIntent();
+        String SelectedItem = intent.getStringExtra(("fileName"));
+        old_fileName.setText("Old File Name：" + SelectedItem);
+
+        file_sumbit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (TextUtils.isEmpty(new_fileName.getText().toString()) || TextUtils.isEmpty(new_fileName2.getText().toString())) {
+                    Toast.makeText(Item_detail_Page.this, "Please fill all blanks", Toast.LENGTH_LONG).show();
+                }else if((!new_fileName.getText().toString().equals(new_fileName2.getText().toString()) )){
+                    Toast.makeText(Item_detail_Page.this, "Please enter the same file Name", Toast.LENGTH_LONG).show();
+
+                }else{
+                    rename(SelectedItem,new_fileName.getText().toString());
+
+
+
+
+
+
+                }
+            }
+        });
 
     }
     @Override
@@ -95,7 +130,7 @@ public class Item_detail_Page extends AppCompatActivity {
 
         String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
         Download_Uri =Uri.parse("http://teamparamount.cn:8080/Paramount/download?username="+username+"&url="+filename);
-
+        System.out.println(Download_Uri);
         DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
         request.setAllowedOverRoaming(true);
@@ -187,6 +222,80 @@ public class Item_detail_Page extends AppCompatActivity {
         }
     });
 
+    }
+    public void rename(String oldName,String newName)
+    {
+        String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .get()
+                .url("http://teamparamount.cn:8080/Paramount/rename?username=" + username+"&"+"url="+oldName+"&"+"newUrl="+newName)
+                .build();
+
+        Call call = okHttpClient.newCall(request);
+
+        System.out.println("****************************1New File Name: " + newName);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                System.out.println("fail to connect");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+
+                    System.out.println(String.valueOf(response.code()));
+
+                    System.out.println("****************************2New File Name: " +newName);
+                    try {
+                        JSONObject my = new JSONObject(response.body().string());
+                        System.out.println(my.getString("status"));
+                        System.out.println(my.getString("info"));
+
+
+                        String status1 = "success";
+                        String status2 = "";
+                        String rStatus1 = my.getString("status");
+                        String rStatus2 = my.getString("info");
+
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (rStatus1.equals(status1)) {
+
+
+                                    System.out.println("33333333333333333");
+                                    System.out.println(rStatus2);
+
+                                    System.out.println("****************************3New File Name: " +newName);
+                                    Intent intent = new Intent(Item_detail_Page.this, Main_Page.class);
+                                    startActivity(intent);
+                                    Toast.makeText(Item_detail_Page.this, "The File name has been changed to"+newName, Toast.LENGTH_LONG).show();
+
+
+                                } else {
+                                    System.out.println("did not delete");
+                                }
+
+                            }
+                        });
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+
+                    }
+
+
+                }
+                System.out.println("****************************4New File Name: " + newName);
+
+
+            }
+        });
     }
 
 
