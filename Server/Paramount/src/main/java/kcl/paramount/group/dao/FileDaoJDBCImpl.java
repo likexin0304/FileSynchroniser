@@ -1,5 +1,6 @@
 package kcl.paramount.group.dao;
 
+import kcl.paramount.group.entity.Files;
 import kcl.paramount.group.util.DBUtils;
 
 import java.sql.Connection;
@@ -21,6 +22,8 @@ public class FileDaoJDBCImpl implements FileDao {
     private static final String CHECK_LOCK = "select lockflag from files where username=? and url=?";
     private static final String UPDATE = "update files set version=version+1 where username=? and url =?";
     private static final String SIZE = "update files set size=? where username=? and url =?";
+    private static final String RENAME = "update files set url=? where username=? and url=?";
+    private static final String DETAIL = "select version, timef, size from files where username=? and url=?";
 
     private DBUtils utils = null;
     private Connection conn = null;
@@ -271,6 +274,48 @@ public class FileDaoJDBCImpl implements FileDao {
             System.out.println(pstmt.toString());
         } catch (SQLException e) {
             result = false;
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return result;
+    }
+
+    @Override
+    public Boolean rename(String username, String url, String newUrl) {
+        Boolean result = true;
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(RENAME);
+            pstmt.setString(1, newUrl);
+            pstmt.setString(2, username);
+            pstmt.setString(3, url);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            result = false;
+        } finally {
+            utils.releaseRes(conn, pstmt, rset);
+        }
+        return result;
+    }
+
+    @Override
+    public Files detail(String username, String url) {
+        Files result = new Files();
+        try {
+            conn = utils.getConn();
+            pstmt = conn.prepareStatement(DETAIL);
+            pstmt.setString(1, username);
+            pstmt.setString(2, url);
+            rset = pstmt.executeQuery();
+            if (rset.next()) {
+               result.setUrl(url);
+               result.setVersion(rset.getString(1));
+               result.setTime(rset.getString(2));
+               result.setSize(rset.getString(3));
+            }
+
+        } catch (SQLException e) {
+            result = null;
         } finally {
             utils.releaseRes(conn, pstmt, rset);
         }
