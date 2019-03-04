@@ -1,8 +1,10 @@
 package kcl.paramount.group.business;
 
-import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import kcl.paramount.group.dao.FileDao;
 import kcl.paramount.group.dao.FileDaoJDBCImpl;
+import kcl.paramount.group.entity.Files;
 import kcl.paramount.group.util.JSONUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -82,6 +84,59 @@ public class FileBusiness {
         return result;
     }
 
+    public String detail(String username, String url) {
+        String result = JSONUtils.getJSONString("fail", "unknown reasons");
+        FileDao fd = new FileDaoJDBCImpl();
+        Files fileDetail = fd.detail(username, url);
+        if (fileDetail != null) {
+            result = JSONUtils.getJSONString("success", fileDetail.toString());
+        }
+        return result;
+    }
+
+    public String rename(String username, String url, String newUrl) {
+        String result = null;
+        File file = new File(newUrl);
+        String name = file.getName();
+        if (name.contains(".") == false) {
+            result = JSONUtils.getJSONString("faile", "the type of file if missed");
+        }
+        else {
+            FileDao fd = new FileDaoJDBCImpl();
+            if (fd.checkFile(username, newUrl) == true) {
+                result = JSONUtils.getJSONString("fail", "the new file name is conflicted");
+            } else {
+                if (fd.rename(username, url, newUrl)) {
+                    String oldPath = "/home/upload/" + username;
+                    if (url.startsWith("/")) {
+                        oldPath = oldPath + url;
+                    }
+                    else {
+                        oldPath = oldPath + "/" + url;
+                    }
+                    String newPath = "/home/upload/" + username;
+                    if (newUrl.startsWith("/")) {
+                        newPath = newPath + newUrl;
+                    }
+                    else {
+                        newPath = newPath + "/" + newUrl;
+                    }
+                    File oldFile = new File(oldPath);
+                    if (oldFile.renameTo(new File(newPath))){
+                        result = JSONUtils.getJSONString("success", "");
+                    }
+                    else {
+                        result = JSONUtils.getJSONString("fail", "rename error");
+                    }
+                } else {
+                    result = JSONUtils.getJSONString("fail", "unknown reaseons");
+                }
+            }
+        }
+
+        return result;
+    }
+
     //judge the target directory existed or not
     private Boolean judegeDirExisted(String url) {
         Boolean result = false;
@@ -141,15 +196,15 @@ public class FileBusiness {
                 else {
                     storedName = url + fileName;
                 }
+                file.transferTo(dest);
                 FileDao fd = new FileDaoJDBCImpl();
                 pre = url.substring(0, url.length() - 1);
                 FileInputStream fis = new FileInputStream(dest);
                 FileChannel fc = fis.getChannel();
                 fd.addFile(username, storedName, getTime(), pre, fc.size());
-                file.transferTo(dest);
                 result = JSONUtils.getJSONString("success", "");
             } catch (IOException e) {
-                result = JSONUtils.getJSONString("fail", "unknown reasons");
+                result = JSONUtils.getJSONString("fail", e.getMessage());
             }
         }
         return result;
@@ -195,7 +250,7 @@ public class FileBusiness {
                 FileChannel fc = fis.getChannel();
                 fd.updateSize(username, storedName, fc.size());
             } catch (IOException e) {
-                result = JSONUtils.getJSONString("fail", "unknown reasons");
+                result = JSONUtils.getJSONString("fail", e.toString());
             }
         }
         return result;
