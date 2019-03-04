@@ -20,8 +20,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -50,6 +52,10 @@ public class Item_detail_Page extends AppCompatActivity {
     private EditText new_fileName2;
     private TextView old_fileName;
     private Button file_sumbit;
+    private TextView Size;
+    private TextView Type;
+    private TextView Version;
+    private TextView Time;
     private String TAG = "EditProfilePage";
     //String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
     //android.support.v7.widget.Toolbar toolbar;
@@ -61,6 +67,10 @@ public class Item_detail_Page extends AppCompatActivity {
         new_fileName2 = (EditText)findViewById(R.id.newFileName2);
         old_fileName = (TextView)findViewById(R.id.oldFileName);
         file_sumbit = (Button)findViewById(R.id.f_button);
+        Size = (TextView)findViewById(R.id.f_size);
+        Type = (TextView)findViewById(R.id.f_type);
+        Version = (TextView)findViewById(R.id.f_version);
+        Time = (TextView)findViewById(R.id.f_time);
 
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
 
@@ -68,8 +78,8 @@ public class Item_detail_Page extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         String SelectedItem = intent.getStringExtra(("fileName"));
-        old_fileName.setText("Old File Name：" + SelectedItem);
-
+        old_fileName.setText("File Name：" + SelectedItem);
+        detail(SelectedItem);
         file_sumbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,7 +151,6 @@ public class Item_detail_Page extends AppCompatActivity {
 
 
         refid = downloadManager.enqueue(request);
-
 
         Log.e("OUT", "" + refid);
 
@@ -298,7 +307,139 @@ public class Item_detail_Page extends AppCompatActivity {
         });
     }
 
+    public void detail(String fileName)
+    {
+        System.out.println("111111111111111111111111111111111");
+        String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
+        OkHttpClient okHttpClient = new OkHttpClient();
 
+        Request request = new Request.Builder()
+                .get()
+                .url("http://teamparamount.cn:8080/Paramount/detail?username=" + username+"&url="+fileName)
+                .build();
+
+        Call call = okHttpClient.newCall(request);
+
+        System.out.println("22222222222");
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                System.out.println("fail to connect");
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if (response.isSuccessful()) {
+
+                    System.out.println(String.valueOf(response.code()));
+
+
+                    try {
+                        JSONObject my = new JSONObject(response.body().string());
+                        System.out.println(my.getString("status"));
+                        System.out.println("+++++++++++"+my.getString("info"));
+//                        JSONArray arr = my.getJSONArray("info");
+//
+//
+//                        for (int i = 0; i < arr.length(); i++)
+//                        {
+//                            String info_size = arr.getJSONObject(i).getString("size");
+//                            String info_time = arr.getJSONObject(i).getString("time");
+//                            String info_type = arr.getJSONObject(i).getString("type");
+//                            String info_version = arr.getJSONObject(i).getString("version");
+//                            System.out.println("+++++++++++"+info_size);
+//                            System.out.println("----------"+info_time);
+//                            System.out.println("+++++++++++"+info_type);
+//                            System.out.println("-----------"+info_version);
+//
+//
+//                        }
+                       // System.out.println("+++++++++++"+info_size);
+
+                        String status1 = "success";
+                        String status2 = "";
+                        String rStatus1 = my.getString("status");
+                        String rStatus2 = my.getString("info");
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (rStatus1.equals(status1)) {
+                                    // parse file name from server
+//                                    Size = (TextView)findViewById(R.id.f_size);
+//                                    Type = (TextView)findViewById(R.id.f_type);
+//                                    Version = (TextView)findViewById(R.id.f_version);
+//                                    Time = (TextView)findViewById(R.id.f_time);
+                                   String newString = rStatus2.replace("{", "");
+                                   String newString1 = newString.replace("size", "");
+                                    String newString2 = newString1.replace("type", "");
+                                    String newString3 = newString2.replace("time", "");
+                                    String newString4 = newString3.replace("version", "");
+                                    String newString5 = newString4.replace("\"\":", "");
+                                    String newString6 = newString5.replace("\"", "");
+
+
+                                   System.out.println("json string =  "+newString6);
+                                   String[] strs = newString6.split(",");
+
+                                    Size.setText(strs[0]);
+                                    Type.setText(strs[2]);
+                                    Version.setText(strs[3]);
+                                    Time.setText(strs[1]);
+
+
+//                                    for (int i = 0, len = strs.length; i < len; i++)
+//                                    {
+//                                        System.out.println(strs[i].toString());
+////                                        String size1 = strs[i].toString();
+////                                        System.out.println(size1);
+//                                        //Size.setText(size1);
+////                                        Type.setText(strs[i].toString());
+////                                        Version.setText(strs[i].toString());
+////                                        Time.setText(strs[i].toString());
+//
+//                                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    //System.out.println("file:" + rStatus2);
+
+
+                                } else {
+                                    System.out.println("did not get json file");
+                                }
+
+                            }
+                        });
+
+                    } catch (JSONException e) {
+                        // Toast.makeText(Login_Page.this, "Login fail", Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+
+                    }
+
+
+                }
+
+
+            }
+        });
+
+        //}
+    }
 
 
 }
