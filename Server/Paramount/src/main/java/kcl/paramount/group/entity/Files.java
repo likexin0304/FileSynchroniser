@@ -9,15 +9,25 @@ public class Files {
     private String time;
     private String size;
     private String type;
+    private String version;
 
     public String getUrl() {
         return url;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 
     public void setUrl(String url) {
         this.url = url;
         File file = new File(url);
         String name = file.getName();
+
         int pos = name.lastIndexOf(".");
         this.setType(name.substring(pos + 1, name.length()));
     }
@@ -64,6 +74,7 @@ public class Files {
             jb.put("size", "null");
         }
         jb.put("type", type);
+        jb.put("version", version);
         return jb.toJSONString();
     }
 }
