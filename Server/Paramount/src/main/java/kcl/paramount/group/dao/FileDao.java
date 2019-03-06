@@ -14,7 +14,7 @@ public interface FileDao {
     Boolean unlock(String username, String url);
     Boolean isLock(String username, String url);
     Boolean updateFile(String username, String url);
-    Boolean updateSize(String username, String url, long size);
+    Boolean updateSize(String username, String url, long size, String time);
     Boolean rename(String username, String url, String newUrl);
     Files detail(String username, String url);
 }

@@ -248,7 +248,7 @@ public class FileBusiness {
                 result = JSONUtils.getJSONString("success", "");
                 FileInputStream fis = new FileInputStream(dest);
                 FileChannel fc = fis.getChannel();
-                fd.updateSize(username, storedName, fc.size());
+                fd.updateSize(username, storedName, fc.size(), getTime());
             } catch (IOException e) {
                 result = JSONUtils.getJSONString("fail", e.toString());
             }

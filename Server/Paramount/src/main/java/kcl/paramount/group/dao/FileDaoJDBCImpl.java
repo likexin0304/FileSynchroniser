@@ -21,7 +21,7 @@ public class FileDaoJDBCImpl implements FileDao {
     private static final String UNLOCK = "update files set lockflag='0' where username=? and url =?";
     private static final String CHECK_LOCK = "select lockflag from files where username=? and url=?";
     private static final String UPDATE = "update files set version=version+1 where username=? and url =?";
-    private static final String SIZE = "update files set size=? where username=? and url =?";
+    private static final String SIZE = "update files set size=?, timef=? where username=? and url =?";
     private static final String RENAME = "update files set url=? where username=? and url=?";
     private static final String DETAIL = "select version, timef, size from files where username=? and url=?";
 
@@ -262,14 +262,15 @@ public class FileDaoJDBCImpl implements FileDao {
     }
 
     @Override
-    public Boolean updateSize(String username, String url, long size) {
+    public Boolean updateSize(String username, String url, long size, String time) {
         Boolean result = true;
         try {
             conn = utils.getConn();
             pstmt = conn.prepareStatement(SIZE);
             pstmt.setInt(1, (int)size);
-            pstmt.setString(2, username);
-            pstmt.setString(3, url);
+            pstmt.setString(2, time);
+            pstmt.setString(3, username);
+            pstmt.setString(4, url);
             pstmt.executeUpdate();
             System.out.println(pstmt.toString());
         } catch (SQLException e) {
