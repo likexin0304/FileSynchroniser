@@ -146,7 +146,7 @@ public class Upload_Page extends AppCompatActivity {
                             .addFormDataPart("file", f.getName(),
                                     RequestBody.create(MediaType.parse("multipart/form-data"), f))
                             .addFormDataPart("username", username)
-                            .addFormDataPart("url","")
+                            .addFormDataPart("url","/")
                             .build();
 
                     Request request = new Request.Builder()

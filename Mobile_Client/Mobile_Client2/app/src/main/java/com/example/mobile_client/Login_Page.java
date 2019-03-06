@@ -1,8 +1,12 @@
 package com.example.mobile_client;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Handler;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -70,7 +74,6 @@ public class Login_Page extends AppCompatActivity {
         Login = (Button) findViewById(R.id.btnLogin);
         Signup = (TextView) findViewById(R.id.tvSignup);
         Forgot = (TextView) findViewById(R.id.tv_forgot);
-
 
 
 

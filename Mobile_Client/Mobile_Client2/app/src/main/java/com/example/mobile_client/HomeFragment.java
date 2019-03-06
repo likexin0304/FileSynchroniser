@@ -192,6 +192,7 @@ public class HomeFragment extends Fragment {
                                             boolean pptx = strs[i].contains(".pptx");
                                             boolean png = strs[i].contains(".png");
                                             boolean jpg = strs[i].contains(".jpg");
+                                            boolean excel = strs[i].contains(".xlsx");
 
                                             if(pdf){
                                                 File_icon filePDF = new File_icon(strs[i], R.drawable.ic_pdf);
@@ -219,9 +220,13 @@ public class HomeFragment extends Fragment {
                                                 File_icon fileJPG = new File_icon(strs[i], R.drawable.ic_jpg);
                                                 fileList.add(fileJPG);
 
+                                            }else if (excel){
+                                                File_icon fileExcel = new File_icon(strs[i], R.drawable.ic_excel);
+                                                fileList.add(fileExcel);
+
                                             }else
                                             {
-                                                File_icon fileOther = new File_icon(strs[i], R.drawable.ic_file);
+                                                File_icon fileOther = new File_icon(strs[i], R.drawable.ic_filenew);
                                                 fileList.add(fileOther);
 
                                             }
