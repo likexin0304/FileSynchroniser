@@ -26,7 +26,7 @@
 ## Language Selection and Platform
  - Desktop Client : Boostrap, Electron
  - Mobile  Client:  Java, Android Studio
-## Install Application**
+## Install Application
  - Desktop: Open the source file and run: npm start
  - Mobile: Open the source file and run
     
