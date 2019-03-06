@@ -3,6 +3,7 @@ package com.example.mobile_client;
 
 public class File_icon
 {
+    // initial file  context
     private String name;
     private int iconId;
     public File_icon(String name, int iconId)

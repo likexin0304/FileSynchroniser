@@ -23,6 +23,7 @@ import android.content.Context;
  */
 public class AccountFragment extends Fragment{
 
+    // initial all variables
     View v;
     private Button SignOut;
     private TextView Username;
@@ -38,6 +39,7 @@ public class AccountFragment extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_account, container, false);
+        // connect to the xml
         SignOut =(Button)view.findViewById(R.id.signout);
         EditButton =(ImageButton)view.findViewById(R.id.editButton);
 
@@ -48,7 +50,7 @@ public class AccountFragment extends Fragment{
         //String password = (String) MySharedPreferences.getPswd(getActivity());
         Username.setText("Username：" + username);
 
-
+        // logout function
         SignOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +58,7 @@ public class AccountFragment extends Fragment{
             }
         });
 
+        //change password function
         EditButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,12 +70,13 @@ public class AccountFragment extends Fragment{
     }
 
 
-
+    // jump to login page
     private void goToLogin()
     {
         Intent intent = new Intent(getActivity(), Login_Page.class);
         getActivity().startActivity(intent);
     }
+    //jump to edit page
     private void goToEditPage()
     {
         Intent intent = new Intent(getActivity(),EditProfilePage.class);

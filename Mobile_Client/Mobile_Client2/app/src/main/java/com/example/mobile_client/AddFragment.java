@@ -99,6 +99,7 @@ public class AddFragment extends Fragment {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_upload:
+                //go to pick file page
                 goToPickFile();
 
 
@@ -115,7 +116,7 @@ public class AddFragment extends Fragment {
         inflater.inflate(R.menu.toolbar_add_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
     }
-
+    // go to pick file page
     private void goToPickFile()
     {
         Intent intent = new Intent(getActivity(),Upload_Page.class);

@@ -40,7 +40,7 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Item_detail_Page extends AppCompatActivity {
-
+//  initial variables
     private ProgressDialog pDialog;
 
 
@@ -71,7 +71,7 @@ public class Item_detail_Page extends AppCompatActivity {
         Type = (TextView)findViewById(R.id.f_type);
         Version = (TextView)findViewById(R.id.f_version);
         Time = (TextView)findViewById(R.id.f_time);
-
+        // download manager
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -104,7 +104,7 @@ public class Item_detail_Page extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-
+        //get file name from home fragment
         Intent intent = getIntent();
         String SelectedItem = intent.getStringExtra(("fileName"));
         System.out.println(SelectedItem);
@@ -136,6 +136,7 @@ public class Item_detail_Page extends AppCompatActivity {
         inflater.inflate(R.menu.toolbar_menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
+    // download function
     public void download(String filename) {
 
         String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
@@ -156,7 +157,7 @@ public class Item_detail_Page extends AppCompatActivity {
 
 
     }
-
+    //delete function
     public void delete(String fileName)
     {
         System.out.println("111111111111111111111111111111111" + fileName);
@@ -232,6 +233,7 @@ public class Item_detail_Page extends AppCompatActivity {
     });
 
     }
+    //rename function
     public void rename(String oldName,String newName)
     {
         String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
@@ -306,7 +308,7 @@ public class Item_detail_Page extends AppCompatActivity {
             }
         });
     }
-
+    //show file detail function
     public void detail(String fileName)
     {
         System.out.println("111111111111111111111111111111111");

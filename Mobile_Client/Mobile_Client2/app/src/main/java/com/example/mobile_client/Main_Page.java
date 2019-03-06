@@ -36,7 +36,7 @@ public class Main_Page extends AppCompatActivity {
         final AddFragment addFragment = new AddFragment();
         final AccountFragment accountFragment = new AccountFragment();
 
-
+        // navigation bar
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -72,7 +72,7 @@ public class Main_Page extends AppCompatActivity {
         fragmentTransaction.replace(R.id.frame, fragment);
         fragmentTransaction.commit();
     }
-
+// back arraow to jump to main page of phone
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 

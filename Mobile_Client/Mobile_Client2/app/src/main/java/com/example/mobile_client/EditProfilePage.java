@@ -28,6 +28,7 @@ import okhttp3.Response;
 
 public class  EditProfilePage extends AppCompatActivity {
 
+    //initial all variables
     private EditText old_password;
     private EditText new_password;
     private TextView Username;
@@ -39,6 +40,7 @@ public class  EditProfilePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile_page);
 
+        // action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -75,7 +77,7 @@ public class  EditProfilePage extends AppCompatActivity {
 
                             .build();
 
-
+                    // builder request body
                     Request request = new Request.Builder()
                             .url("http://teamparamount.cn:8080/Paramount/changepassword")
                             .post(formBody)
@@ -87,7 +89,7 @@ public class  EditProfilePage extends AppCompatActivity {
                         public void onFailure(Call call, IOException e) {
                             Log.d(TAG, e.getMessage());
                         }
-
+                        // response  success
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
                             if (response.isSuccessful()) {

@@ -22,7 +22,7 @@ public class FileAdapter extends ArrayAdapter <File_icon> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        File_icon file = getItem(position); // 获取当前项的Fruit实例
+        File_icon file = getItem(position); // get the object file
         View view;
         ViewHolder viewHolder;
         if (convertView == null) {
@@ -30,10 +30,10 @@ public class FileAdapter extends ArrayAdapter <File_icon> {
             viewHolder = new ViewHolder();
             viewHolder.iconImage = (ImageView) view.findViewById (R.id.File_icon);
             viewHolder.fileName =(TextView) view.findViewById(R.id.file_list);
-            view.setTag(viewHolder); // 将ViewHolder存储在View中
+            view.setTag(viewHolder); // put ViewHolder save to View
         } else {
             view = convertView;
-            viewHolder = (ViewHolder) view.getTag(); // 重新获取ViewHolder
+            viewHolder = (ViewHolder) view.getTag(); // retrieve ViewHolder
         }
         viewHolder.iconImage.setImageResource(file.getIconId());
         viewHolder.fileName.setText(file.getName());

@@ -42,6 +42,7 @@ import okhttp3.Response;
  */
 public class HomeFragment extends Fragment {
 
+    //initial all variables
     private  SwipeRefreshLayout refreshLayout;
     FileAdapter adapter;
 
@@ -69,7 +70,7 @@ public class HomeFragment extends Fragment {
 
 
 
-
+        // refreshing home fragment
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -82,7 +83,7 @@ public class HomeFragment extends Fragment {
 
         });
 
-
+        // post content
         refreshLayout.post(new Runnable() {
             @Override
             public void run() {
@@ -102,6 +103,7 @@ public class HomeFragment extends Fragment {
         listView = (ListView)view.findViewById(R.id.home_list);
         listView.setAdapter(adapter);
 
+        // file list view
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

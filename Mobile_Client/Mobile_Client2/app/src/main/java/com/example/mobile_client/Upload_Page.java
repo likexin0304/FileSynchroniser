@@ -41,7 +41,7 @@ import okhttp3.Response;
 
 
 public class Upload_Page extends AppCompatActivity {
-
+    // pick file button
     Button Pick;
 
 
@@ -73,7 +73,7 @@ public class Upload_Page extends AppCompatActivity {
         enable_button();
     }
 
-
+    //enable the pick button
     private  void enable_button()
     {
         Pick.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +87,7 @@ public class Upload_Page extends AppCompatActivity {
         });
     }
 
-
+    // access to the system file of phone
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grandResults)
     {
@@ -115,6 +115,7 @@ public class Upload_Page extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         String username = (String) MySharedPreferences.getuserName(Upload_Page.this);
         //super.onActivityResult(requestCode, resultCode, data);
+        //send request to server
         if(requestCode == 10 && resultCode == RESULT_OK)
         {
             process = new ProgressDialog(Upload_Page.this);
@@ -139,7 +140,7 @@ public class Upload_Page extends AppCompatActivity {
 
                     RequestBody file_body = RequestBody.create(MediaType.parse(content_type),f);
 
-
+                    // request the body
                     RequestBody requestBody = new MultipartBody.Builder()
                             .setType(MultipartBody.FORM)
                             .addFormDataPart("file", f.getName(),
