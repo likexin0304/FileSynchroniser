@@ -1,5 +1,6 @@
 package com.example.mobile_client;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -81,7 +82,6 @@ public class Rest_Password_Page extends AppCompatActivity {
                     Toast.makeText(Rest_Password_Page.this, "Please fill all blanks", Toast.LENGTH_LONG).show();
                 }
                 else {
-
                     OkHttpClient okHttpClient = new OkHttpClient();
                     //requestbody
                     FormBody formBody = new FormBody.Builder()

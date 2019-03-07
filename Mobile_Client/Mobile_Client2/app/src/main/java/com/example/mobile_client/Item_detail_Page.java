@@ -1,10 +1,12 @@
 package com.example.mobile_client;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -121,12 +123,12 @@ public class Item_detail_Page extends AppCompatActivity {
             case R.id.action_download:
                 download(SelectedItem);
                 //onRequestPermissionsResult(,,,SelectedItem);
-                Toast.makeText(getApplicationContext(), "Downloaded", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Downloaded", Toast.LENGTH_SHORT).show();
                 //download
                 break;
             case R.id.action_delete:
                 delete(SelectedItem);
-                Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                 //delete
                 break;
             default:
@@ -191,21 +193,52 @@ public class Item_detail_Page extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             // this will request for permission when permission is not true
         }else{
-            String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
-            Download_Uri =Uri.parse("http://teamparamount.cn:8080/Paramount/download?username="+username+"&url="+filename);
-            System.out.println(Download_Uri);
-            DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
-            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-            request.setAllowedOverRoaming(true);
-            request.setTitle(filename);
-            request.setDescription(filename);
-            request.setVisibleInDownloadsUi(true);
-            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,filename);
+            new AlertDialog.Builder(Item_detail_Page.this)
+                    .setTitle("Download")
+                    .setMessage("Are you sure you want to download this file?")
+
+                    // Specifying a listener allows you to take an action before dismissing the dialog.
+                    // The dialog is automatically dismissed when a dialog button is clicked.
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
+                            Download_Uri =Uri.parse("http://teamparamount.cn:8080/Paramount/download?username="+username+"&url="+filename);
+                            System.out.println(Download_Uri);
+                            DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
+                            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+                            request.setAllowedOverRoaming(true);
+                            request.setTitle(filename);
+                            request.setDescription(filename);
+                            request.setVisibleInDownloadsUi(true);
+                            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,filename);
 
 
-            refid = downloadManager.enqueue(request);
+                            refid = downloadManager.enqueue(request);
 
-            Log.e("OUT", "" + refid);
+                            Log.e("OUT", "" + refid);
+                        }
+                    })
+
+                    // A null listener allows the button to dismiss the dialog and take no further action.
+                    .setNegativeButton(android.R.string.no, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
+//            String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
+//            Download_Uri =Uri.parse("http://teamparamount.cn:8080/Paramount/download?username="+username+"&url="+filename);
+//            System.out.println(Download_Uri);
+//            DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
+//            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+//            request.setAllowedOverRoaming(true);
+//            request.setTitle(filename);
+//            request.setDescription(filename);
+//            request.setVisibleInDownloadsUi(true);
+//            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,filename);
+//
+//
+//            refid = downloadManager.enqueue(request);
+//
+//            Log.e("OUT", "" + refid);
 
         }
 
@@ -216,77 +249,164 @@ public class Item_detail_Page extends AppCompatActivity {
     //delete function
     public void delete(String fileName)
     {
-        System.out.println("111111111111111111111111111111111" + fileName);
-        String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
-    OkHttpClient okHttpClient = new OkHttpClient();
+        new AlertDialog.Builder(Item_detail_Page.this)
+                .setTitle("Delete File")
+                .setMessage("Are you sure you want to delete this file?")
 
-    Request request = new Request.Builder()
-            .get()
-            .url("http://teamparamount.cn:8080/Paramount/delete?username=" + username+"&"+"url="+fileName)
-            .build();
+                // Specifying a listener allows you to take an action before dismissing the dialog.
+                // The dialog is automatically dismissed when a dialog button is clicked.
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                        System.out.println("111111111111111111111111111111111" + fileName);
+                        String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
+                        OkHttpClient okHttpClient = new OkHttpClient();
 
-    Call call = okHttpClient.newCall(request);
+                        Request request = new Request.Builder()
+                                .get()
+                                .url("http://teamparamount.cn:8080/Paramount/delete?username=" + username+"&"+"url="+fileName)
+                                .build();
 
-        System.out.println("gggggggggggggggggggggggggggg" + fileName);
+                        Call call = okHttpClient.newCall(request);
 
-            call.enqueue(new Callback() {
-        @Override
-        public void onFailure(Call call, IOException e) {
-            System.out.println("fail to connect");
-        }
+                        System.out.println("gggggggggggggggggggggggggggg" + fileName);
 
-        @Override
-        public void onResponse(Call call, Response response) throws IOException {
-            if (response.isSuccessful()) {
-
-                System.out.println(String.valueOf(response.code()));
-
-                System.out.println("cccccccccccccccccccccccccccccccccc" + fileName);
-                try {
-                    JSONObject my = new JSONObject(response.body().string());
-                    System.out.println(my.getString("status"));
-                    System.out.println(my.getString("info"));
-
-
-                    String status1 = "success";
-                    String status2 = "";
-                    String rStatus1 = my.getString("status");
-                    String rStatus2 = my.getString("info");
-
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (rStatus1.equals(status1)) {
-
-
-                                System.out.println("33333333333333333");
-                                System.out.println(rStatus2);
-
-                                System.out.println("55555555555555555555555555555555" + fileName);
-
-
-
-                            } else {
-                                System.out.println("did not delete");
+                        call.enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Call call, IOException e) {
+                                System.out.println("fail to connect");
                             }
 
-                        }
-                    });
+                            @Override
+                            public void onResponse(Call call, Response response) throws IOException {
+                                if (response.isSuccessful()) {
 
-                } catch (JSONException e) {
-                    // Toast.makeText(Login_Page.this, "Login fail", Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
+                                    System.out.println(String.valueOf(response.code()));
 
-                }
-
-
-            }
-            System.out.println("++++++++++++++++++++++++++++" + fileName);
+                                    System.out.println("cccccccccccccccccccccccccccccccccc" + fileName);
+                                    try {
+                                        JSONObject my = new JSONObject(response.body().string());
+                                        System.out.println(my.getString("status"));
+                                        System.out.println(my.getString("info"));
 
 
-        }
-    });
+                                        String status1 = "success";
+                                        String status2 = "";
+                                        String rStatus1 = my.getString("status");
+                                        String rStatus2 = my.getString("info");
+
+
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                if (rStatus1.equals(status1)) {
+
+
+                                                    System.out.println("33333333333333333");
+                                                    System.out.println(rStatus2);
+
+                                                    System.out.println("55555555555555555555555555555555" + fileName);
+
+
+
+                                                } else {
+                                                    System.out.println("did not delete");
+                                                }
+
+                                            }
+                                        });
+
+                                    } catch (JSONException e) {
+                                        // Toast.makeText(Login_Page.this, "Login fail", Toast.LENGTH_SHORT).show();
+                                        e.printStackTrace();
+
+                                    }
+
+
+                                }
+                                System.out.println("++++++++++++++++++++++++++++" + fileName);
+
+
+                            }
+                        });
+                    }
+                })
+
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
+//        System.out.println("111111111111111111111111111111111" + fileName);
+//        String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
+//    OkHttpClient okHttpClient = new OkHttpClient();
+//
+//    Request request = new Request.Builder()
+//            .get()
+//            .url("http://teamparamount.cn:8080/Paramount/delete?username=" + username+"&"+"url="+fileName)
+//            .build();
+//
+//    Call call = okHttpClient.newCall(request);
+//
+//        System.out.println("gggggggggggggggggggggggggggg" + fileName);
+//
+//            call.enqueue(new Callback() {
+//        @Override
+//        public void onFailure(Call call, IOException e) {
+//            System.out.println("fail to connect");
+//        }
+//
+//        @Override
+//        public void onResponse(Call call, Response response) throws IOException {
+//            if (response.isSuccessful()) {
+//
+//                System.out.println(String.valueOf(response.code()));
+//
+//                System.out.println("cccccccccccccccccccccccccccccccccc" + fileName);
+//                try {
+//                    JSONObject my = new JSONObject(response.body().string());
+//                    System.out.println(my.getString("status"));
+//                    System.out.println(my.getString("info"));
+//
+//
+//                    String status1 = "success";
+//                    String status2 = "";
+//                    String rStatus1 = my.getString("status");
+//                    String rStatus2 = my.getString("info");
+//
+//
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            if (rStatus1.equals(status1)) {
+//
+//
+//                                System.out.println("33333333333333333");
+//                                System.out.println(rStatus2);
+//
+//                                System.out.println("55555555555555555555555555555555" + fileName);
+//
+//
+//
+//                            } else {
+//                                System.out.println("did not delete");
+//                            }
+//
+//                        }
+//                    });
+//
+//                } catch (JSONException e) {
+//                    // Toast.makeText(Login_Page.this, "Login fail", Toast.LENGTH_SHORT).show();
+//                    e.printStackTrace();
+//
+//                }
+//
+//
+//            }
+//            System.out.println("++++++++++++++++++++++++++++" + fileName);
+//
+//
+//        }
+//    });
 
     }
     //rename function
