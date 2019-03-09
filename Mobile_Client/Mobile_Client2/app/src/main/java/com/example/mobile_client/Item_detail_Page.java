@@ -551,7 +551,7 @@ public class Item_detail_Page extends AppCompatActivity {
 
 
                                         String status1 = "success";
-                                        String status2 = "";
+                                        String status2 = "can not revert first version";
                                         String rStatus1 = my.getString("status");
                                         String rStatus2 = my.getString("info");
 
@@ -565,12 +565,14 @@ public class Item_detail_Page extends AppCompatActivity {
                                                     System.out.println("33333333333333333");
                                                     System.out.println(rStatus2);
 
+                                                    Toast.makeText(Item_detail_Page.this, "Success!", Toast.LENGTH_SHORT).show();
                                                     System.out.println("55555555555555555555555555555555" + fileName);
 
 
 
                                                 } else {
                                                     System.out.println("did not revert");
+                                                    Toast.makeText(Item_detail_Page.this, "The file can not revert first version", Toast.LENGTH_SHORT).show();
                                                 }
 
                                             }
