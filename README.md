@@ -21,6 +21,7 @@
  - delete file
  - rename file
  - file version
+ - revert file version
  - transfer between two different clients.
  - handle conflicts(upload to **Hub**): replace the whole file on **Hub**
 ## Language Selection and Platform
