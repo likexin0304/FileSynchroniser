@@ -58,6 +58,11 @@ public class FileBusiness {
         return result;
     }
 
+    /*
+        delete the file
+        check the version of file
+        if it possible, delete both two versions of the file
+     */
     public String delete(String username, String url) {
         String result = null;
         FileDao fd = new FileDaoJDBCImpl();
@@ -107,6 +112,11 @@ public class FileBusiness {
         return result;
     }
 
+    /*
+        rename both 0- 1-file
+        little bugs:
+            will change the modified time of the file
+     */
     public String rename(String username, String url, String newUrl) {
         String result = null;
         File file = new File(newUrl);
@@ -171,6 +181,9 @@ public class FileBusiness {
         return result;
     }
 
+    /*
+        revert the file to the previous version
+     */
     public String revert(String username, String url) {
         String result = null;
         String filePath;
