@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
@@ -57,9 +58,15 @@ public class FileBusiness {
         return result;
     }
 
+    /*
+        delete the file
+        check the version of file
+        if it possible, delete both two versions of the file
+     */
     public String delete(String username, String url) {
         String result = null;
         FileDao fd = new FileDaoJDBCImpl();
+        Integer vi = fd.getFileVersion(username, url);
         Boolean flag1 = fd.checkPreDic(username, url);
         Boolean flag2 = fd.checkPreFile(username, url);
         if (flag1 && flag2) {
@@ -69,9 +76,20 @@ public class FileBusiness {
                 if (url.startsWith("/") == false) {
                     url = "/" + url;
                 }
-                url = "/home/upload/" + username + url;
-                File file = new File(url);
+                Integer p = url.lastIndexOf("/");
+                String pre = url.substring(0, p + 1);
+                String post = url.substring(p + 1, url.length());
+                String nowVersion = String.valueOf(vi % 2) + "-";
+                String otherVersion = String.valueOf((vi + 1) % 2) + "-";
+                String delteFile;
+                delteFile = ROOT_PATH + username + pre + nowVersion + post;
+                File file = new File(delteFile);
                 file.delete();
+                delteFile = ROOT_PATH + username + pre + otherVersion + post;
+                file = new File(delteFile);
+                if (file.exists()) {
+                    file.delete();
+                }
                 result = JSONUtils.getJSONString("success", "");
             }
             else {
@@ -94,32 +112,52 @@ public class FileBusiness {
         return result;
     }
 
+    /*
+        rename both 0- 1-file
+        little bugs:
+            will change the modified time of the file
+     */
     public String rename(String username, String url, String newUrl) {
         String result = null;
         File file = new File(newUrl);
         String name = file.getName();
         if (name.contains(".") == false) {
-            result = JSONUtils.getJSONString("faile", "the type of file if missed");
+            result = JSONUtils.getJSONString("fail", "the type of file if missed");
         }
         else {
             FileDao fd = new FileDaoJDBCImpl();
+            Integer vi = fd.getFileVersion(username, url);
+            String nowVersion = String.valueOf(vi % 2) + "-";
+            String otherVersion = String.valueOf((vi + 1) % 2) + "-";
             if (fd.checkFile(username, newUrl) == true) {
                 result = JSONUtils.getJSONString("fail", "the new file name is conflicted");
             } else {
                 if (fd.rename(username, url, newUrl)) {
-                    String oldPath = "/home/upload/" + username;
+                    Integer p = url.lastIndexOf("/");
+                    String pre = url.substring(0, p + 1);
+                    String post = url.substring(p + 1, url.length());
+                    p = newUrl.lastIndexOf("/");
+                    String newPre = newUrl.substring(0, p + 1);
+                    String newPost = newUrl.substring(p + 1, url.length());
+                    String oldPath = ROOT_PATH + username;
+                    String oldPath1 = ROOT_PATH + username;
                     if (url.startsWith("/")) {
-                        oldPath = oldPath + url;
+                        oldPath = oldPath + pre + nowVersion + post;
+                        oldPath1 = oldPath1 + pre + otherVersion + post;
                     }
                     else {
-                        oldPath = oldPath + "/" + url;
+                        oldPath = oldPath + "/" + pre + nowVersion + post;
+                        oldPath1 = oldPath1 + "/" + pre + otherVersion + post;
                     }
-                    String newPath = "/home/upload/" + username;
+                    String newPath = ROOT_PATH + username;
+                    String newPath1 = ROOT_PATH + username;
                     if (newUrl.startsWith("/")) {
-                        newPath = newPath + newUrl;
+                        newPath = newPath + newPre + nowVersion + newPost;
+                        newPath1 = newPath1 + newPre + otherVersion + newPost;
                     }
                     else {
-                        newPath = newPath + "/" + newUrl;
+                        newPath = newPath + "/" + newPre + nowVersion + newPost;
+                        newPath1 = newPath1 + "/" + newPre + otherVersion + newPost;
                     }
                     File oldFile = new File(oldPath);
                     if (oldFile.renameTo(new File(newPath))){
@@ -128,12 +166,65 @@ public class FileBusiness {
                     else {
                         result = JSONUtils.getJSONString("fail", "rename error");
                     }
+                    oldFile = new File(oldPath1);
+                    if (oldFile.exists()) {
+                        if (oldFile.renameTo(new File(newPath1)) == false) {
+                            result = JSONUtils.getJSONString("fail", "rename error");
+                        }
+                    }
                 } else {
                     result = JSONUtils.getJSONString("fail", "unknown reaseons");
                 }
             }
         }
 
+        return result;
+    }
+
+    /*
+        revert the file to the previous version
+     */
+    public String revert(String username, String url) {
+        String result = null;
+        String filePath;
+        FileDao fd = new FileDaoJDBCImpl();
+        Integer vi = fd.getFileVersion(username, url);
+        if (vi == 0) {
+            result = JSONUtils.getJSONString("fail", "can not revert first version");
+        }
+        else {
+            String storedName = url;
+            String lastVersion = String.valueOf((vi - 1) % 2) + "-";
+            String nowVersion = String.valueOf(vi % 2) + "-";
+            if (url.startsWith("/") == false) {
+                url = "/" + url;
+            }
+            Integer p = url.lastIndexOf("/");
+            String pre = url.substring(0, p + 1);
+            String post = url.substring(p + 1, url.length());
+            filePath = ROOT_PATH + username + pre + lastVersion + post;
+            File file = new File(filePath);
+            if (file.exists() == false) {
+                result = JSONUtils.getJSONString("fail", "can not revert twice");
+            }
+            else {
+                try {
+                    FileInputStream fis = null;
+                    fis = new FileInputStream(file);
+                    FileChannel fc = fis.getChannel();
+                    SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String time = ft.format(file.lastModified());
+                    File deleteFile = new File(ROOT_PATH + username + pre + nowVersion + post);
+                    if (fd.revert(username, storedName, fc.size(), time) && deleteFile.delete()) {
+                        result = JSONUtils.getJSONString("success", "");
+                    } else {
+                        result = JSONUtils.getJSONString("fail", "unknown reasons");
+                    }
+                } catch (IOException e) {
+                    result = JSONUtils.getJSONString("fail", e.getMessage());
+                }
+            }
+        }
         return result;
     }
 
@@ -183,7 +274,7 @@ public class FileBusiness {
             }
 
             String fileName = file.getOriginalFilename();
-            File dest = new File(filePath + fileName);
+            File dest = new File(filePath + "0-" +fileName);
             try {
                 String pre;
                 if (url.endsWith("/") == false) {
@@ -231,7 +322,7 @@ public class FileBusiness {
             }
 
             String fileName = file.getOriginalFilename();
-            File dest = new File(filePath + fileName);
+
             try {
                 if (url.endsWith("/") == false) {
                     url = url + "/";
@@ -244,6 +335,9 @@ public class FileBusiness {
                     storedName = url + fileName;
                 }
                 FileDao fd = new FileDaoJDBCImpl();
+                Integer vi = fd.getFileVersion(username, storedName);
+                String version = String.valueOf((vi + 1) % 2) + "-";
+                File dest = new File(filePath + version + fileName);
                 file.transferTo(dest);
                 result = JSONUtils.getJSONString("success", "");
                 FileInputStream fis = new FileInputStream(dest);
