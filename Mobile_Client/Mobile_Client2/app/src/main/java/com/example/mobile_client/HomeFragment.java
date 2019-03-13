@@ -45,7 +45,7 @@ import okhttp3.Response;
  * A simple {@link Fragment} subclass.
  */
  public class HomeFragment extends Fragment {
-  //public class HomeFragment extends Fragment implements SearchView.OnQueryTextListener, MenuItem.OnActionExpandListener{
+ // public class HomeFragment extends Fragment{
 
     //initial all variables
     private  SwipeRefreshLayout refreshLayout;
@@ -82,10 +82,13 @@ import okhttp3.Response;
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                //adapter.notifyDataSetChanged();
+
                 fileList.clear();
-                onItemsLoadComplete();
+                //onItemsLoadComplete();
+                adapter.notifyDataSetChanged();
+                refreshLayout.setRefreshing(true);
                 onUpdate();
+
                 initFile(username);
             }
 
@@ -97,16 +100,16 @@ import okhttp3.Response;
             public void run() {
                 fileList.clear();
                // adapter.notifyDataSetChanged();
-                onUpdate();
-                refreshLayout.setRefreshing(true);
-               // onItemsLoadComplete();
-                onUpdate();
+
+                refreshLayout.setRefreshing(false);
+                //onItemsLoadComplete();
+                //onUpdate();
                 initFile(username);
             }
         });
 
        // FileAdapter
-                adapter = new FileAdapter(getActivity(),R.layout.file_item,fileList);
+        adapter = new FileAdapter(getActivity(),R.layout.file_item,fileList);
 
         listView = (ListView)view.findViewById(R.id.home_list);
         listView.setAdapter(adapter);
