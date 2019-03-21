@@ -186,14 +186,6 @@ import okhttp3.Response;
                                         String[] strs = newString1.split(",");
                                         fileList.clear();
                                         for (int i = 0, len = strs.length; i < len; i++) {
-//                                            System.out.println(strs[i].toString());
-//
-//
-//                                            for (int j = 0; j < 1; j++) {
-//                                                File_icon file1 = new File_icon(strs[i], R.drawable.ic_doc);
-//                                                fileList.add(file1);
-//
-//                                            }
 
                                             boolean pdf = strs[i].contains(".pdf");
                                             boolean docx = strs[i].contains(".dox");

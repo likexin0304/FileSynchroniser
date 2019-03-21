@@ -164,12 +164,14 @@ public class Upload_Page extends AppCompatActivity {
                         if(!response.isSuccessful())
                         {
                             throw new IOException("Error" + response);
+
                         }
-                       // Toast.makeText(Upload_Page.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(Upload_Page.this, "Uploaded", Toast.LENGTH_SHORT).show();
                         System.out.println(response);
                         process.dismiss();
                     }catch (IOException e) {
                         e.printStackTrace();
+                        Toast.makeText(Upload_Page.this, "Sorry, Cannot upload", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

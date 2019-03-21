@@ -13,6 +13,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -133,6 +136,7 @@ public class Item_detail_Page extends AppCompatActivity {
                 break;
             case R.id.action_history:
                 history(SelectedItem);
+
             default:
                 //no error
         }
@@ -265,11 +269,14 @@ public class Item_detail_Page extends AppCompatActivity {
                                                     System.out.println(rStatus2);
 
                                                     System.out.println("55555555555555555555555555555555" + fileName);
-
+                                                    Intent intent = new Intent(Item_detail_Page.this, Main_Page.class);
+                                                    startActivity(intent);
+                                                    Toast.makeText(Item_detail_Page.this, "The File has been deleted", Toast.LENGTH_LONG).show();
 
 
                                                 } else {
                                                     System.out.println("did not delete");
+                                                    Toast.makeText(Item_detail_Page.this, "The file can not delete !", Toast.LENGTH_SHORT).show();
                                                 }
 
                                             }
@@ -355,6 +362,7 @@ public class Item_detail_Page extends AppCompatActivity {
 
                                 } else {
                                     System.out.println("did not delete");
+                                    Toast.makeText(Item_detail_Page.this, "The file can not rename! ", Toast.LENGTH_SHORT).show();
                                 }
 
                             }
@@ -487,6 +495,7 @@ public class Item_detail_Page extends AppCompatActivity {
 
                                 } else {
                                     System.out.println("did not get json file");
+
                                 }
 
                             }
@@ -567,6 +576,12 @@ public class Item_detail_Page extends AppCompatActivity {
 
                                                     Toast.makeText(Item_detail_Page.this, "Success!", Toast.LENGTH_SHORT).show();
                                                     System.out.println("55555555555555555555555555555555" + fileName);
+                                                    Intent intent = new Intent(Item_detail_Page.this, Main_Page.class);
+                                                    startActivity(intent);
+                                                    Toast.makeText(Item_detail_Page.this, "Success!", Toast.LENGTH_SHORT).show();
+                                                    //Toast.makeText(Item_detail_Page.this, "The File name has been changed to"+newName, Toast.LENGTH_LONG).show();
+
+
 
 
 
@@ -598,6 +613,7 @@ public class Item_detail_Page extends AppCompatActivity {
                 .setNegativeButton(android.R.string.no, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+
     }
 
 
