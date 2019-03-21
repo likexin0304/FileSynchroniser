@@ -9,6 +9,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
@@ -185,7 +188,7 @@ public class Item_detail_Page extends AppCompatActivity {
 
                     // A null listener allows the button to dismiss the dialog and take no further action.
                     .setNegativeButton(android.R.string.no, null)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setIcon(android.R.drawable.presence_busy)
                     .show();
 
 //            String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
@@ -300,7 +303,7 @@ public class Item_detail_Page extends AppCompatActivity {
 
                 // A null listener allows the button to dismiss the dialog and take no further action.
                 .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(android.R.drawable.presence_busy)
                 .show();
 
 
@@ -357,7 +360,7 @@ public class Item_detail_Page extends AppCompatActivity {
                                     System.out.println("****************************3New File Name: " +newName);
                                     Intent intent = new Intent(Item_detail_Page.this, Main_Page.class);
                                     startActivity(intent);
-                                    Toast.makeText(Item_detail_Page.this, "The File name has been changed to"+newName, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(Item_detail_Page.this, "The File name has been changed to"+ newName, Toast.LENGTH_LONG).show();
 
 
                                 } else {
@@ -611,7 +614,7 @@ public class Item_detail_Page extends AppCompatActivity {
 
                 // A null listener allows the button to dismiss the dialog and take no further action.
                 .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(android.R.drawable.presence_busy)
                 .show();
 
     }

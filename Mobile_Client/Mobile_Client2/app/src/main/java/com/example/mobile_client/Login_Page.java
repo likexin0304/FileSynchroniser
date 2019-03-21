@@ -160,13 +160,13 @@ public class Login_Page extends AppCompatActivity {
 
                                     String username = Username.getText().toString();
                                     String password = Password.getText().toString();
-                                    //在 MySharedPreferences类里定义好存取方法后，就可以调用了
-                                    //这里将数据保存进去  注意：(name 我是定义了有返回值的，试试看)
+                                    //MySharedPreferences
+
                                     Boolean bool = MySharedPreferences.setuserName(username, Login_Page.this);
                                     MySharedPreferences.setPswd(password, Login_Page.this);
 
 
-                                    //看看保存成功没
+                                    //check the MySharedPreferences
                                     if (bool)
                                         Toast.makeText(Login_Page.this, "Welcome "+username, Toast.LENGTH_SHORT).show();
                                     else
