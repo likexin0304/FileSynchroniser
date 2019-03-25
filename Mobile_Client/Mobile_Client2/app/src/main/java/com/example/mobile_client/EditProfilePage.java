@@ -137,12 +137,7 @@ public class  EditProfilePage extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-//        if(item.getItemId() == android.R.id.home)
-//        {
-//            finish();
-//        }
-//
-//        return super.onOptionsItemSelected(item);
+        // switch the page to home page
         switch (item.getItemId())
         {
             case android.R.id.home:
@@ -157,6 +152,7 @@ public class  EditProfilePage extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
+        // toolbar menu
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.toobar_edit_menu,menu);
         return super.onCreateOptionsMenu(menu);

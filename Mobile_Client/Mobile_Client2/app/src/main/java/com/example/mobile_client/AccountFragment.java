@@ -44,12 +44,11 @@ public class AccountFragment extends Fragment{
         // connect to the xml
         SignOut =(Button)view.findViewById(R.id.signout);
         EditButton =(ImageButton)view.findViewById(R.id.editButton);
-
-
         Username = (TextView)view.findViewById(R.id.Username);
 
+        //get username from MySharedPreferences
         String username = (String) MySharedPreferences.getuserName(getActivity());
-        //String password = (String) MySharedPreferences.getPswd(getActivity());
+        //show the username
         Username.setText("Username：" + username);
 
         // logout function
@@ -61,11 +60,11 @@ public class AccountFragment extends Fragment{
                         .setTitle("Log out")
                         .setMessage("Are you sure you want to Sign Out?")
 
-                        // Specifying a listener allows you to take an action before dismissing the dialog.
+                        // Specifying a listener allows user to take an action before dismissing the dialog.
                         // The dialog is automatically dismissed when a dialog button is clicked.
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // Continue with delete operation
+                                // go to the login page
                                 goToLogin();
                             }
                         })
@@ -74,7 +73,7 @@ public class AccountFragment extends Fragment{
                         .setNegativeButton(android.R.string.no, null)
                         .setIcon(android.R.drawable.presence_busy)
                         .show();
-               // goToLogin();
+
             }
         });
 

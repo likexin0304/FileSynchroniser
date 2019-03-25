@@ -53,12 +53,12 @@ public class Upload_Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
 
-
+        //action bar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        //pick file button connect to UI
         Pick = (Button)findViewById(R.id.pick);
-
+        // get the access to system folder
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
         {
             //Log.v(TAG, "index=8");
@@ -108,7 +108,7 @@ public class Upload_Page extends AppCompatActivity {
         }
     }
 
-
+    //upload file
     ProgressDialog process;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -188,7 +188,7 @@ public class Upload_Page extends AppCompatActivity {
         return MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
     }
 
-
+//menu
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -203,6 +203,7 @@ public class Upload_Page extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    //toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

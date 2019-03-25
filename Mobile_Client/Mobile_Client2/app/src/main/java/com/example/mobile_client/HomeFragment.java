@@ -136,10 +136,10 @@ import okhttp3.Response;
     }
 
 
-
+    // get the file list from server
     private void initFile(String username) {
             System.out.println("111111111111111111111111111111111");
-
+            // set okhttp
             OkHttpClient okHttpClient = new OkHttpClient();
 
             Request request = new Request.Builder()

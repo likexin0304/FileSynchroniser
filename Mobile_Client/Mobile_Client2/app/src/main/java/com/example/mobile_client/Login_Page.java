@@ -50,17 +50,6 @@ public class Login_Page extends AppCompatActivity {
     private Button Login;
     private TextView Signup;
     private TextView Forgot;
-
-
-    private int counter = 5;
-
-
-   // public List<File_icon> fileList = new ArrayList<File_icon>();
-
-
-// sharedPreferences for save user information.
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,10 +63,6 @@ public class Login_Page extends AppCompatActivity {
         Login = (Button) findViewById(R.id.btnLogin);
         Signup = (TextView) findViewById(R.id.tvSignup);
         Forgot = (TextView) findViewById(R.id.tv_forgot);
-
-
-
-
 
         // login button function
         Login.setOnClickListener(new View.OnClickListener() {
@@ -180,14 +165,6 @@ public class Login_Page extends AppCompatActivity {
 
                             }
                         });
-
-//                        if(my.getString("status").equals(status1) && my.getString("info").equals(status2))
-//                        {
-//                            Intent intent = new Intent(Login_Page.this, Main_Page.class);
-//                            startActivity(intent);
-//                        }
-
-
                     } catch (JSONException e) {
                         // Toast.makeText(Login_Page.this, "Login fail", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
@@ -232,8 +209,3 @@ public class Login_Page extends AppCompatActivity {
 
 
 }
-
-//    AlertDialog alertDialog = new AlertDialog.Builder(Login_Page.this)
-//            .setTitle("Incorrect")
-//            .setMessage("Email or Password is incorrect!").create();
-//                        alertDialog.show();

@@ -28,10 +28,10 @@ public class Main_Page extends AppCompatActivity {
 
         setContentView(R.layout.activity_main__page);
 
-
+        // set bottom navigation bar and context
         BottomNavigationView navigationView = findViewById(R.id.bottom_nav);
 
-
+        // three different fragments
         final HomeFragment homeFragment = new HomeFragment();
         final AddFragment addFragment = new AddFragment();
         final AccountFragment accountFragment = new AccountFragment();

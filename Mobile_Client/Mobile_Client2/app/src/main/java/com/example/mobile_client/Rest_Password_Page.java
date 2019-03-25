@@ -38,6 +38,7 @@ public class Rest_Password_Page extends AppCompatActivity {
     //r_repassword
     //r_sumbit
 
+    //initial variables
     private EditText r_Username;
     private EditText r_Answer1;
     private EditText r_Answer2;
@@ -54,11 +55,11 @@ public class Rest_Password_Page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rest__password__page);
-
+        //set actionbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        //connect the variable to UI
         r_Username = (EditText)findViewById(R.id.r_username);
         r_Answer1 = (EditText)findViewById(R.id.Answer1);
         r_Answer2 = (EditText)findViewById(R.id.Answer2);
@@ -69,19 +70,20 @@ public class Rest_Password_Page extends AppCompatActivity {
         r_Sumbit = (Button)findViewById(R.id.r_sumbit);
         //r_Back = (Button)findViewById(R.id.bt_back);
 
-
+        //rest password sumbit button
         r_Sumbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //goTohome();
 
 
+                // check the input value
                 if (TextUtils.isEmpty(r_Username.getText().toString()) || TextUtils.isEmpty(r_Answer1.getText().toString()) ||
                         TextUtils.isEmpty(r_Answer2.getText().toString()) ||TextUtils.isEmpty(r_Password.getText().toString()))
                 {
                     Toast.makeText(Rest_Password_Page.this, "Please fill all blanks", Toast.LENGTH_LONG).show();
                 }
                 else {
+                    //ok http request
                     OkHttpClient okHttpClient = new OkHttpClient();
                     //requestbody
                     FormBody formBody = new FormBody.Builder()
@@ -149,26 +151,8 @@ public class Rest_Password_Page extends AppCompatActivity {
 
     }
 
-//        r_Back.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                goBack();
-//
-//            }
-//        });
+    // jump to home page
 
-
-
-    private void goTohome()
-    {
-        Intent intent = new Intent(Rest_Password_Page.this, Login_Page.class);
-        startActivity(intent);
-    }
-//    private void goBack()
-//    {
-//        Intent intent = new Intent(Rest_Password_Page.this, Login_Page.class);
-//        startActivity(intent);
-//    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
@@ -184,6 +168,7 @@ public class Rest_Password_Page extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    //toobar
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {

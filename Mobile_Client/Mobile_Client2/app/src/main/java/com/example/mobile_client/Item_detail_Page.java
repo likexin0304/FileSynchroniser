@@ -75,6 +75,7 @@ public class Item_detail_Page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //set all variables from UI
         setContentView(R.layout.activity_item_detail__page);
         new_fileName = (EditText)findViewById(R.id.newFileName);
         new_fileName2 = (EditText)findViewById(R.id.newFileName2);
@@ -86,13 +87,14 @@ public class Item_detail_Page extends AppCompatActivity {
         Time = (TextView)findViewById(R.id.f_time);
         // download manager
         downloadManager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
-
+        //set actionbar
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Intent intent = getIntent();
         String SelectedItem = intent.getStringExtra(("fileName"));
         old_fileName.setText("File Name：" + SelectedItem);
         detail(SelectedItem);
+        //change the file name
         file_sumbit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,12 +105,6 @@ public class Item_detail_Page extends AppCompatActivity {
 
                 }else{
                     rename(SelectedItem,new_fileName.getText().toString());
-
-
-
-
-
-
                 }
             }
         });
@@ -190,22 +186,6 @@ public class Item_detail_Page extends AppCompatActivity {
                     .setNegativeButton(android.R.string.no, null)
                     .setIcon(android.R.drawable.presence_busy)
                     .show();
-
-//            String username = (String) MySharedPreferences.getuserName(Item_detail_Page.this);
-//            Download_Uri =Uri.parse("http://teamparamount.cn:8080/Paramount/download?username="+username+"&url="+filename);
-//            System.out.println(Download_Uri);
-//            DownloadManager.Request request = new DownloadManager.Request(Download_Uri);
-//            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
-//            request.setAllowedOverRoaming(true);
-//            request.setTitle(filename);
-//            request.setDescription(filename);
-//            request.setVisibleInDownloadsUi(true);
-//            request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS,filename);
-//
-//
-//            refid = downloadManager.enqueue(request);
-//
-//            Log.e("OUT", "" + refid);
 
         }
 
@@ -364,7 +344,7 @@ public class Item_detail_Page extends AppCompatActivity {
 
 
                                 } else {
-                                    System.out.println("did not delete");
+                                    System.out.println("did not rename");
                                     Toast.makeText(Item_detail_Page.this, "The file can not rename! ", Toast.LENGTH_SHORT).show();
                                 }
 
@@ -465,37 +445,7 @@ public class Item_detail_Page extends AppCompatActivity {
                                     Type.setText(strs[2]);
                                     Version.setText(strs[3]);
                                     Time.setText(strs[1]);
-
-
-//                                    for (int i = 0, len = strs.length; i < len; i++)
-//                                    {
-//                                        System.out.println(strs[i].toString());
-////                                        String size1 = strs[i].toString();
-////                                        System.out.println(size1);
-//                                        //Size.setText(size1);
-////                                        Type.setText(strs[i].toString());
-////                                        Version.setText(strs[i].toString());
-////                                        Time.setText(strs[i].toString());
-//
-//                                    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     //System.out.println("file:" + rStatus2);
-
-
                                 } else {
                                     System.out.println("did not get json file");
 
