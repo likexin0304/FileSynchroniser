@@ -138,7 +138,7 @@ public class FileBusiness {
                     String post = url.substring(p + 1, url.length());
                     p = newUrl.lastIndexOf("/");
                     String newPre = newUrl.substring(0, p + 1);
-                    String newPost = newUrl.substring(p + 1, url.length());
+                    String newPost = newUrl.substring(p + 1, newUrl.length());
                     String oldPath = ROOT_PATH + username;
                     String oldPath1 = ROOT_PATH + username;
                     if (url.startsWith("/")) {
@@ -159,6 +159,7 @@ public class FileBusiness {
                         newPath = newPath + "/" + newPre + nowVersion + newPost;
                         newPath1 = newPath1 + "/" + newPre + otherVersion + newPost;
                     }
+                    System.out.println(oldPath + ":::::::::::::" + newPath);
                     File oldFile = new File(oldPath);
                     if (oldFile.renameTo(new File(newPath))){
                         result = JSONUtils.getJSONString("success", "");
