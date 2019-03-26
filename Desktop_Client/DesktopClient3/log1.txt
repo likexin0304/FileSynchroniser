@@ -1,0 +1,27 @@
+2018-09-22 19:46:59 下午 com.duokan.reader [Thread:354] do sync info 
+2018-09-22 19:46:59 下午 com.duokan.reader [Thread:354] Perf_code  packetType  2022  length 580 
+2018-09-22 19:46:59 下午 com.duokan.reader [Thread:354] Perf_code  packetType  2027  length 247 
+2018-09-22 19:47:04 下午 com.duokan.reader [Thread:354] Perf_code  packetType  2016  length 212 
+2018-09-22 19:47:04 下午 com.duokan.reader [Thread:426] receive an intent from server, action=com.xiaomi.mipush.RECEIVE_MESSAGE 
+2018-09-22 19:47:04 下午 com.duokan.reader [Thread:426] processing a message, action=Notification 
+2018-09-22 19:47:04 下午 com.duokan.reader [Thread:426] Perf_code  packetType  2018  length 388 
+2018-09-22 19:47:04 下午 com.duokan.reader [Thread:427] receive an intent from server, action=com.xiaomi.mipush.RECEIVE_MESSAGE 
+2018-09-22 19:47:04 下午 com.duokan.reader [Thread:427] processing a message, action=Registration 
+2018-09-22 19:47:05 下午 com.duokan.reader [Thread:427] ASSEMBLE_PUSH : assemble push register 
+2018-09-22 19:47:05 下午 com.duokan.reader [Thread:427] ASSEMBLE_PUSH :  HW user switch : true HW online switch : false HW isSupport : false 
+2018-09-22 19:57:16 下午 com.duokan.reader [Thread:470] receive an intent from server, action=com.xiaomi.mipush.ERROR 
+2018-09-22 19:57:16 下午 com.duokan.reader receive a error message. code = 70000001, msg=  the push is not connected. 
+2018-10-11 07:06:13 上午 com.duokan.reader [Thread:135] do sync info 
+2018-10-11 07:06:13 上午 com.duokan.reader [Thread:135] Perf_code  packetType  2022  length 600 
+2018-10-11 07:06:13 上午 com.duokan.reader [Thread:135] Perf_code  packetType  2027  length 247 
+2018-10-11 07:06:13 上午 com.duokan.reader [Thread:150] ASSEMBLE_PUSH : assemble push register 
+2018-10-11 07:06:13 上午 com.duokan.reader [Thread:150] ASSEMBLE_PUSH :  HW user switch : true HW online switch : false HW isSupport : false 
+2018-10-11 07:06:14 上午 com.duokan.reader [Thread:163] receive an intent from server, action=com.xiaomi.mipush.RECEIVE_MESSAGE 
+2018-10-11 07:06:14 上午 com.duokan.reader [Thread:163] processing a message, action=Notification 
+2018-10-11 07:06:14 上午 com.duokan.reader [Thread:163] Perf_code  packetType  2008  length 861 
+2018-10-11 07:06:18 上午 com.duokan.reader [Thread:135] Perf_code  packetType  2016  length 212 
+2018-10-13 01:02:28 上午 com.duokan.reader [Thread:135] Perf_code  packetType  2027  length 247 
+2018-10-15 05:07:26 上午 com.duokan.reader [Thread:83] Perf_code  packetType  2027  length 247 
+2018-10-15 05:07:28 上午 com.duokan.reader [Thread:118] ASSEMBLE_PUSH : assemble push register 
+2018-10-15 05:07:28 上午 com.duokan.reader [Thread:118] ASSEMBLE_PUSH :  HW user switch : true HW online switch : false HW isSupport : false 
+2018-10-15 05:07:31 上午 com.duokan.reader [Thread:83] Perf_code  packetType  2016  length 212 

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!--=======Font Open Sans======-->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<!--StyleSheet-->
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body style="-webkit-app-region: drag">
+
+<div class="forms">
+		<ul class="tab-group">
+			<li class="tab active"><a href="#login">LOG IN</a></li>
+			<li class="tab"><a href="#signup">SIGN UP</a></li>
+		</ul>
+	  <form method="post" action="#" id="login">
+	      <h1>Welcome Back!</h1>
+	      <div class="input-field">
+	        <label for="email">Username</label>
+	        <input type="text" name="userName" required="text" id="userName"/>
+	        <label for="password">Password</label>
+	        <input type="password" name="passWord" required id="passWord"/>
+	        <input type="submit" value="Login" class="button" id="Loginbutton" name="Loginbutton"/>
+	        <p class="message"> <a href="#">Forgot password?</a> </p>
+	      </div>
+	  </form>
+		<form method="post" id="signup">
+	      <div class="input-field">
+	        <label for="email">Username</label>
+	        <input type="text" name="userNamesu" required="text" id="userNamesu"/>
+	        <label for="password">Password</label>
+	        <input type="password" name="password" required id="passWordsu"/>
+	        <label for="password">Confirm Password</label>
+	        <input type="password" name="password" required id="passWordsuc"/>
+					<label for="securityquestion1">Security Question 1</label>
+					<input type="text" name="securityquestion1" required id="sq1su" />
+					<label for="securityquestion2">Security Question 2</label>
+					<input type="text" name="securityquestion2" required id="sq2sp"/>
+	        <input type="submit" value="Sign up" class="button" name="Signupbutton" id="Signupbutton" />
+	      </div>
+		</form>
+</div>
+
+<div class="forms">
+	<form method="post" id="forgotpassword">
+		<h1>Get Your Account Back!</h1>
+		<div class="input-field">
+        <label for="email">Username</label>
+        <input type="text" name="userNamesu" required="text" id="userNamefp"/>
+        <label for="password">New Password</label>
+        <input type="password" name="password" required id="password3"/>
+        <label for="password">Confirm Password</label>
+		    <input type="password" name="password" required id="password3c"/>
+				<label for="securityquestion1">Security Question 1</label>
+				<input type="text" name="securityquestion1" required id="ans1" />
+				<label for="securityquestion2">Security Question 2</label>
+				<input type="text" name="securityquestion2" required id="ans2"/>
+        <input type="submit" value="Confirm" class="button" name="confirmButton" id="confirmButton" />
+        <p class="message"> <a href="#">Login?</a> </p>
+		</div>
+	</form>
+
+</div>
+
+<canvas></canvas>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<script type="text/javascript">
+		$(document).ready(function(){
+			  $('.tab a').on('click', function (e) {
+			  e.preventDefault();
+
+			  $(this).parent().addClass('active');
+			  $(this).parent().siblings().removeClass('active');
+
+			  var href = $(this).attr('href');
+			  $('.forms > form').hide();
+			  $(href).fadeIn(500);
+			});
+		});
+</script>
+<script>
+    // get the variable from inputs
+    const form = {
+        username: document.getElementById("userName"),
+        password: document.getElementById("passWord"),
+    };
+    const submit = {
+      sbumit_btn : document.getElementById('Loginbutton'),
+    };
+    console.log(form);
+    submit.sbumit_btn.addEventListener('click', ()=> {
+       //console.log('button pressed');
+        const request = new XMLHttpRequest();
+
+        request.onload = () =>{
+            //console.log(request.responseText);
+            let responseObject = null;
+            try{
+                responseObject = JSON.parse(request.responseText);
+            }catch(e){
+                console.error('Could not parse');
+            }
+            if (responseObject){
+                handleResponse(responseObject);
+            }
+        };
+        // create the requestData for using send request to server
+        const requestData = `username=${form.username.value}&password=${form.password.value}`;
+        //check the content which is user inputs.
+        console.log(requestData);
+        // send to server
+        request.open('post','http://teamparamount.cn:8080/Paramount/login');
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.send(requestData);
+				//do the redirect
+				function handleResponse(responseObject){
+						// need to check when the user enters incorrect
+						if(responseObject.status == "success")
+								{
+										window.location.href = "loading_Page.html";
+										localStorage.setItem("username", $("#userName").val());
+										// console.log(responseObject.info);
+								}
+						else if(responseObject.status == "fail"){
+							alert(responseObject.info);
+						}
+						// console.log(responseObject);
+				}
+    });
+</script>
+
+<script>
+    // get the variable from inputs
+    const form2 = {
+        username: document.getElementById("userNamesu"),
+        password: document.getElementById("passWordsu"),
+				answer1: document.getElementById("sq1su"),
+				answer2: document.getElementById("sq2sp"),
+    };
+    const submit2 = {
+      sbumit_btn : document.getElementById('Signupbutton'),
+    };
+    console.log(form2);
+    submit2.sbumit_btn.addEventListener('click', ()=> {
+       //console.log('button pressed');
+        const request = new XMLHttpRequest();
+        request.onload = () =>{
+            //console.log(request.responseText);
+            let responseObject = null;
+            try{
+                responseObject = JSON.parse(request.responseText);
+            }catch(e){
+                console.error('Could not parse');
+            }
+            if (responseObject){
+                handleResponse(responseObject);
+            }
+        };
+        // create the requestData for using send request to server
+        const requestData = `username=${form2.username.value}&password=${form2.password.value}&answer1=${form2.answer1.value}&answer2=${form2.answer2.value}`;
+        //check the content which is user inputs.
+        console.log(requestData);
+        // send to server
+        request.open('post','http://teamparamount.cn:8080/Paramount/signup');
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.send(requestData);
+				//do the redirect
+				function handleResponse(responseObject){
+						// need to check when the user enters incorrect
+						if(responseObject.status == "success")
+								{
+										alert('Sign up successfully!');
+										// console.log(responseObject.info);
+								}
+						else if(responseObject.status == "fail"){
+							alert(responseObject.info);
+						}
+						// console.log(responseObject);
+				}
+    });
+</script>
+
+<script>
+    // get the variable from inputs
+    const form3 = {
+        username: document.getElementById("userNamefp"),
+        password: document.getElementById("password3"),
+				answer1: document.getElementById("ans1"),
+				answer2: document.getElementById("ans2"),
+    };
+		console.log(form3);
+    const submit3 = {
+      sbumit_btn : document.getElementById("confirmButton"),
+    };
+		submit3.sbumit_btn.addEventListener('click', ()=> {
+			 //console.log('button pressed');
+				const request = new XMLHttpRequest();
+				request.onload = () =>{
+						//console.log(request.responseText);
+						let responseObject = null;
+						try{
+								responseObject = JSON.parse(request.responseText);
+						}catch(e){
+								console.error('Could not parse');
+						}
+						if (responseObject){
+								handleResponse(responseObject);
+						}
+				};
+				// create the requestData for using send request to server
+				const requestData = `username=${form3.username.value}&answer1=${form3.answer1.value}&answer2=${form3.answer2.value}&password=${form3.password.value}`;
+				//check the content which is user inputs.
+				console.log(requestData);
+				// send to server
+				request.open('post','http://teamparamount.cn:8080/Paramount/forget');
+				request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				request.send(requestData);
+				//do the redirect
+				function handleResponse(responseObject){
+						// need to check when the user enters incorrect
+						if(responseObject.status == "success")
+								{
+										alert('Change successfully!');
+										// console.log(responseObject.info);
+								}
+						else if(responseObject.status == "fail"){
+							alert(responseObject.info);
+						}
+						// console.log(responseObject);
+				}
+		});
+</script>
+
+<!-- <script src="renderer.js">
+</script> -->
+<script  src="js/index.js"></script>
+</body>
+</html>
