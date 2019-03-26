@@ -84,6 +84,158 @@
 			});
 		});
 </script>
+<script>
+    // get the variable from inputs
+    const form = {
+        username: document.getElementById("userName"),
+        password: document.getElementById("passWord"),
+    };
+    const submit = {
+      sbumit_btn : document.getElementById('Loginbutton'),
+    };
+    console.log(form);
+    submit.sbumit_btn.addEventListener('click', ()=> {
+       //console.log('button pressed');
+        const request = new XMLHttpRequest();
+
+        request.onload = () =>{
+            //console.log(request.responseText);
+            let responseObject = null;
+            try{
+                responseObject = JSON.parse(request.responseText);
+            }catch(e){
+                console.error('Could not parse');
+            }
+            if (responseObject){
+                handleResponse(responseObject);
+            }
+        };
+        // create the requestData for using send request to server
+        const requestData = `username=${form.username.value}&password=${form.password.value}`;
+        //check the content which is user inputs.
+        console.log(requestData);
+        // send to server
+        request.open('post','http://teamparamount.cn:8080/Paramount/login');
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.send(requestData);
+				//do the redirect
+				function handleResponse(responseObject){
+						// need to check when the user enters incorrect
+						if(responseObject.status == "success")
+								{
+										window.location.href = "loading_Page.html";
+										localStorage.setItem("username", $("#userName").val());
+										// console.log(responseObject.info);
+								}
+						else if(responseObject.status == "fail"){
+							alert(responseObject.info);
+						}
+						// console.log(responseObject);
+				}
+    });
+</script>
+
+<script>
+    // get the variable from inputs
+    const form2 = {
+        username: document.getElementById("userNamesu"),
+        password: document.getElementById("passWordsu"),
+				answer1: document.getElementById("sq1su"),
+				answer2: document.getElementById("sq2sp"),
+    };
+    const submit2 = {
+      sbumit_btn : document.getElementById('Signupbutton'),
+    };
+    console.log(form2);
+    submit2.sbumit_btn.addEventListener('click', ()=> {
+       //console.log('button pressed');
+        const request = new XMLHttpRequest();
+        request.onload = () =>{
+            //console.log(request.responseText);
+            let responseObject = null;
+            try{
+                responseObject = JSON.parse(request.responseText);
+            }catch(e){
+                console.error('Could not parse');
+            }
+            if (responseObject){
+                handleResponse(responseObject);
+            }
+        };
+        // create the requestData for using send request to server
+        const requestData = `username=${form2.username.value}&password=${form2.password.value}&answer1=${form2.answer1.value}&answer2=${form2.answer2.value}`;
+        //check the content which is user inputs.
+        console.log(requestData);
+        // send to server
+        request.open('post','http://teamparamount.cn:8080/Paramount/signup');
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+        request.send(requestData);
+				//do the redirect
+				function handleResponse(responseObject){
+						// need to check when the user enters incorrect
+						if(responseObject.status == "success")
+								{
+										alert('Sign up successfully!');
+										// console.log(responseObject.info);
+								}
+						else if(responseObject.status == "fail"){
+							alert(responseObject.info);
+						}
+						// console.log(responseObject);
+				}
+    });
+</script>
+
+<script>
+    // get the variable from inputs
+    const form3 = {
+        username: document.getElementById("userNamefp"),
+        password: document.getElementById("password3"),
+				answer1: document.getElementById("ans1"),
+				answer2: document.getElementById("ans2"),
+    };
+		console.log(form3);
+    const submit3 = {
+      sbumit_btn : document.getElementById("confirmButton"),
+    };
+		submit3.sbumit_btn.addEventListener('click', ()=> {
+			 //console.log('button pressed');
+				const request = new XMLHttpRequest();
+				request.onload = () =>{
+						//console.log(request.responseText);
+						let responseObject = null;
+						try{
+								responseObject = JSON.parse(request.responseText);
+						}catch(e){
+								console.error('Could not parse');
+						}
+						if (responseObject){
+								handleResponse(responseObject);
+						}
+				};
+				// create the requestData for using send request to server
+				const requestData = `username=${form3.username.value}&answer1=${form3.answer1.value}&answer2=${form3.answer2.value}&password=${form3.password.value}`;
+				//check the content which is user inputs.
+				console.log(requestData);
+				// send to server
+				request.open('post','http://teamparamount.cn:8080/Paramount/forget');
+				request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				request.send(requestData);
+				//do the redirect
+				function handleResponse(responseObject){
+						// need to check when the user enters incorrect
+						if(responseObject.status == "success")
+								{
+										alert('Change successfully!');
+										// console.log(responseObject.info);
+								}
+						else if(responseObject.status == "fail"){
+							alert(responseObject.info);
+						}
+						// console.log(responseObject);
+				}
+		});
+</script>
 
 <!-- <script src="renderer.js">
 </script> -->
