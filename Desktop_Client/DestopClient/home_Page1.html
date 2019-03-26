@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>homepage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style_homepage.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <script>
+        function test(o) {
+            if (!o.checked) {
+                return;
+            }
+            // select the file name from mainTable
+            // the cell of table
+            var tr = o.parentNode.parentNode;
+            // the first cell
+            var tds = tr.cells;
+            // select the first cell in the table
+            for(var i = 1;i < tds.length;i++){
+                if (i < 2) {
+                    str = tds[i].innerHTML;
+                    var fileName = str;
+                }
+            }
+            //alert(str);
+            console.log(fileName);
+        }
+    </script>
+  </head>
+  <body style="-webkit-app-region: drag">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 navbar-expand-md">
+        <div class="navbar-brand d-flex align-items-center justify-content-between col-sm-12 col-md-2 mr-0">
+            <a class="mr-1 d-md-none text-light" href="#sidenav" data-toggle="collapse" data-target="#sidenav">
+                <span data-feather="menu" class="my-1"></span>
+            </a>
+            <a class="text-light" href="">Paramount</a>
+            <a class="navbar-toggler border-0 p-0" href="#topnav" data-toggle="collapse" data-target="#topnav">
+                <span data-feather="menu" class="my-1"></span>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="topnav">
+            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" id="searchInput">
+            <button class="btn btn-primary" type="submit" id="searchFuction">GO</button>
+            <ul class="navbar-nav px-3 py-2">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="index.html">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class=" navbar-expand-md">
+            <nav class="col-md-3 col-lg-2 bg-light navbar-collapse collapse sidebar border-bottom" id="sidenav">
+                <div class="sidebar-sticky flex-column w-100 mt-1">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="home_Page1.html">
+                                <span data-feather="home"></span> All Functions <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Transfer list</span>
+                    </h6>
+
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home_uploading.html">
+                                <span data-feather="file-text">Uploading Files</span>
+                            </a>
+                        </li>
+
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Account</span>
+                        </h6>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="changepassworl.html">
+                                <span data-feather="file-text">Change Password</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+                    <h1 class="h2">All Functions</h1>
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                        <div class="btn-group mr-2">
+                            <button class="btn btn-sm btn-outline-secondary" id = "refresh">Refresh</button>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="window.location.href='home_uploading.html'">Upload</button>
+                            <button class="btn btn-sm btn-outline-secondary" id = "download">Download</button>
+                            <button class="btn btn-sm btn-outline-secondary" id = "DeleteFile">Delete</button>
+                            <button class="btn btn-sm btn-outline-secondary" id = "addnewfolder">New folder</button>
+                            <button class="btn btn-sm btn-outline-secondary" id = "rename">Rename</button>
+                            <button class="btn btn-sm btn-outline-secondary" id = "revert">Revert</button>
+                        </div>
+                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                            <span data-feather="calendar"></span> This week
+                        </button>
+                    </div>
+                </div>
+
+                <h2>File List</h2>
+
+                <div class="table-responsive">
+                    <table class="table table-striped table-sm">
+                        <div class="modal-body" id="tanchu">
+                            <div class="bs-example" data-example-id="hoverable-table">
+                                <table class="table table-striped table-bordered table-hover" id="btable" data-show-export="true"  data-toggle="table" data-pagination="true" data-search="true" data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-page-size="10" >
+                                    <thead class="thead-dark">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Document Name</th>
+                                        <th>Size</th>
+                                        <th>Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="document_table">
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                  </table>
+               </div>
+            </main>
+
+      </div>
+  </div>
+  <script type="text/javascript">
+     var usernameha = localStorage.getItem("username");
+     // console.log(usernameha);
+     // $("#loginUser").html(usernameha);
+  </script>
+  <script language="javascript" src='renderer.js'></script>
+    <!-- <script language="JavaScript" src="delete.js"></script> -->
+
+  </body>
+</html>
