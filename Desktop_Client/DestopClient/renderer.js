@@ -26,6 +26,61 @@ dialog.showMessageBox({// show a dialog message when click on the download butto
    }
   })
 });
+DeleteFile.addEventListener("click", function(){
+  //set MessageBox
+    dialog.showMessageBox({
+        type: 'info',
+        title: 'DeleteFile',
+        message: "Do you want to delete?",
+        buttons: ['YES', 'NO']
+    },(res,checked) =>{
+        if (res === 0){
+            //Yes button pressed
+            //start delete function
+
+            //then, pick items which be checked
+            var items = document.getElementsByClassName('checkbox');
+            //set searching max length
+            var len = items.length;
+            //for loop search
+            for(var i = len-1; i >= 0; i--){
+              //pick items which be checked
+                var is_checked = items[i].checked;
+                // delete item which checkbox has already be checked
+                if (is_checked){
+                  //get lines which need to be deleted
+                    var divItem = items[i].parentNode.parentNode;
+                    //delete
+                    divItem.parentNode.removeChild(divItem);
+                }
+            }
+        }
+    })
+
+    var fileName = window.parent.str;
+    //get deleted file's name
+    //console.log(fileName);
+    const http = require('http');
+    var usernameha = localStorage.getItem("username");
+    http.get(
+        "http://teamparamount.cn:8080/Paramount/delete?username=" + usernameha + "&url=" + fileName, (resp) =>{
+            let data = '';
+            // A chunk of data has been recieved.
+            resp.on('data', (chunk) =>{
+                data += chunk;
+            });
+            // The whole response has been received. Print out the result.
+            resp.on('end', () =>{
+                var hhh = JSON.parse(data);
+                var xxx = JSON.parse(data).info;
+                // console.log(hhh);
+                // console.log(xxx);
+            });
+        }).on("error", (err) => {
+        console.log("Error: " + err.message);
+    });
+
+});
 
 refresh.addEventListener("click", function(){
   const http = require('http');
