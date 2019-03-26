@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>homepage</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style_homepage.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  </head>
+  <body style="-webkit-app-region: drag">
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 navbar-expand-md">
+        <div class="navbar-brand d-flex align-items-center justify-content-between col-sm-12 col-md-2 mr-0">
+            <a class="mr-1 d-md-none text-light" href="#sidenav" data-toggle="collapse" data-target="#sidenav">
+                <span data-feather="menu" class="my-1"></span>
+            </a>
+            <a class="text-light" style="margin-left:35px">Paramount</a>
+            <a class="navbar-toggler border-0 p-0" href="#topnav" data-toggle="collapse" data-target="#topnav">
+                <span data-feather="menu" class="my-1"></span>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="topnav">
+            <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" id="searchInput">
+            <button class="btn btn-primary" type="submit" id="searchFuction">GO</button>
+            <ul class="navbar-nav px-3 py-2">
+                <li class="nav-item text-nowrap">
+                    <a class="nav-link" href="index.html">Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class=" navbar-expand-md">
+            <nav class="col-md-3 col-lg-2 bg-light navbar-collapse collapse sidebar border-bottom" id="sidenav">
+                <div class="sidebar-sticky flex-column w-100 mt-1">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="home_Page1.html">
+                                <span data-feather="home"></span> All Functions <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                        <span>Transfer list</span>
+                    </h6>
+
+                    <ul class="nav flex-column mb-2">
+                        <li class="nav-item">
+                            <a class="nav-link" href="home_uploading.html">
+                                <span data-feather="file-text">Uploading Files</span>
+                            </a>
+                        </li>
+
+                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                            <span>Account</span>
+                        </h6>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="changepassworl.html">
+                                <span data-feather="file-text">Change Password</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+              <div class="card card-outline-secondary">
+                       <div class="card-header">
+                           <h3 class="mb-0">Change Password</h3>
+                       </div>
+                       <div class="card-body">
+                           <form class="form" role="form" autocomplete="off">
+                               <div class="form-group">
+                                   <label for="inputUername">Username</label>
+                                   <input type="text" class="form-control" id="inputUername" required="">
+                               </div>
+                               <div class="form-group">
+                                   <label for="inputPasswordOld">Current Password</label>
+                                   <input type="password" class="form-control" id="inputPasswordOld" required="">
+                               </div>
+                               <div class="form-group">
+                                   <label for="inputPasswordNew">New Password</label>
+                                   <input type="password" class="form-control" id="inputPasswordNew" required="">
+                                   <span class="form-text small text-muted">
+                                           The password must <em>not</em> contain spaces.
+                                       </span>
+                               </div>
+                               <div class="form-group">
+                                   <button type="submit" class="btn btn-primary btn-lg float-right" id="saveButton">Save</button>
+                               </div>
+                           </form>
+                       </div>
+                   </div>
+            </main>
+
+      </div>
+  </div>
+
+  <script type="text/javascript">
+      // get the variable from inputs
+      const form = {
+          username: document.getElementById("inputUername"),
+          oldPassword: document.getElementById("inputPasswordOld"),
+          newPassword: document.getElementById("inputPasswordNew"),
+      };
+      const submit = {
+        sbumit_btn : document.getElementById("saveButton"),
+      };
+      console.log(form);
+      submit.sbumit_btn.addEventListener('click', ()=> {
+         //console.log('button pressed');
+          const request = new XMLHttpRequest();
+
+          request.onload = () =>{
+              //console.log(request.responseText);
+              let responseObject = null;
+              try{
+                  responseObject = JSON.parse(request.responseText);
+              }catch(e){
+                  console.error('Could not parse');
+              }
+              if (responseObject){
+                  handleResponse(responseObject);
+              }
+          };
+          // create the requestData for using send request to server
+          const requestData = `username=${form.username.value}&password=${form.oldPassword.value}&newpassword=${form.newPassword.value}`;
+          //check the content which is user inputs.
+          console.log(requestData);
+          // send to server
+          request.open('post','http://teamparamount.cn:8080/Paramount/changepassword');
+          request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+          request.send(requestData);
+          //do the redirect
+          function handleResponse(responseObject){
+              // need to check when the user enters incorrect
+              if(responseObject.status == "success")
+                  {
+                      // window.location.href = "loading_Page.html";
+                      // localStorage.setItem("username", $("#userName").val());
+                      // console.log(responseObject.info);
+                      alert("Change password successfully!");
+                  }
+              else if(responseObject.status == "fail"){
+                alert(responseObject.info);
+              }
+              // console.log(responseObject);
+          }
+      });
+  </script>
+
+  <!-- <script language="javascript" src='renderer.js'></script> -->
+
+</body>
+</html>
