@@ -1,0 +1,961 @@
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.3.21)  27 MAR 2019 17:06
+entering extended mode
+**./team_Paramount.tex
+(team_Paramount.tex
+LaTeX2e <2018-12-01>
+(E:\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
+(E:\MiKTeX\tex/latex/base\size11.clo
+File: size11.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(E:\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+
+(E:\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+)
+(E:\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+
+(E:\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(E:\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 99.
+
+(E:\MiKTeX\tex/latex/graphics-def\xetex.def
+File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+))
+\Gin@req@height=\dimen103
+\Gin@req@width=\dimen104
+)
+(E:\MiKTeX\tex/latex/tools\enumerate.sty
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks15
+)
+(E:\MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count88
+\lst@gtempboxa=\box27
+\lst@token=\toks16
+\lst@length=\count89
+\lst@currlwidth=\dimen105
+\lst@column=\count90
+\lst@pos=\count91
+\lst@lostspace=\dimen106
+\lst@width=\dimen107
+\lst@newlines=\count92
+\lst@lineno=\count93
+\lst@maxwidth=\dimen108
+
+(E:\MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
+\c@lstnumber=\count94
+\lst@skipnumbers=\count95
+\lst@framebox=\box28
+)
+(E:\MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2019/02/27 1.8b listings configuration
+))
+Package: listings 2019/02/27 1.8b (Carsten Heinz)
+
+(E:\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count96
+)
+(E:\MiKTeX\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2019/02/04 v3.8 Customized lists
+\labelindent=\skip43
+\enit@outerparindent=\dimen109
+\enit@toks=\toks17
+\enit@inbox=\box29
+\enit@count@id=\count97
+\enitdp@description=\count98
+)
+(E:\MiKTeX\tex/latex/pgf/frontendlayer\tikz.sty
+(E:\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty
+(E:\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty
+(E:\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex
+\pgfutil@everybye=\toks18
+\pgfutil@tempdima=\dimen110
+\pgfutil@tempdimb=\dimen111
+
+(E:\MiKTeX\tex/generic/pgf/utilities\pgfutil-common-lists.tex))
+(E:\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def
+\pgfutil@abb=\box30
+
+(E:\MiKTeX\tex/latex/ms\everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(E:\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex
+(E:\MiKTeX\tex/generic/pgf\pgf.revision.tex)
+Package: pgfrcs 2019/02/02 v3.1.1 (3.1.1)
+))
+Package: pgf 2019/02/02 v3.1.1 (3.1.1)
+
+(E:\MiKTeX\tex/latex/pgf/basiclayer\pgfcore.sty
+(E:\MiKTeX\tex/latex/pgf/systemlayer\pgfsys.sty
+(E:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys.code.tex
+Package: pgfsys 2019/02/02 v3.1.1 (3.1.1)
+
+(E:\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks19
+\pgfkeys@temptoks=\toks20
+
+(E:\MiKTeX\tex/generic/pgf/utilities\pgfkeysfiltered.code.tex
+\pgfkeys@tmptoks=\toks21
+))
+\pgf@x=\dimen112
+\pgf@y=\dimen113
+\pgf@xa=\dimen114
+\pgf@ya=\dimen115
+\pgf@xb=\dimen116
+\pgf@yb=\dimen117
+\pgf@xc=\dimen118
+\pgf@yc=\dimen119
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count99
+\c@pgf@countb=\count100
+\c@pgf@countc=\count101
+\c@pgf@countd=\count102
+\t@pgf@toka=\toks22
+\t@pgf@tokb=\toks23
+\t@pgf@tokc=\toks24
+\pgf@sys@id@count=\count103
+
+(E:\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
+File: pgf.cfg 2019/02/02 v3.1.1 (3.1.1)
+)
+Driver file for pgf: pgfsys-xetex.def
+
+(E:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-xetex.def
+File: pgfsys-xetex.def 2019/02/02 v3.1.1 (3.1.1)
+
+(E:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2019/02/02 v3.1.1 (3.1.1)
+
+(E:\MiKTeX\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2019/02/02 v3.1.1 (3.1.1)
+)
+\pgfsys@objnum=\count104
+)))
+(E:\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfsyssoftpath@smallbuffer@items=\count105
+\pgfsyssoftpath@bigbuffer@items=\count106
+)
+(E:\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2019/02/02 v3.1.1 (3.1.1)
+))
+(E:\MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+
+(E:\MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: xetex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
+Package: pgfcore 2019/02/02 v3.1.1 (3.1.1)
+
+(E:\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex)
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
+\pgfmath@dimen=\dimen120
+\pgfmath@count=\count107
+\pgfmath@box=\box31
+\pgfmath@toks=\toks25
+\pgfmath@stack@operand=\toks26
+\pgfmath@stack@operation=\toks27
+)
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex)
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex)
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex)
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex)
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex)
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex)
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex)
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex)))
+(E:\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count108
+))
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@picminx=\dimen121
+\pgf@picmaxx=\dimen122
+\pgf@picminy=\dimen123
+\pgf@picmaxy=\dimen124
+\pgf@pathminx=\dimen125
+\pgf@pathmaxx=\dimen126
+\pgf@pathminy=\dimen127
+\pgf@pathmaxy=\dimen128
+\pgf@xx=\dimen129
+\pgf@xy=\dimen130
+\pgf@yx=\dimen131
+\pgf@yy=\dimen132
+\pgf@zx=\dimen133
+\pgf@zy=\dimen134
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@path@lastx=\dimen135
+\pgf@path@lasty=\dimen136
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@shorten@end@additional=\dimen137
+\pgf@shorten@start@additional=\dimen138
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfpic=\box32
+\pgf@hbox=\box33
+\pgf@layerbox@main=\box34
+\pgf@picture@serial@count=\count109
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgflinewidth=\dimen139
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@pt@x=\dimen140
+\pgf@pt@y=\dimen141
+\pgf@pt@temp=\dimen142
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfarrowsep=\dimen143
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@max=\dimen144
+\pgf@sys@shading@range@num=\count110
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2019/02/02 v3.1.1 (3.1.1)
+
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfexternal@startupbox=\box35
+))
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)
+(E:\MiKTeX\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)))
+(E:\MiKTeX\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfnodeparttextbox=\box36
+)
+(E:\MiKTeX\tex/generic/pgf/modules\pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2019/02/02 v3.1.1 (3.1.1)
+)
+(E:\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2019/02/02 v3.1.1 (3.1.1)
+\pgf@nodesepstart=\dimen145
+\pgf@nodesepend=\dimen146
+)
+(E:\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2019/02/02 v3.1.1 (3.1.1)
+))
+(E:\MiKTeX\tex/latex/pgf/utilities\pgffor.sty
+(E:\MiKTeX\tex/latex/pgf/utilities\pgfkeys.sty
+(E:\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex))
+(E:\MiKTeX\tex/latex/pgf/math\pgfmath.sty
+(E:\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex))
+(E:\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex
+Package: pgffor 2019/02/02 v3.1.1 (3.1.1)
+
+(E:\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex)
+\pgffor@iter=\dimen147
+\pgffor@skip=\dimen148
+\pgffor@stack=\toks28
+\pgffor@toks=\toks29
+))
+(E:\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
+Package: tikz 2019/02/02 v3.1.1 (3.1.1)
+
+(E:\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgf@plot@mark@count=\count111
+\pgfplotmarksize=\dimen149
+)
+\tikz@lastx=\dimen150
+\tikz@lasty=\dimen151
+\tikz@lastxsaved=\dimen152
+\tikz@lastysaved=\dimen153
+\tikzleveldistance=\dimen154
+\tikzsiblingdistance=\dimen155
+\tikz@figbox=\box37
+\tikz@figbox@bg=\box38
+\tikz@tempbox=\box39
+\tikz@tempbox@bg=\box40
+\tikztreelevel=\count112
+\tikznumberofchildren=\count113
+\tikznumberofcurrentchild=\count114
+\tikz@fig@count=\count115
+
+(E:\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2019/02/02 v3.1.1 (3.1.1)
+\pgfmatrixcurrentrow=\count116
+\pgfmatrixcurrentcolumn=\count117
+\pgf@matrix@numberofcolumns=\count118
+)
+\tikz@expandcount=\count119
+
+(E:\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code
+.tex
+File: tikzlibrarytopaths.code.tex 2019/02/02 v3.1.1 (3.1.1)
+))) (E:\MiKTeX\tex/latex/fontspec\fontspec.sty
+(E:\MiKTeX\tex/latex/l3packages/xparse\xparse.sty
+(E:\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2019-03-05 L3 programming layer (loader) 
+
+(E:\MiKTeX\tex/latex/l3kernel\expl3-code.tex
+Package: expl3 2019-03-05 L3 programming layer (code)
+\c_max_int=\count120
+\l_tmpa_int=\count121
+\l_tmpb_int=\count122
+\g_tmpa_int=\count123
+\g_tmpb_int=\count124
+\g__kernel_prg_map_int=\count125
+\c_log_iow=\count126
+\l_iow_line_count_int=\count127
+\l__iow_line_target_int=\count128
+\l__iow_one_indent_int=\count129
+\l__iow_indent_int=\count130
+\c_zero_dim=\dimen156
+\c_max_dim=\dimen157
+\l_tmpa_dim=\dimen158
+\l_tmpb_dim=\dimen159
+\g_tmpa_dim=\dimen160
+\g_tmpb_dim=\dimen161
+\c_zero_skip=\skip44
+\c_max_skip=\skip45
+\l_tmpa_skip=\skip46
+\l_tmpb_skip=\skip47
+\g_tmpa_skip=\skip48
+\g_tmpb_skip=\skip49
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+\l_keys_choice_int=\count131
+\l__intarray_loop_int=\count132
+\c__intarray_sp_dim=\dimen162
+\g__intarray_font_int=\count133
+\c__fp_leading_shift_int=\count134
+\c__fp_middle_shift_int=\count135
+\c__fp_trailing_shift_int=\count136
+\c__fp_big_leading_shift_int=\count137
+\c__fp_big_middle_shift_int=\count138
+\c__fp_big_trailing_shift_int=\count139
+\c__fp_Bigg_leading_shift_int=\count140
+\c__fp_Bigg_middle_shift_int=\count141
+\c__fp_Bigg_trailing_shift_int=\count142
+\g__fp_array_int=\count143
+\l__fp_array_loop_int=\count144
+\l__sort_length_int=\count145
+\l__sort_min_int=\count146
+\l__sort_top_int=\count147
+\l__sort_max_int=\count148
+\l__sort_true_max_int=\count149
+\l__sort_block_int=\count150
+\l__sort_begin_int=\count151
+\l__sort_end_int=\count152
+\l__sort_A_int=\count153
+\l__sort_B_int=\count154
+\l__sort_C_int=\count155
+\l__tl_analysis_normal_int=\count156
+\l__tl_analysis_index_int=\count157
+\l__tl_analysis_nesting_int=\count158
+\l__tl_analysis_type_int=\count159
+\l__regex_internal_a_int=\count160
+\l__regex_internal_b_int=\count161
+\l__regex_internal_c_int=\count162
+\l__regex_balance_int=\count163
+\l__regex_group_level_int=\count164
+\l__regex_mode_int=\count165
+\c__regex_cs_in_class_mode_int=\count166
+\c__regex_cs_mode_int=\count167
+\l__regex_catcodes_int=\count168
+\l__regex_default_catcodes_int=\count169
+\c__regex_catcode_L_int=\count170
+\c__regex_catcode_O_int=\count171
+\c__regex_catcode_A_int=\count172
+\c__regex_all_catcodes_int=\count173
+\l__regex_show_lines_int=\count174
+\l__regex_min_state_int=\count175
+\l__regex_max_state_int=\count176
+\l__regex_left_state_int=\count177
+\l__regex_right_state_int=\count178
+\l__regex_capturing_group_int=\count179
+\l__regex_min_pos_int=\count180
+\l__regex_max_pos_int=\count181
+\l__regex_curr_pos_int=\count182
+\l__regex_start_pos_int=\count183
+\l__regex_success_pos_int=\count184
+\l__regex_curr_char_int=\count185
+\l__regex_curr_catcode_int=\count186
+\l__regex_last_char_int=\count187
+\l__regex_case_changed_char_int=\count188
+\l__regex_curr_state_int=\count189
+\l__regex_step_int=\count190
+\l__regex_min_active_int=\count191
+\l__regex_max_active_int=\count192
+\l__regex_replacement_csnames_int=\count193
+\l__regex_match_count_int=\count194
+\l__regex_min_submatch_int=\count195
+\l__regex_submatch_int=\count196
+\l__regex_zeroth_submatch_int=\count197
+\g__regex_trace_regex_int=\count198
+\c_empty_box=\box41
+\l_tmpa_box=\box42
+\l_tmpb_box=\box43
+\g_tmpa_box=\box44
+\g_tmpb_box=\box45
+\l__box_top_dim=\dimen163
+\l__box_bottom_dim=\dimen164
+\l__box_left_dim=\dimen165
+\l__box_right_dim=\dimen166
+\l__box_top_new_dim=\dimen167
+\l__box_bottom_new_dim=\dimen168
+\l__box_left_new_dim=\dimen169
+\l__box_right_new_dim=\dimen170
+\l__box_internal_box=\box46
+\l__coffin_internal_box=\box47
+\l__coffin_internal_dim=\dimen171
+\l__coffin_offset_x_dim=\dimen172
+\l__coffin_offset_y_dim=\dimen173
+\l__coffin_x_dim=\dimen174
+\l__coffin_y_dim=\dimen175
+\l__coffin_x_prime_dim=\dimen176
+\l__coffin_y_prime_dim=\dimen177
+\c_empty_coffin=\box48
+\l__coffin_aligned_coffin=\box49
+\l__coffin_aligned_internal_coffin=\box50
+\l_tmpa_coffin=\box51
+\l_tmpb_coffin=\box52
+\g_tmpa_coffin=\box53
+\g_tmpb_coffin=\box54
+\l__coffin_bounding_shift_dim=\dimen178
+\l__coffin_left_corner_dim=\dimen179
+\l__coffin_right_corner_dim=\dimen180
+\l__coffin_bottom_corner_dim=\dimen181
+\l__coffin_top_corner_dim=\dimen182
+\l__coffin_scaled_total_height_dim=\dimen183
+\l__coffin_scaled_width_dim=\dimen184
+\c__coffin_empty_coffin=\box55
+\l__coffin_display_coffin=\box56
+\l__coffin_display_coord_coffin=\box57
+\l__coffin_display_pole_coffin=\box58
+\l__coffin_display_offset_dim=\dimen185
+\l__coffin_display_x_dim=\dimen186
+\l__coffin_display_y_dim=\dimen187
+\g__file_internal_ior=\read2
+\l__seq_internal_a_int=\count199
+\l__seq_internal_b_int=\count266
+\c__deprecation_minus_one=\count267
+)
+(E:\MiKTeX\tex/latex/l3kernel\l3xdvipdfmx.def
+File: l3xdvipdfmx.def 2019-03-05 v L3 Experimental driver: xdvipdfmx
+\g__driver_image_int=\count268
+\g__driver_pdf_object_int=\count269
+))
+Package: xparse 2019-03-05 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count270
+\g__xparse_grabber_int=\count271
+\l__xparse_m_args_int=\count272
+\l__xparse_v_nesting_int=\count273
+)
+Package: fontspec 2018/07/30 vv2.6h Font selection for XeLaTeX and LuaLaTeX
+
+(E:\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+Package: fontspec-xetex 2018/07/30 vv2.6h Font selection for XeLaTeX and LuaLaT
+eX
+\l__fontspec_script_int=\count274
+\l__fontspec_language_int=\count275
+\l__fontspec_strnum_int=\count276
+\l__fontspec_tmp_int=\count277
+\l__fontspec_em_int=\count278
+\l__fontspec_emdef_int=\count279
+\l__fontspec_strong_int=\count280
+\l__fontspec_strongdef_int=\count281
+\l__fontspec_tmpa_dim=\dimen188
+\l__fontspec_tmpb_dim=\dimen189
+\l__fontspec_tmpc_dim=\dimen190
+
+(E:\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
+ (E:\MiKTeX\tex/latex/base\tuenc.def
+File: tuenc.def 2018/08/11 v2.0j Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TU on input line 82.
+))
+(E:\MiKTeX\tex/latex/fontspec\fontspec.cfg)
+LaTeX Info: Redefining \itshape on input line 3910.
+LaTeX Info: Redefining \slshape on input line 3915.
+LaTeX Info: Redefining \scshape on input line 3920.
+LaTeX Info: Redefining \upshape on input line 3925.
+LaTeX Info: Redefining \em on input line 3955.
+LaTeX Info: Redefining \emph on input line 3980.
+LaTeX Info: Redefining \- on input line 4034.
+))
+(E:\MiKTeX\tex/latex/listings\lstlang1.sty
+File: lstlang1.sty 2019/02/27 1.8b listings language file
+) (team_Paramount.aux)
+\openout1 = `team_Paramount.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+\c@lstlisting=\count282
+
+ABD: EveryShipout initializing macros
+
+Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 31.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 31.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 31.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 31.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 31.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 31.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 31.
+LaTeX Font Info:    Redeclaring math accent \check on input line 31.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 31.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 31.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 31.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 31.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 31.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 31.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/lmr/m/n --> TU/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/lmr/bx/it on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 31.
+File: cover.png Graphic file (type bmp)
+<cover.png>
+ [1
+
+] (team_Paramount.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 3.
+)
+\tf@toc=\write4
+\openout4 = `team_Paramount.toc'.
+
+ [1]
+Underfull \hbox (badness 10000) in paragraph at lines 52--62
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--62
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 52--62
+
+ []
+
+[2
+
+] [3
+
+]
+Missing character: There is no （ in font [lmroman10-regular]:mapping=tex-text;!
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--85
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--85
+
+ []
+
+File: 1.png Graphic file (type bmp)
+<1.png>
+[4
+
+] [5] [6] [7
+
+]
+File: 2.png Graphic file (type bmp)
+<2.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 142--151
+
+ []
+
+File: 3.png Graphic file (type bmp)
+<3.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--166
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--166
+
+ []
+
+[8] [9]
+File: 4.jpg Graphic file (type bmp)
+<4.jpg>
+
+Underfull \hbox (badness 10000) in paragraph at lines 188--197
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 200--204
+
+ []
+
+[10] [11]
+File: 5.png Graphic file (type bmp)
+<5.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 239--248
+
+ []
+
+[12]
+File: 6.png Graphic file (type bmp)
+<6.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 277--286
+
+ []
+
+[13] [14]
+File: 7.png Graphic file (type bmp)
+<7.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 312--321
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 365--369
+
+ []
+
+[16]
+Overfull \hbox (4.24991pt too wide) in paragraph at lines 377--378
+[][][][][][][][][][][][][]  
+ []
+
+[17]
+Overfull \hbox (10.49991pt too wide) in paragraph at lines 410--411
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+][][][][][][][][][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 435--437
+
+ []
+
+[18]
+File: 8.png Graphic file (type bmp)
+<8.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 451--461
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 451--461
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 451--461
+
+ []
+
+[19]
+File: 9.png Graphic file (type bmp)
+<9.png>
+ [20]
+Underfull \hbox (badness 10000) in paragraph at lines 475--480
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 475--480
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 483--496
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 483--496
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 483--496
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 483--496
+
+ []
+
+[21]
+File: 10.png Graphic file (type bmp)
+<10.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 505--509
+
+ []
+
+[22] [23] [24] [25] [26]
+Underfull \hbox (badness 10000) in paragraph at lines 691--698
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 691--698
+
+ []
+
+[27] [28]
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 707--763
+
+ []
+
+[29
+
+] [30] [31]
+Underfull \hbox (badness 10000) in paragraph at lines 767--786
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 767--786
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 767--786
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 767--786
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 767--786
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 767--786
+
+ []
+
+[32
+
+] [33] [34
+
+] (team_Paramount.aux) ) 
+Here is how much of TeX's memory you used:
+ 24165 strings out of 427748
+ 499189 string characters out of 3154383
+ 781312 words of memory out of 3000000
+ 27968 multiletter control sequences out of 15000+200000
+ 535197 words of font info for 48 fonts, out of 3000000 for 9000
+ 1328 hyphenation exceptions out of 8191
+ 55i,7n,48p,2016b,1563s stack positions out of 5000i,500n,10000p,200000b,50000s
+
+Output written on team_Paramount.pdf (35 pages).
