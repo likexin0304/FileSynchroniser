@@ -1,3 +1,4 @@
+//form's jumping methods
 $('.message a').click(function(){
    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
@@ -5,7 +6,7 @@ $('.message a').click(function(){
 $('#confirmButton').click(function(){
    $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
 });
-
+//background animation function
 var canvas = $('canvas')[0];
 var context = canvas.getContext('2d');
 
@@ -21,7 +22,7 @@ function Initialize() {
 
   Update();
 }
-
+// the background Dots
 function Dot() {
   this.active = true;
 
@@ -54,7 +55,7 @@ Dot.prototype = {
       this.active = false;
     }
   },
-
+// draw dots in background
   Draw: function() {
     context.fillStyle = this.color;
     context.beginPath();
@@ -62,7 +63,7 @@ Dot.prototype = {
     context.fill();
   }
 }
-
+//Update the  random dots in background
 function Update() {
   GenerateDots();
 
@@ -84,7 +85,7 @@ function Render() {
     Dot.Draw();
   });
 }
-
+// create Dots
 function GenerateDots() {
   if(Dots.length < maximum) {
     for(var i = Dots.length; i < maximum; i++) {

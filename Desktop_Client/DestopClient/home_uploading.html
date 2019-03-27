@@ -7,38 +7,10 @@
     <link rel="stylesheet" href="css/style_homepage.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
     <style media="screen">
-      input[type=button], input[type=file] {
-        background-color: #4e4e56;
-        border: none;
-        color: white;
-        padding: 8px 16px;
-        text-decoration: none;
-        margin: 4px 2px;
-        cursor: pointer;
-        /* border-radius:15px; */
-      }
-      input[type=button]:hover {
-        background-color:#3a3a3f ;
-        border: none;
-        color: white;
-        padding: 8px 16px;
-        text-decoration: none;
-        margin: 4px 2px;
-        cursor: pointer;
-        /* border-radius:15px; */
-      }
-      input[type=file]:hover {
-        background-color:#3a3a3f ;
-        border: none;
-        color: white;
-        padding: 8px 16px;
-        text-decoration: none;
-        margin: 4px 2px;
-        cursor: pointer;
-        /* border-radius:15px; */
-      }
+
     </style>
   </head>
   <body style="-webkit-app-region: drag">
@@ -47,7 +19,7 @@
             <a class="mr-1 d-md-none text-light" href="#sidenav" data-toggle="collapse" data-target="#sidenav">
                 <span data-feather="menu" class="my-1"></span>
             </a>
-            <a class="text-light" href="">Paramount</a>
+            <a class="text-light" style="margin-left:35px">Paramount</a>
             <a class="navbar-toggler border-0 p-0" href="#topnav" data-toggle="collapse" data-target="#topnav">
                 <span data-feather="menu" class="my-1"></span>
             </a>
@@ -105,9 +77,9 @@
                       <progress id="progressBar" value="0" max="100" style="width: 300px;"></progress>
                       <span id="percentage"></span><span id="time"></span>
                       <br /><br />
-                      <input type="file" id="file" name="myfile" />
-                      <input type="button" onclick="UpladFile()" value="Upload" />
-                      <input type="button" onclick="cancleUploadFile()" value="Cancel" />
+                      <input type="file" id="file" name="myfile" class="btn btn-light" />
+                      <input type="button" onclick="UpladFile()" value="Upload" class="btn btn-light" />
+                      <input type="button" onclick="cancleUploadFile()" value="Cancel" class="btn btn-light"/>
                   </form>
               </div>
             </main>
@@ -117,7 +89,7 @@
 
   <script type="text/javascript">
      var xhr;
-     var ot;//
+     var ot;
      var oloaded;
      //upload function
      function UpladFile() {
@@ -131,7 +103,7 @@
 
          xhr = new XMLHttpRequest();  // XMLHttpRequest object
          xhr.open("post", "http://teamparamount.cn:8080/Paramount/upload", true);
-         //post方式，url为服务器请求地址，true 该参数规定请求是否异步处理。use post method request the url, True is a parameter specifies whether the request is processed asynchronously.
+         //use post method request the url, True is a parameter specifies whether the request is processed asynchronously.
          xhr.onload = uploadComplete; //request succeed
          xhr.onerror =  uploadFailed; //request fail
          xhr.upload.onprogress = progressFunction;//upload progress bar function

@@ -76,8 +76,11 @@
                        <div class="card-body">
                            <form class="form" role="form" autocomplete="off">
                                <div class="form-group">
-                                   <label for="inputUername">Username</label>
-                                   <input type="text" class="form-control" id="inputUername" required="">
+                                 <b>
+                                   <label id="usernamelogin">
+
+                                   </label>
+                                 </b>
                                </div>
                                <div class="form-group">
                                    <label for="inputPasswordOld">Current Password</label>
@@ -88,7 +91,7 @@
                                    <input type="password" class="form-control" id="inputPasswordNew" required="">
                                    <span class="form-text small text-muted">
                                            The password must <em>not</em> contain spaces.
-                                       </span>
+                                   </span>
                                </div>
                                <div class="form-group">
                                    <button type="submit" class="btn btn-primary btn-lg float-right" id="saveButton">Save</button>
@@ -96,30 +99,37 @@
                            </form>
                        </div>
                    </div>
+
             </main>
 
       </div>
   </div>
 
   <script type="text/javascript">
-      // get the variable from inputs
+      //retrieve username form localStorage
+      var usernameha = localStorage.getItem("username");
+      console.log(usernameha);
+      //put real time username into the form
+      document.getElementById("usernamelogin").innerHTML = "Username:" + usernameha;
+      // get the variable from changepassword form's inputs
       const form = {
-          username: document.getElementById("inputUername"),
           oldPassword: document.getElementById("inputPasswordOld"),
           newPassword: document.getElementById("inputPasswordNew"),
       };
+      // Assign button to a variable
       const submit = {
         sbumit_btn : document.getElementById("saveButton"),
       };
       console.log(form);
+      //Listen for events on this button
       submit.sbumit_btn.addEventListener('click', ()=> {
          //console.log('button pressed');
           const request = new XMLHttpRequest();
 
           request.onload = () =>{
-              //console.log(request.responseText);
               let responseObject = null;
               try{
+                  //Parse the returned JSON data
                   responseObject = JSON.parse(request.responseText);
               }catch(e){
                   console.error('Could not parse');
@@ -129,7 +139,7 @@
               }
           };
           // create the requestData for using send request to server
-          const requestData = `username=${form.username.value}&password=${form.oldPassword.value}&newpassword=${form.newPassword.value}`;
+          const requestData = `username=` + usernameha + `&password=${form.oldPassword.value}&newpassword=${form.newPassword.value}`;
           //check the content which is user inputs.
           console.log(requestData);
           // send to server
@@ -141,20 +151,16 @@
               // need to check when the user enters incorrect
               if(responseObject.status == "success")
                   {
-                      // window.location.href = "loading_Page.html";
-                      // localStorage.setItem("username", $("#userName").val());
-                      // console.log(responseObject.info);
+                      //Prompt when the user successfully change password
                       alert("Change password successfully!");
                   }
               else if(responseObject.status == "fail"){
+                //When the user fails to changepassword, the application will respond to the failure information sent by the server.
                 alert(responseObject.info);
               }
-              // console.log(responseObject);
           }
       });
   </script>
-
-  <!-- <script language="javascript" src='renderer.js'></script> -->
 
 </body>
 </html>

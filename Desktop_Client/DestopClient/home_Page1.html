@@ -9,30 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
-
-    <script>
-        function test(o) {
-            if (!o.checked) {
-                return;
-            }
-            // select the file name from mainTable
-            // the cell of table
-            var tr = o.parentNode.parentNode;
-            // the first cell
-            var tds = tr.cells;
-            // select the first cell in the table
-            for(var i = 1;i < tds.length;i++){
-                if (i < 2) {
-                    str = tds[i].innerHTML;
-                    var fileName = str;
-                }
-            }
-            //alert(str);
-            console.log(fileName);
-        }
-    </script>
   </head>
   <body style="-webkit-app-region: drag">
+    <!-- Page top navigation bar -->
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 navbar-expand-md">
         <div class="navbar-brand d-flex align-items-center justify-content-between col-sm-12 col-md-2 mr-0">
             <a class="mr-1 d-md-none text-light" href="#sidenav" data-toggle="collapse" data-target="#sidenav">
@@ -54,6 +33,7 @@
         </div>
     </nav>
 
+    <!-- Side navigation bar -->
     <div class="container-fluid">
         <div class=" navbar-expand-md">
             <nav class="col-md-3 col-lg-2 bg-light navbar-collapse collapse sidebar border-bottom" id="sidenav">
@@ -90,27 +70,30 @@
                 </div>
             </nav>
 
+            <!-- Right main content display module -->
             <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
                 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-                    <h1 class="h2">All Functions</h1>
+                    <!-- <h1 class="h2">All Functions</h1> -->
+                    <!-- Function bar module -->
                     <div class="btn-toolbar mb-2 mb-md-0">
                         <div class="btn-group mr-2">
                             <button class="btn btn-sm btn-outline-secondary" id = "refresh">Refresh</button>
                             <button class="btn btn-sm btn-outline-secondary" onclick="window.location.href='home_uploading.html'">Upload</button>
                             <button class="btn btn-sm btn-outline-secondary" id = "download">Download</button>
                             <button class="btn btn-sm btn-outline-secondary" id = "DeleteFile">Delete</button>
-                            <button class="btn btn-sm btn-outline-secondary" id = "addnewfolder">New folder</button>
+                            <!-- <button class="btn btn-sm btn-outline-secondary" id = "addnewfolder">New folder</button> -->
                             <button class="btn btn-sm btn-outline-secondary" id = "rename">Rename</button>
                             <button class="btn btn-sm btn-outline-secondary" id = "revert">Revert</button>
                         </div>
-                        <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                            <span data-feather="calendar"></span> This week
-                        </button>
+                        <!-- <button class="btn btn-sm btn-outline-secondary" id="today">
+                            <span>This week</span>
+                        </button> -->
                     </div>
                 </div>
 
                 <h2>File List</h2>
 
+                <!-- File list module -->
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
                         <div class="modal-body" id="tanchu">
@@ -138,12 +121,34 @@
       </div>
   </div>
   <script type="text/javascript">
+     //Store the username of a successfully authorized user with localstorage
      var usernameha = localStorage.getItem("username");
-     // console.log(usernameha);
-     // $("#loginUser").html(usernameha);
   </script>
+
+  <script type="text/javascript">
+      //This function is mainly used to get the file name of the file selected by the user.
+      function test(o) {
+          if (!o.checked) {
+              return;
+          }
+          // select the file name from mainTable
+          // the cell of table
+          var tr = o.parentNode.parentNode;
+          // the first cell
+          var tds = tr.cells;
+          // select the first cell in the table
+          for(var i = 1;i < tds.length;i++){
+              if (i < 2) {
+                  str = tds[i].innerHTML;
+                  var fileName = str;
+              }
+          }
+          //alert(str);
+          console.log(fileName);
+      }
+  </script>
+
   <script language="javascript" src='renderer.js'></script>
-    <!-- <script language="JavaScript" src="delete.js"></script> -->
 
   </body>
 </html>

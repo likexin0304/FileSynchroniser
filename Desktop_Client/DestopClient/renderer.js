@@ -26,6 +26,7 @@ dialog.showMessageBox({// show a dialog message when click on the download butto
    }
   })
 });
+
 DeleteFile.addEventListener("click", function(){
   //set MessageBox
     dialog.showMessageBox({
@@ -59,7 +60,6 @@ DeleteFile.addEventListener("click", function(){
 
     var fileName = window.parent.str;
     //get deleted file's name
-    //console.log(fileName);
     const http = require('http');
     var usernameha = localStorage.getItem("username");
     http.get(
@@ -73,8 +73,6 @@ DeleteFile.addEventListener("click", function(){
             resp.on('end', () =>{
                 var hhh = JSON.parse(data);
                 var xxx = JSON.parse(data).info;
-                // console.log(hhh);
-                // console.log(xxx);
             });
         }).on("error", (err) => {
         console.log("Error: " + err.message);
@@ -82,8 +80,10 @@ DeleteFile.addEventListener("click", function(){
 
 });
 
+// Listen for the event of refresh button
 refresh.addEventListener("click", function(){
   const http = require('http');
+  //retrieve username from localStorage
   var usernameha = localStorage.getItem("username");
   console.log(usernameha);
   http.get(
@@ -95,21 +95,23 @@ refresh.addEventListener("click", function(){
       });
       // The whole response has been received. Print out the result.
       resp.on('end', () =>{
+        //parse JSON data sent from server and assign it to different variables
         var hhh = JSON.parse(data);
         var xxx = JSON.parse(data).info;
         var heh = JSON.parse(hhh.info);
         console.log(hhh);
         console.log(xxx);
-        var trStr = '';//动态拼接table
-        for (var i = 0; i < heh.length; i++) {//循环遍历出json对象中的每一个数据并显示在对应的td中
-                   trStr += '<tr class="example">';//拼接处规范的表格形式
+        // Dynamic stitching table
+        var trStr = '';
+        for (var i = 0; i < heh.length; i++) {//Loop through each data in the json object and display it in the corresponding td
+                   trStr += '<tr class="example">';//Tabular specification
                    trStr += '<td id="chebox0" ><input class="checkbox" type="checkbox" onclick="test(this);"></td>';
-                   trStr += '<td contenteditable="true">' + heh[i].url + '</td>';//对应数组表的字段值
-                   trStr += '<td>' + heh[i].size + '</td>';
-                   trStr += '<td>' + heh[i].time + '</td>';
+                   trStr += '<td contenteditable="true">' + heh[i].url + '</td>';//File name corresponding to the array element
+                   trStr += '<td>' + heh[i].size + '</td>';//File size corresponding to the array element
+                   trStr += '<td>' + heh[i].time + '</td>';//File creation date for the corresponding array element
                    trStr += '</tr>';
         }
-        // console.log(trStr);
+        //Insert the form generated after the traversal into the HTML file
         $("#document_table").html(trStr);
       });
     }).on("error", (err) => {
@@ -117,6 +119,7 @@ refresh.addEventListener("click", function(){
     });
 });
 
+// Listen for the event of GO button
 searchFuction.addEventListener("click", function(){
   const http = require('http');
   var usernameha = localStorage.getItem("username");
@@ -129,37 +132,41 @@ searchFuction.addEventListener("click", function(){
       });
       // The whole response has been received. Print out the result.
       resp.on('end', () =>{
+        //parse JSON data sent from server
         var hhh = JSON.parse(data);
         var xxx = JSON.parse(data).info;
         var heh = JSON.parse(hhh.info);
-        var trStr = '';//动态拼接table
+        var trStr = '';//Dynamic stitching table
+        //retrieve user's input
         var searchWord = $.trim($("#searchInput").val());
+        //tranfer input into uppercase
         var upsearchWord = searchWord.toUpperCase();
         console.log(upsearchWord);
-        for (var i = 0; i < heh.length; i++) {//循环遍历出json对象中的每一个数据并显示在对应的td中
+        for (var i = 0; i < heh.length; i++) {//Loop through each data in the json object and display it in the corresponding td
           var type = "." + heh[i].type;
           console.log(type);
           var wholefileName = searchWord + type;
           var fileName = heh[i].url.replace(type,"");
           var upfileName = fileName.toUpperCase();
           console.log(upfileName);
+          //Traversal logic
           if (heh[i].url == searchWord || heh[i].url == wholefileName || upsearchWord == upfileName || searchWord == heh[i].type) {
-            trStr += '<tr class="example">';//拼接处规范的表格形式
+            trStr += '<tr class="example">';//Tabular specification
             trStr += '<td id="chebox0" ><input class="checkbox" type="checkbox" onclick="test(this);"></td>';
-            trStr += '<td contenteditable="true">' + heh[i].url + '</td>';//对应数组表的字段值
-            trStr += '<td>' + heh[i].size + '</td>';
-            trStr += '<td>' + heh[i].time + '</td>';
+            trStr += '<td contenteditable="true">' + heh[i].url + '</td>';//File name corresponding to the array element
+            trStr += '<td>' + heh[i].size + '</td>';//File size corresponding to the array element
+            trStr += '<td>' + heh[i].time + '</td>';//File creation date for the corresponding array element
             trStr += '</tr>';
           }else if (upfileName.search(upsearchWord) != -1) {
-            trStr += '<tr class="example">';//拼接处规范的表格形式
+            trStr += '<tr class="example">';//Tabular specification
             trStr += '<td id="chebox0" ><input class="checkbox" type="checkbox" onclick="test(this);"></td>';
-            trStr += '<td contenteditable="true">' + heh[i].url + '</td>';//对应数组表的字段值
-            trStr += '<td>' + heh[i].size + '</td>';
-            trStr += '<td>' + heh[i].time + '</td>';
+            trStr += '<td contenteditable="true">' + heh[i].url + '</td>';//File name corresponding to the array element
+            trStr += '<td>' + heh[i].size + '</td>';//File size corresponding to the array element
+            trStr += '<td>' + heh[i].time + '</td>';//File creation date for the corresponding array element
             trStr += '</tr>';
           }
         }
-        // console.log(trStr);
+        //Insert the form generated after the traversal into the HTML file
         $("#document_table").html(trStr);
       });
     }).on("error", (err) => {
@@ -167,6 +174,7 @@ searchFuction.addEventListener("click", function(){
     });
 });
 
+// Listen for the event of revert button
 revert.addEventListener("click", function(){
   //set MessageBox
     dialog.showMessageBox({
@@ -178,9 +186,10 @@ revert.addEventListener("click", function(){
         if (res === 0){
             //Yes button pressed
             var fileName = window.parent.str;
-            //get deleted file's name
+            //get file's name
             console.log(fileName);
             const http = require('http');
+            //retrieve username from localStorage
             var usernameha = localStorage.getItem("username");
             http.get(
                 'http://teamparamount.cn:8080/Paramount/revert?username=' + usernameha + '&url=' + fileName, (resp) =>{
@@ -191,11 +200,13 @@ revert.addEventListener("click", function(){
                     });
                     // The whole response has been received. Print out the result.
                     resp.on('end', () =>{
-
+                        //parse JSON data set from server
                         var hhh = JSON.parse(data);
                         if (hhh.status == "success") {
+                          //when the status sent from server is success then allert succeed message
                           alert("Revert Succeed!");
                         } else {
+                          //When the user fails to revert, the application will respond to the failure information sent by the server.
                           alert(hhh.info);
                         }
                         console.log(hhh.status);
@@ -208,6 +219,8 @@ revert.addEventListener("click", function(){
     })
 });
 
+
+// Listen for the event of rename button
 rename.addEventListener("click", function(){
   //set MessageBox
     dialog.showMessageBox({
@@ -217,8 +230,10 @@ rename.addEventListener("click", function(){
         buttons: ['YES', 'NO']
     },(res,checked) =>{
         if (res === 0){
+            //retrieve user selected file's filename
             var fileName1 = window.parent.str;
             console.log(fileName1);
+            //get the changed name
             var $check = $("#document_table").find(":checkbox").filter(":checked");
             var $tr = $check.eq(0).parent().parent();
             var $td = $tr.find("td").eq(1).text();
@@ -237,46 +252,17 @@ rename.addEventListener("click", function(){
                     resp.on('end', () =>{
                         var hhh = JSON.parse(data);
                         if (hhh.status == "success") {
+                          //when the status sent from server is success then allert succeed message
                           alert("Rename Succeed!");
                         } else {
+                          //When the user fails to rename, the application will respond to the failure information sent by the server.
                           alert(hhh.info);
                         }
                         console.log(hhh);
-                        // console.log(hhh.status);
-                        // console.log(hhh.info);
                     });
                 }).on("error", (err) => {
                 console.log("Error: " + err.message);
             });
         }
     })
-});
-
-addnewfolder.addEventListener("click", function(){
-   function getCurrentTime(){
-  		var dtCur = new Date();
-  		var yearCur = dtCur.getFullYear();
-  		var monCur = dtCur.getMonth() + 1;
-  		var dayCur = dtCur.getDate();
-  		var hCur = dtCur.getHours();
-  		var mCur = dtCur.getMinutes();
-  		var sCur = dtCur.getSeconds();
-  		timeCur = yearCur + "-" + (monCur < 10 ? "0" + monCur : monCur) + "-"
-  				+ (dayCur < 10 ? "0" + dayCur : dayCur) + " " + (hCur < 10 ? "0" + hCur : hCur)
-  				+ ":" + (mCur < 10 ? "0" + mCur : mCur) + ":" + (sCur < 10 ? "0" + sCur : sCur);
-  		//alert(timeCur);// 输出时间
-  		return timeCur;
-    }
-
-  function getNewFolderName(){
-
-
-  }
-  $("#document_table").append(createNewRow("New folder", 0, getCurrentTime()));
-  // 根据填充数据创建表格行DOM元素，获取表格行DOM元素
-  function createNewRow(cellName,cellSize,cellTime){
-  	var str= "<tr><td>" + '<input class="checkbox" type="checkbox" onclick="test(this);"></td>'+ "<td>" + cellName + "</td><td>" + cellSize + "</td><td>"
-  	+ cellTime + "</td></tr>";
-  	return str;
-}
 });
