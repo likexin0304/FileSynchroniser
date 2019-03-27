@@ -2,9 +2,12 @@ package com.example.mobile_client;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -87,7 +90,7 @@ public class Upload_Page extends AppCompatActivity {
         });
     }
 
-    // access to the system file of phone
+    // access to the system file from phone
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grandResults)
     {
@@ -110,17 +113,22 @@ public class Upload_Page extends AppCompatActivity {
 
     //upload file
     ProgressDialog process;
+   // ProgressDialog progress;
+   private Call mCall;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         String username = (String) MySharedPreferences.getuserName(Upload_Page.this);
         //super.onActivityResult(requestCode, resultCode, data);
         //send request to server
+
         if(requestCode == 10 && resultCode == RESULT_OK)
         {
+            // set the message box to show uploading which can cancel before finished.
             process = new ProgressDialog(Upload_Page.this);
             process.setTitle("Uploading");
             process.setMessage("Please waiting");
+
             process.show();
 
             Thread t = new Thread(new Runnable() {
@@ -153,20 +161,22 @@ public class Upload_Page extends AppCompatActivity {
                             .url("http://teamparamount.cn:8080/Paramount/upload")
                             .post(requestBody)
                             .build();
-
-
-
-
-
+                    mCall = client.newCall(request);
                     try{
-                        Response response = client.newCall(request).execute();
-                        //Toast.makeText(Upload_Page.this, "works", Toast.LENGTH_SHORT).show();
-                        if(!response.isSuccessful())
-                        {
+//                        Response response = client.newCall(request).execute();
+                        Response response = mCall.execute();
+
+                        if(!response.isSuccessful()) {
                             throw new IOException("Error" + response);
 
                         }
-                        //Toast.makeText(Upload_Page.this, "Uploaded", Toast.LENGTH_SHORT).show();
+//                        process.setButton(ProgressDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                mCall.cancel();
+//                                process.dismiss();
+//                            }
+//                        });
                         System.out.println(response);
                         process.dismiss();
                     }catch (IOException e) {
@@ -175,7 +185,6 @@ public class Upload_Page extends AppCompatActivity {
                     }
                 }
             });
-            //process.dismiss();
             t.start();
         }
 

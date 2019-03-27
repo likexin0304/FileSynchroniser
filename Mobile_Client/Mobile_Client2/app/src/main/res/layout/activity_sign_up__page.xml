@@ -36,7 +36,7 @@
         android:layout_marginRight="98dp"
         android:layout_marginBottom="20dp"
         android:ems="10"
-        android:hint="Security Question 1"
+        android:hint="Security Code 1"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/Sign_question2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -76,7 +76,6 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/Sign_question1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Sign_password" />
 
@@ -91,7 +90,7 @@
         android:layout_marginRight="98dp"
         android:layout_marginBottom="142dp"
         android:ems="10"
-        android:hint="Security Question 2"
+        android:hint="Security Code 2"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/Sign_button"
         app:layout_constraintEnd_toEndOf="parent"
