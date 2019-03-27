@@ -1,7 +1,7 @@
-This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.3.21)  27 MAR 2019 16:31
+This is XeTeX, Version 3.14159265-2.6-0.99999 (MiKTeX 2.9.6930 64-bit) (preloaded format=xelatex 2019.3.21)  27 MAR 2019 17:06
 entering extended mode
-**./FinalReport-Paramount.tex
-(FinalReport-Paramount.tex
+**./team_Paramount.tex
+(team_Paramount.tex
 LaTeX2e <2018-12-01>
 (E:\MiKTeX\tex/latex/base\article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -546,8 +546,8 @@ LaTeX Info: Redefining \- on input line 4034.
 ))
 (E:\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
-) (FinalReport-Paramount.aux)
-\openout1 = `FinalReport-Paramount.aux'.
+) (team_Paramount.aux)
+\openout1 = `team_Paramount.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
 LaTeX Font Info:    ... okay on input line 31.
@@ -627,7 +627,7 @@ File: cover.png Graphic file (type bmp)
 <cover.png>
  [1
 
-] (FinalReport-Paramount.toc
+] (team_Paramount.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 3.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -636,7 +636,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 3.
 )
 \tf@toc=\write4
-\openout4 = `FinalReport-Paramount.toc'.
+\openout4 = `team_Paramount.toc'.
 
  [1]
 Underfull \hbox (badness 10000) in paragraph at lines 52--62
@@ -948,14 +948,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 767--786
 
 ] [33] [34
 
-] (FinalReport-Paramount.aux) ) 
+] (team_Paramount.aux) ) 
 Here is how much of TeX's memory you used:
  24165 strings out of 427748
- 499273 string characters out of 3154383
- 781340 words of memory out of 3000000
+ 499189 string characters out of 3154383
+ 781312 words of memory out of 3000000
  27968 multiletter control sequences out of 15000+200000
  535197 words of font info for 48 fonts, out of 3000000 for 9000
  1328 hyphenation exceptions out of 8191
- 55i,7n,48p,2023b,1563s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 55i,7n,48p,2016b,1563s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on FinalReport-Paramount.pdf (35 pages).
+Output written on team_Paramount.pdf (35 pages).
