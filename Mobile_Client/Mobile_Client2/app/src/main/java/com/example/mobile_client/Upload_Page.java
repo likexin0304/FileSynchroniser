@@ -1,6 +1,7 @@
 package com.example.mobile_client;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -128,7 +129,12 @@ public class Upload_Page extends AppCompatActivity {
             process = new ProgressDialog(Upload_Page.this);
             process.setTitle("Uploading");
             process.setMessage("Please waiting");
-
+            process.setButton(ProgressDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    process.dismiss();
+                    }
+            });
             process.show();
 
             Thread t = new Thread(new Runnable() {
@@ -137,16 +143,16 @@ public class Upload_Page extends AppCompatActivity {
                     //select the file
                     File f = new File(data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH));
                     // the type of file
-                    String content_type =  getMimeType(f.getPath());
+                   // String content_type =  getMimeType(f.getPath());
 
 
-                    String file_path = f.getAbsolutePath();
+                   // String file_path = f.getAbsolutePath();
 
                     OkHttpClient client = new OkHttpClient();
 
 
 
-                    RequestBody file_body = RequestBody.create(MediaType.parse(content_type),f);
+                   // RequestBody file_body = RequestBody.create(MediaType.parse(content_type),f);
 
                     // request the body
                     RequestBody requestBody = new MultipartBody.Builder()
@@ -170,15 +176,11 @@ public class Upload_Page extends AppCompatActivity {
                             throw new IOException("Error" + response);
 
                         }
-//                        process.setButton(ProgressDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                mCall.cancel();
-//                                process.dismiss();
-//                            }
-//                        });
-                        System.out.println(response);
-                        process.dismiss();
+                        else {
+                            System.out.println(response);
+                            process.dismiss();
+
+                        }
                     }catch (IOException e) {
                         e.printStackTrace();
                         Toast.makeText(Upload_Page.this, "Sorry, Cannot upload", Toast.LENGTH_SHORT).show();
