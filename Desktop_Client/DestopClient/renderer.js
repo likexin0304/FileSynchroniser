@@ -119,6 +119,57 @@ refresh.addEventListener("click", function(){
     });
 });
 
+// Listen for the event of Today button
+today.addEventListener("click", function(){
+  const http = require('http');
+  //retrieve username from localStorage
+  var usernameha = localStorage.getItem("username");
+  console.log(usernameha);
+  http.get(
+    'http://teamparamount.cn:8080/Paramount/filesroot?username=' + usernameha, (resp) =>{
+      let data = '';
+      // A chunk of data has been recieved.
+      resp.on('data', (chunk) =>{
+        data += chunk;
+      });
+      // The whole response has been received. Print out the result.
+      resp.on('end', () =>{
+        //parse JSON data sent from server and assign it to different variables
+        var hhh = JSON.parse(data);
+        var xxx = JSON.parse(data).info;
+        var heh = JSON.parse(hhh.info);
+        console.log(hhh);
+        console.log(xxx);
+        console.log(heh);
+        var dtCur = new Date();
+        var yearCur = dtCur.getFullYear();
+        var monCur = dtCur.getMonth() + 1;
+        var dayCur = dtCur.getDate();
+        //Get the current time, accurate to the day
+        timeCur = yearCur + "-" + (monCur < 10 ? "0" + monCur : monCur) + "-"
+    				+ (dayCur < 10 ? "0" + dayCur : dayCur);
+        console.log(timeCur);
+        console.log(heh[0].time);
+        console.log(heh[0].time.substring(0,10));
+        var trStr = '';
+        for (var i = 0; i < heh.length; i++) {//Loop through each data in the json object and display it in the corresponding td
+          if (timeCur == heh[i].time.substring(0,10)) {
+            trStr += '<tr class="example">';
+            trStr += '<td id="chebox0" ><input class="checkbox" type="checkbox" onclick="test(this);"></td>';
+            trStr += '<td contenteditable="true">' + heh[i].url + '</td>';//对应数组表的字段值
+            trStr += '<td>' + heh[i].size + '</td>';
+            trStr += '<td>' + heh[i].time + '</td>';
+            trStr += '</tr>';
+          }
+        }
+        // console.log(trStr);
+        $("#document_table").html(trStr);
+      });
+    }).on("error", (err) => {
+      console.log("Error: " + err.message);
+    });
+});
+
 // Listen for the event of GO button
 searchFuction.addEventListener("click", function(){
   const http = require('http');
