@@ -103,26 +103,25 @@ refresh.addEventListener("click", function(){
         console.log(xxx);
         console.log(heh);
 
-        var arr = new Array();    //create a temporary array to store file type
+        var arr = new Array();    //定义一个临时数组
         for(var i = 0; i < heh.length; i++){
-          //Determines whether the current element indexed by i is already saved to a temporary array
-          //Skip if saved, otherwise save this element to a temporary array
+          //判断当前数组下标为i的元素是否已经保存到临时数组
+          //如果已保存，则跳过，否则将此元素保存到临时数组中
           if (arr.indexOf(heh[i].type) == -1) {
             arr.push(heh[i].type);
           }
         }
         console.log(arr);
         console.log(heh.length);
-        //create a temporary array to store total file size of typical file type
+
         var arr_results = new Array();
         for (var i = 0; i < arr.length; i++) {
           arr_results[i] = 0;
         }
 
-        console.log(parseFloat(heh[0].size)+parseFloat(heh[1].size));
+        //console.log(parseFloat(heh[0].size)+parseFloat(heh[1].size));
         console.log(typeof(parseFloat(heh[0].size)));
 
-        //parse the data sent by the server and add all file size of typical file type respectively
         for (var i = 0; i < arr.length; i++) {
           for (var j = 0; j < heh.length; j++) {
             if (arr[i] == heh[j].type) {
@@ -188,7 +187,7 @@ today.addEventListener("click", function(){
         var dayCur = dtCur.getDate();
         //Get the current time, accurate to the day
         timeCur = yearCur + "-" + (monCur < 10 ? "0" + monCur : monCur) + "-"
-    				+ (dayCur < 10 ? "0" + dayCur : dayCur);
+            + (dayCur < 10 ? "0" + dayCur : dayCur);
         console.log(timeCur);
         console.log(heh[0].time);
         console.log(heh[0].time.substring(0,10));
