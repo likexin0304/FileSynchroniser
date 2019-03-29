@@ -103,10 +103,10 @@ refresh.addEventListener("click", function(){
         console.log(xxx);
         console.log(heh);
 
-        var arr = new Array();    //定义一个临时数组
+        var arr = new Array();    //define a array
         for(var i = 0; i < heh.length; i++){
-          //判断当前数组下标为i的元素是否已经保存到临时数组
-          //如果已保存，则跳过，否则将此元素保存到临时数组中
+          //check the array if there is  a data
+          //if it is, just skip it.
           if (arr.indexOf(heh[i].type) == -1) {
             arr.push(heh[i].type);
           }
