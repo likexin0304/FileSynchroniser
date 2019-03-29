@@ -101,6 +101,47 @@ refresh.addEventListener("click", function(){
         var heh = JSON.parse(hhh.info);
         console.log(hhh);
         console.log(xxx);
+        console.log(heh);
+
+        var arr = new Array();    //create a temporary array to store file type
+        for(var i = 0; i < heh.length; i++){
+          //Determines whether the current element indexed by i is already saved to a temporary array
+          //Skip if saved, otherwise save this element to a temporary array
+          if (arr.indexOf(heh[i].type) == -1) {
+            arr.push(heh[i].type);
+          }
+        }
+        console.log(arr);
+        console.log(heh.length);
+        //create a temporary array to store total file size of typical file type
+        var arr_results = new Array();
+        for (var i = 0; i < arr.length; i++) {
+          arr_results[i] = 0;
+        }
+
+        console.log(parseFloat(heh[0].size)+parseFloat(heh[1].size));
+        console.log(typeof(parseFloat(heh[0].size)));
+
+        //parse the data sent by the server and add all file size of typical file type respectively
+        for (var i = 0; i < arr.length; i++) {
+          for (var j = 0; j < heh.length; j++) {
+            if (arr[i] == heh[j].type) {
+              arr_results[i] += parseFloat(heh[j].size);
+            }
+          }
+        }
+        console.log(arr_results);
+        var trStr1 = '';
+        for (var i = 0; i < arr.length; i++) {//Loop through each data in the json object and display it in the corresponding td
+          var j = i + 1;
+          trStr1 += '<tr>';
+          trStr1 += '<th scope="row">' + j + '</th>';//Tabular specification
+          trStr1 += '<td>' + arr[i] + '</td>';
+          trStr1 += '<td>' + arr_results[i] + '</td>';
+          trStr1 += '</tr>';
+        }
+        $("#document_table2").html(trStr1);
+
         // Dynamic stitching table
         var trStr = '';
         for (var i = 0; i < heh.length; i++) {//Loop through each data in the json object and display it in the corresponding td
