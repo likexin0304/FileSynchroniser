@@ -24,6 +24,7 @@
  - revert file version
  - transfer between two different clients.
  - displays the files which are uploaded today.
+ - show the Count the space occupancy of each file type under the account.
  - handle conflicts(upload to **Hub**): replace the whole file on **Hub**
 ## Language Selection and Platform
  - Desktop Client : Boostrap, Electron
