@@ -120,7 +120,7 @@ refresh.addEventListener("click", function(){
         }
 
         //console.log(parseFloat(heh[0].size)+parseFloat(heh[1].size));
-        console.log(typeof(parseFloat(heh[0].size)));
+        //console.log(typeof(parseFloat(heh[0].size)));
 
         for (var i = 0; i < arr.length; i++) {
           for (var j = 0; j < heh.length; j++) {
