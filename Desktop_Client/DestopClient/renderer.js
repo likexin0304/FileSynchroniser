@@ -16,13 +16,41 @@ dialog.showMessageBox({// show a dialog message when click on the download butto
     // console.log(usernameha);
     var fileName = window.parent.str;// pass the value of the dialog message to the parent page
     console.log(fileName);
-    const http = require('http');
-    const fs = require('fs');
-    const file = fs.createWriteStream(fileName);
-    const request = http.get("http://teamparamount.cn:8080/Paramount/download?username=" + usernameha + "&url=" + fileName, function(response) {
-      response.pipe(file);// send request to server and get the response of the file
-    });
-    console.log("works");
+    //var dest = "/Users/likexin/Desktop/"
+    //Yes button pressed
+    // const http = require('http');
+    // const fs = require('fs');
+    // const file = fs.createWriteStream(fileName);
+    // const request = http.get("http://teamparamount.cn:8080/Paramount/download?username=" + usernameha + "&url=" + fileName, function(response) {
+    //   response.pipe(file);// send request to server and get the response of the file
+    // });
+    // console.log("works");
+
+     var download = require('download-file')
+    var url = "http://teamparamount.cn:8080/Paramount/download?username=" + usernameha + "&url=" + fileName;
+    var options = {
+      directory: "/Users/likexin/Desktop/testfilesdownload/",
+      filename: fileName
+    }
+    download(url, options, function(err){
+      // if (err) throw err
+      console.log("meow")
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    }
   })
 });
